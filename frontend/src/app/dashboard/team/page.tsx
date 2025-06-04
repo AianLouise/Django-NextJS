@@ -11,13 +11,13 @@ export default function Team() {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   // Organization and team state
   const [organization, setOrganization] = useState<any>(null);
   const [activeMembers, setActiveMembers] = useState<any[]>([]);
   const [pendingInvitations, setPendingInvitations] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   // Invitation modal state
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
@@ -25,7 +25,7 @@ export default function Team() {
   const [inviteLastName, setInviteLastName] = useState('');
   const [inviteRole, setInviteRole] = useState('employee');
   const [isInviting, setIsInviting] = useState(false);
-  
+
   // Notification state
   interface Notification {
     id: string;
@@ -39,7 +39,7 @@ export default function Team() {
   const showNotification = (message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
     const id = Date.now().toString();
     const newNotification = { id, message, type, duration };
-    
+
     // Check if this notification already exists to prevent duplicates
     setNotifications(prev => {
       // Check if a similar notification already exists
@@ -49,7 +49,7 @@ export default function Team() {
       }
       return [...prev, newNotification];
     });
-    
+
     // Auto-dismiss after duration
     if (duration > 0) {
       setTimeout(() => {
@@ -57,7 +57,7 @@ export default function Team() {
       }, duration);
     }
   };
-    // Dismiss notification function
+  // Dismiss notification function
   const dismissNotification = (id: string) => {
     setNotifications(prev => prev.filter(notification => notification.id !== id));
   };
@@ -66,24 +66,24 @@ export default function Team() {
   const fetchTeamMembers = async () => {
     try {
       setIsLoading(true);
-      
+
       // Try to call the organization team API
       const data = await apiRequest('/users/organization/team/', {
         method: 'GET'
       });
-      
+
       setOrganization(data.organization);
       setActiveMembers(data.active_members || []);
       setPendingInvitations(data.pending_invitations || []);
       setIsLoading(false);
     } catch (err: any) {
       console.error('Error fetching team members:', err);
-      
+
       // Set empty arrays for demo purposes
       setActiveMembers([]);
       setPendingInvitations([]);
       setIsLoading(false);
-      
+
       // Show error notification
       showNotification('Unable to load team data - please check your connection', 'error');
     }
@@ -92,14 +92,14 @@ export default function Team() {
   // Handle team member invitation
   const handleInviteTeamMember = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!inviteEmail.trim() || !inviteFirstName.trim() || !inviteLastName.trim()) {
       showNotification('Please fill in all required fields.', 'error');
       return;
     }
-    
+
     setIsInviting(true);
-    
+
     try {
       const response = await apiRequest('/users/organization/invite/', {
         method: 'POST',
@@ -110,38 +110,39 @@ export default function Team() {
           role: inviteRole
         }
       });
-      
+
       showNotification('Team member invited successfully! An invitation email has been sent.', 'success');
-      
+
       // Reset form and close modal
       setInviteEmail('');
       setInviteFirstName('');
       setInviteLastName('');
       setInviteRole('employee');
       setShowInviteModal(false);
-      
+
       // Refresh team data
       fetchTeamMembers();
-      
+
     } catch (err: any) {
       console.error('Error inviting team member:', err);
       showNotification(err.message || 'Failed to invite team member', 'error');
     } finally {
       setIsInviting(false);
-    }  };
-  
+    }
+  };
+
   // Check authentication and load user data
   useEffect(() => {
     // Check for auth token
     const token = localStorage.getItem('auth_token');
     const userData = localStorage.getItem('user_data');
-    
+
     if (!token) {
       // Redirect to login if no token is found
       router.push('/login');
       return;
     }
-    
+
     if (userData) {
       try {
         const parsedUser = JSON.parse(userData);
@@ -151,7 +152,7 @@ export default function Team() {
         setError('Invalid user data');
       }
     }
-    
+
     // Fetch team data
     fetchTeamMembers();
   }, [router]);
@@ -170,17 +171,17 @@ export default function Team() {
       showNotification('Error logging out. Please try again.', 'error');
     }
   };
-  
+
   // Filter team members based on search query
   const filteredActiveMembers = activeMembers.filter(member => {
     const fullName = `${member.first_name} ${member.last_name}`.toLowerCase();
     const email = member.email.toLowerCase();
     const role = member.role?.toLowerCase() || '';
     const query = searchQuery.toLowerCase();
-    
-    return fullName.includes(query) || 
-           email.includes(query) || 
-           role.includes(query);
+
+    return fullName.includes(query) ||
+      email.includes(query) ||
+      role.includes(query);
   });
 
   const filteredPendingInvitations = pendingInvitations.filter(invitation => {
@@ -188,21 +189,22 @@ export default function Team() {
     const email = invitation.email.toLowerCase();
     const role = invitation.role?.toLowerCase() || '';
     const query = searchQuery.toLowerCase();
-    
-    return fullName.includes(query) || 
-           email.includes(query) || 
-           role.includes(query);  });
-  
+
+    return fullName.includes(query) ||
+      email.includes(query) ||
+      role.includes(query);
+  });
+
   // Check if user can invite team members (owner or admin)
   const canInviteMembers = user && (user.role === 'owner' || user.role === 'admin');
-  
+
   // Format date
   const formatDate = (dateString: string) => {
     if (!dateString) return '';
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
-  
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
@@ -210,24 +212,24 @@ export default function Team() {
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Floating Notifications */}
       <div className="fixed top-4 right-4 z-50 space-y-2 w-80">
         {notifications.map((notification) => (
-          <div 
+          <div
             key={notification.id}
             className={`p-4 rounded-md shadow-lg flex justify-between items-start 
-              ${notification.type === 'success' ? 'bg-green-50 text-green-800 border-l-4 border-green-500' : 
-                notification.type === 'error' ? 'bg-red-50 text-red-800 border-l-4 border-red-500' : 
-                'bg-blue-50 text-blue-800 border-l-4 border-blue-500'} 
+              ${notification.type === 'success' ? 'bg-green-50 text-green-800 border-l-4 border-green-500' :
+                notification.type === 'error' ? 'bg-red-50 text-red-800 border-l-4 border-red-500' :
+                  'bg-blue-50 text-blue-800 border-l-4 border-blue-500'} 
               transform transition-all duration-300 ease-in-out`}
           >
             <div>
               <p className="font-medium">{notification.message}</p>
             </div>
-            <button 
+            <button
               onClick={() => dismissNotification(notification.id)}
               className="ml-4 text-gray-400 hover:text-gray-500"
             >
@@ -236,7 +238,7 @@ export default function Team() {
           </div>
         ))}
       </div>
-      
+
       {/* Header */}
       <header className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -248,7 +250,7 @@ export default function Team() {
               </div>
             </div>
             <div className="flex items-center">
-              <button 
+              <button
                 onClick={() => showNotification('You have no new notifications', 'info')}
                 className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
@@ -263,7 +265,7 @@ export default function Team() {
                   </span>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={handleLogout}
                 className="ml-4 flex items-center text-gray-400 hover:text-gray-500 focus:outline-none"
               >
@@ -284,36 +286,36 @@ export default function Team() {
                 {/* Sidebar */}
                 <div className="w-full md:w-64 mb-8 md:mb-0">
                   <nav className="space-y-1">
-                    <Link 
-                      href="/dashboard" 
+                    <Link
+                      href="/dashboard"
                       className="text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
                     >
                       <FaHome className="mr-3 h-5 w-5" />
                       Dashboard
                     </Link>
-                    <Link 
-                      href="/dashboard/timesheet" 
+                    <Link
+                      href="/dashboard/timesheet"
                       className="text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
                     >
                       <FaCalendarAlt className="mr-3 h-5 w-5" />
                       Timesheet
                     </Link>
-                    <Link 
-                      href="/dashboard/reports" 
+                    <Link
+                      href="/dashboard/reports"
                       className="text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
                     >
                       <FaChartBar className="mr-3 h-5 w-5" />
                       Reports
                     </Link>
-                    <Link 
-                      href="/dashboard/team" 
+                    <Link
+                      href="/dashboard/team"
                       className="bg-blue-50 text-blue-600 dark:bg-blue-900 dark:text-blue-200 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
                     >
                       <FaUsers className="mr-3 h-5 w-5" />
                       Team
                     </Link>
-                    <Link 
-                      href="/dashboard/settings" 
+                    <Link
+                      href="/dashboard/settings"
                       className="text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
                     >
                       <FaCog className="mr-3 h-5 w-5" />
@@ -347,7 +349,7 @@ export default function Team() {
                             Manage your organization's team members and invitations
                           </p>
                         </div>
-                        
+
                         <div className="flex items-center space-x-4">
                           {/* Search Input */}
                           <div className="relative">
@@ -384,11 +386,12 @@ export default function Team() {
                           <FaUser className="mr-2 h-5 w-5 text-green-600" />
                           Active Members ({filteredActiveMembers.length})
                         </h3>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {filteredActiveMembers.length > 0 ? (
-                            filteredActiveMembers.map((member) => (
-                              <div key={member.id} className="bg-white dark:bg-gray-700 rounded-lg shadow overflow-hidden border border-gray-200 dark:border-gray-600">
+                            filteredActiveMembers.map((member, idx) => (
+                              <div key={member.id || `active-${idx}`}
+                                className="bg-white dark:bg-gray-700 rounded-lg shadow overflow-hidden border border-gray-200 dark:border-gray-600">
                                 <div className="p-5">
                                   <div className="flex items-center">
                                     <div className="flex-shrink-0 h-12 w-12 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
@@ -403,7 +406,7 @@ export default function Team() {
                                       </p>
                                     </div>
                                   </div>
-                                  
+
                                   <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
                                       <FaEnvelope className="mr-2 h-4 w-4 text-gray-400" />
@@ -418,7 +421,7 @@ export default function Team() {
                                   </div>
                                 </div>
                                 <div className="bg-gray-50 dark:bg-gray-600 px-5 py-3">
-                                  <button 
+                                  <button
                                     onClick={() => showNotification(`Viewing ${member.first_name}'s timesheet is not implemented yet.`, 'info')}
                                     className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
                                   >
@@ -446,10 +449,11 @@ export default function Team() {
                             <FaClock className="mr-2 h-5 w-5 text-yellow-600" />
                             Pending Invitations ({filteredPendingInvitations.length})
                           </h3>
-                          
+
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredPendingInvitations.map((invitation) => (
-                              <div key={invitation.id} className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg shadow overflow-hidden border border-yellow-200 dark:border-yellow-800">
+                            {filteredPendingInvitations.map((invitation, idx) => (
+                              <div key={invitation.id || `pending-${idx}`}
+                                className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg shadow overflow-hidden border border-yellow-200 dark:border-yellow-800">
                                 <div className="p-5">
                                   <div className="flex items-center">
                                     <div className="flex-shrink-0 h-12 w-12 bg-yellow-200 dark:bg-yellow-800 rounded-full flex items-center justify-center">
@@ -464,7 +468,7 @@ export default function Team() {
                                       </p>
                                     </div>
                                   </div>
-                                  
+
                                   <div className="mt-4 pt-4 border-t border-yellow-200 dark:border-yellow-800">
                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
                                       <FaEnvelope className="mr-2 h-4 w-4 text-gray-400" />
@@ -490,7 +494,8 @@ export default function Team() {
                   </div>
                 </div>
               </div>
-            </div>          </div>
+            </div>
+          </div>
         </main>
       </div>
 
@@ -510,7 +515,7 @@ export default function Team() {
                   <FaTimes className="h-6 w-6" />
                 </button>
               </div>
-              
+
               <form onSubmit={handleInviteTeamMember}>
                 <div className="space-y-4">
                   <div>
@@ -527,7 +532,7 @@ export default function Team() {
                       placeholder="colleague@company.com"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="inviteFirstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       First Name *
@@ -542,7 +547,7 @@ export default function Team() {
                       placeholder="John"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="inviteLastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       Last Name *
@@ -557,7 +562,7 @@ export default function Team() {
                       placeholder="Doe"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="inviteRole" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       Role
@@ -574,7 +579,7 @@ export default function Team() {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className="flex justify-end space-x-3 mt-6">
                   <button
                     type="button"
