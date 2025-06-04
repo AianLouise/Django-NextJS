@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "TimeTrack | Simple Time Tracking System",
   description: "Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.",
+  icons: {
+    icon: [
+      { url: '/icon.png' },
+      { url: '/favicon.ico' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' },
+    ],
+  },
 };
 
 export default function RootLayout({
