@@ -2,16 +2,135 @@ from django.contrib.auth import logout
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveUpdateAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
 
-from .models import CustomUser
+from .models import CustomUser, Organization
 from .serializers import (
     UserSerializer, RegisterSerializer, LoginSerializer, 
-    ChangePasswordSerializer, UpdateUserSerializer
+    ChangePasswordSerializer, UpdateUserSerializer,
+    OrganizationRegisterSerializer, TeamMemberInviteSerializer,
+    AcceptInvitationSerializer, OrganizationSerializer
 )
 
+class OrganizationRegisterView(APIView):
+    """
+    Create an account for your organization and become the organization owner
+    """
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = OrganizationRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({
+                'user': UserSerializer(user).data,
+                'organization': OrganizationSerializer(user.organization).data,
+                'token': token.key,
+                'message': 'Organization created successfully! You can now invite team members.'
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TeamMemberInviteView(APIView):
+    """
+    Invite team members to join your organization
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        # Only owners and admins can invite team members
+        if request.user.role not in ['owner', 'admin']:
+            return Response({
+                'error': 'Only organization owners and administrators can invite team members.'
+            }, status=status.HTTP_403_FORBIDDEN)
+        
+        if not request.user.organization:
+            return Response({
+                'error': 'User must belong to an organization to invite team members.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        serializer = TeamMemberInviteSerializer(
+            data=request.data,
+            context={
+                'organization': request.user.organization,
+                'inviter': request.user
+            }
+        )
+        
+        if serializer.is_valid():
+            invited_user = serializer.save()
+            
+            # In a real application, you would send an email here
+            # For now, we'll return the invitation token
+            return Response({
+                'message': 'Team member invited successfully!',
+                'invited_user': {
+                    'email': invited_user.email,
+                    'first_name': invited_user.first_name,
+                    'last_name': invited_user.last_name,
+                    'role': invited_user.role,
+                    'invitation_token': str(invited_user.invitation_token)
+                }
+            }, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AcceptInvitationView(APIView):
+    """
+    Accept a team member invitation and complete account setup
+    """
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = AcceptInvitationSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({
+                'user': UserSerializer(user).data,
+                'organization': OrganizationSerializer(user.organization).data,
+                'token': token.key,
+                'message': 'Welcome to the team! Your account has been activated.'
+            }, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OrganizationTeamView(APIView):
+    """
+    View and manage organization team members
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        if not request.user.organization:
+            return Response({
+                'error': 'User must belong to an organization.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        team_members = CustomUser.objects.filter(
+            organization=request.user.organization
+        ).order_by('role', 'first_name', 'last_name')
+        
+        # Separate active and invited users
+        active_members = team_members.filter(is_active=True)
+        pending_invitations = team_members.filter(is_active=False, is_invited=True)
+        
+        return Response({
+            'organization': OrganizationSerializer(request.user.organization).data,
+            'active_members': UserSerializer(active_members, many=True).data,
+            'pending_invitations': [{
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'role': user.role,
+                'invited_at': user.invited_at,
+                'invited_by': user.invited_by.get_full_name() if user.invited_by else None
+            } for user in pending_invitations]
+        })
+
+# Keep existing individual registration for backwards compatibility
 class RegisterView(APIView):
     permission_classes = [AllowAny]
     
