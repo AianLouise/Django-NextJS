@@ -77,11 +77,9 @@ export default function Signup() {
       // Redirect to dashboard after a short delay
       setTimeout(() => {
         router.push('/dashboard');
-      }, 2000);
-
-    } catch (err: any) {
+      }, 2000);    } catch (err) {
       console.error('Registration error:', err);
-      setError(err.message || 'An error occurred during signup. Please try again.');
+      setError(err instanceof Error ? err.message : 'An error occurred during signup. Please try again.');
     } finally {
       setIsLoading(false);
     }

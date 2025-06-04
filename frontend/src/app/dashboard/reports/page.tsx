@@ -4,17 +4,32 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaDownload, FaFilter } from 'react-icons/fa';
-import { apiRequest, logout } from '@/lib/api';
+import { apiRequest, logout, User } from '@/lib/api';
+
+// Define interfaces for report data
+interface ReportData {
+  total_hours: number;
+  total_entries: number;
+  projects: {
+    name: string;
+    hours: number;
+    percentage: number;
+  }[];
+  daily_breakdown: {
+    date: string;
+    hours: number;
+  }[];
+}
 
 export default function Reports() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [reportType, setReportType] = useState('weekly');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [reportData, setReportData] = useState<any>(null);
+  const [reportData, setReportData] = useState<ReportData | null>(null);
   
   // Notification state
   interface Notification {
@@ -292,9 +307,27 @@ export default function Reports() {
 
                 {/* Main Content */}
                 <div className="flex-1 md:ml-8">
-                  <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
-                    <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">                    <div className="px-4 py-5 sm:p-6">
                       <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-6">Reports</h2>
+                      
+                      {/* Error Display */}
+                      {error && (
+                        <div className="mb-6 bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                          <div className="flex">
+                            <div className="flex-shrink-0">
+                              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="ml-3">
+                              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                              <div className="mt-2 text-sm text-red-700 dark:text-red-300">
+                                <p>{error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       
                       {/* Report Filters */}
                       <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">

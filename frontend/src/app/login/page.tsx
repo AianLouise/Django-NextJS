@@ -36,14 +36,12 @@ export default function Login() {
       document.cookie = `auth_token=${data.token}; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
 
       // Reset the dashboard loaded flag to ensure welcome message shows
-      sessionStorage.removeItem('dashboard_loaded');
-
-      // If login is successful, redirect to dashboard
+      sessionStorage.removeItem('dashboard_loaded');      // If login is successful, redirect to dashboard
       router.push('/dashboard');
-    } catch (err: any) {
+    } catch (err) {
       console.error('Login error details:', err);
       // Show more detailed error message
-      setError(typeof err.message === 'string' ? err.message : 'Invalid email or password. Please try again.');
+      setError(err instanceof Error ? err.message : 'Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
     }

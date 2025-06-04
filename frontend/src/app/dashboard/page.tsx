@@ -1,19 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes } from 'react-icons/fa';
-import { apiRequest, logout } from '@/lib/api';
+import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
 
 export default function Dashboard() {
   const router = useRouter();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isClockedIn, setIsClockedIn] = useState(false);
-  const [clockInTime, setClockInTime] = useState<Date | null>(null);
-  const [user, setUser] = useState<any>(null);
-  const [activeTimeEntry, setActiveTimeEntry] = useState<any>(null);
-  const [recentEntries, setRecentEntries] = useState<any[]>([]);
+  const [clockInTime, setClockInTime] = useState<Date | null>(null);  const [user, setUser] = useState<User | null>(null);
+  const [activeTimeEntry, setActiveTimeEntry] = useState<TimeEntry | null>(null);  const [recentEntries, setRecentEntries] = useState<TimeEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   
@@ -32,9 +30,8 @@ export default function Dashboard() {
     }, 1000);
     
     return () => clearInterval(interval);
-  }, []);
-  // Show notification function
-  const showNotification = (message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
+  }, []);  // Show notification function
+  const showNotification = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
     const id = Date.now().toString();
     const newNotification = { id, message, type, duration };
     
@@ -54,11 +51,38 @@ export default function Dashboard() {
         dismissNotification(id);
       }, duration);
     }
-  };
-    // Dismiss notification function
+  }, []);
+  // Dismiss notification function
   const dismissNotification = (id: string) => {
     setNotifications(prev => prev.filter(notification => notification.id !== id));
   };
+
+  // Fetch dashboard data
+  const fetchDashboardData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      
+      // Fetch dashboard data from API
+      const data = await apiRequest('/timekeeping/dashboard/');
+      
+      // Update state with dashboard data
+      if (data.active_time_entry) {
+        setActiveTimeEntry(data.active_time_entry);
+        setIsClockedIn(true);
+        setClockInTime(new Date(data.active_time_entry.clock_in));
+      }
+      
+      setRecentEntries(data.recent_time_entries || []);
+      setIsLoading(false);
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+      setError('Failed to load dashboard data');
+      setIsLoading(false);
+      
+      // Show error notification
+      showNotification('Failed to load dashboard data. Please refresh the page.', 'error');
+    }
+  }, [showNotification]);
   
   // Check authentication and load user data
   useEffect(() => {
@@ -91,35 +115,9 @@ export default function Dashboard() {
         setError('Invalid user data');
       }
     }
-    
-    // Fetch dashboard data
+      // Fetch dashboard data
     fetchDashboardData();
-  }, [router]);
-  const fetchDashboardData = async () => {
-    try {
-      setIsLoading(true);
-      
-      // Fetch dashboard data from API
-      const data = await apiRequest('/timekeeping/dashboard/');
-      
-      // Update state with dashboard data
-      if (data.active_time_entry) {
-        setActiveTimeEntry(data.active_time_entry);
-        setIsClockedIn(true);
-        setClockInTime(new Date(data.active_time_entry.clock_in));
-      }
-      
-      setRecentEntries(data.recent_time_entries || []);
-      setIsLoading(false);
-    } catch (err) {
-      console.error('Error fetching dashboard data:', err);
-      setError('Failed to load dashboard data');
-      setIsLoading(false);
-      
-      // Show error notification
-      showNotification('Failed to load dashboard data. Please refresh the page.', 'error');
-    }
-  };
+  }, [router, fetchDashboardData, showNotification]);
     const handleClockInOut = async () => {
     try {
       if (isClockedIn) {
@@ -317,52 +315,77 @@ export default function Dashboard() {
                         >
                           {isClockedIn ? 'Clock Out' : 'Clock In'}
                         </button>
-                        
-                        {isClockedIn && clockInTime && (
+                          {isClockedIn && clockInTime && (
                           <div className="mt-4 text-sm text-gray-600 dark:text-gray-300">
                             Clocked in at {clockInTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            {activeTimeEntry?.project && (
+                              <div className="mt-1">
+                                Project: <span className="font-medium">{activeTimeEntry.project.name}</span>
+                              </div>
+                            )}                            {activeTimeEntry?.notes && (
+                              <div className="mt-1 text-xs">
+                                {activeTimeEntry.notes}
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
                     </div>
                   </div>
                   
+                  {/* Error Message */}
+                  {error && (
+                    <div className="mt-4 rounded-md bg-red-50 dark:bg-red-900/20 p-4">
+                      <div className="flex">
+                        <div className="flex-shrink-0">
+                          <FaTimes className="h-5 w-5 text-red-400" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-sm font-medium text-red-800 dark:text-red-400">
+                            {error}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
                       <div className="px-4 py-5 sm:p-6">
                         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Recent Activity</h3>
                         <div className="space-y-3">
-                          {/* Activity items */}
-                          <div className="flex items-start">
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                Yesterday's timesheet approved
-                              </p>
+                          {recentEntries && recentEntries.length > 0 ? (
+                            recentEntries.slice(0, 3).map((entry) => (
+                              <div key={entry.id} className="flex items-start">
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                    {entry.clock_out ? 'Clocked out' : 'Clocked in'}
+                                    {entry.project && ` - ${entry.project.name}`}
+                                  </p>
+                                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {new Date(entry.clock_out || entry.clock_in).toLocaleDateString([], { 
+                                      weekday: 'short', 
+                                      month: 'short', 
+                                      day: 'numeric',
+                                      hour: '2-digit',
+                                      minute: '2-digit'
+                                    })}
+                                  </p>
+                                  {entry.duration_formatted && entry.clock_out && (
+                                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                                      Duration: {entry.duration_formatted}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="text-center py-4">
                               <p className="text-sm text-gray-500 dark:text-gray-400">
-                                June 3, 2025 at 5:30 PM
+                                No recent activity found
                               </p>
                             </div>
-                          </div>
-                          <div className="flex items-start">
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                Clocked out
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                June 3, 2025 at 5:15 PM
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex items-start">
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                Clocked in
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                June 3, 2025 at 9:00 AM
-                              </p>
-                            </div>
-                          </div>
+                          )}
                         </div>
                       </div>
                     </div>

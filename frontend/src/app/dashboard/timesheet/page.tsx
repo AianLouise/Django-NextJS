@@ -1,18 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
-import { apiRequest, logout } from '@/lib/api';
+import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaPlus, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
 
 export default function Timesheet() {
   const router = useRouter();
-  const [currentWeek, setCurrentWeek] = useState<Date>(new Date());
-  const [timeEntries, setTimeEntries] = useState<any[]>([]);
+  const [currentWeek, setCurrentWeek] = useState<Date>(new Date());  const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   
   // Notification state
   interface Notification {
@@ -45,16 +44,15 @@ export default function Timesheet() {
   const formatDate = (date: Date) => {
     return date.toISOString().split('T')[0];
   };
-  
-  // Format time as HH:MM
-  const formatTime = (timeString: string) => {
+    // Format time as HH:MM
+  const formatTime = (timeString: string | undefined) => {
     if (!timeString) return '';
     const date = new Date(timeString);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
   
   // Calculate duration between two times
-  const calculateDuration = (start: string, end: string) => {
+  const calculateDuration = (start: string, end: string | undefined) => {
     if (!start || !end) return '';
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -63,9 +61,8 @@ export default function Timesheet() {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     return `${hours}h ${minutes}m`;
   };
-  
-  // Show notification function
-  const showNotification = (message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
+    // Show notification function
+  const showNotification = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
     const id = Date.now().toString();
     const newNotification = { id, message, type, duration };
     
@@ -85,12 +82,35 @@ export default function Timesheet() {
         dismissNotification(id);
       }, duration);
     }
-  };
-  
-  // Dismiss notification function
+  }, []);
+    // Dismiss notification function
   const dismissNotification = (id: string) => {
     setNotifications(prev => prev.filter(notification => notification.id !== id));
   };
+
+  // Fetch time entries for the current week
+  const fetchTimeEntries = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      
+      // Calculate start and end dates for the week
+      const startDate = formatDate(daysOfWeek[0]);
+      const endDate = formatDate(daysOfWeek[6]);
+      
+      // Fetch time entries from API
+      const data = await apiRequest(`/timekeeping/time-entries/?start_date=${startDate}&end_date=${endDate}`);
+      
+      setTimeEntries(data || []);
+      setIsLoading(false);
+    } catch (err) {
+      console.error('Error fetching time entries:', err);
+      setError('Failed to load timesheet data');
+      setIsLoading(false);
+      
+      // Show error notification
+      showNotification('Failed to load timesheet data. Please try again.', 'error');
+    }
+  }, [daysOfWeek, showNotification]);
   
   // Check authentication and load user data
   useEffect(() => {
@@ -113,34 +133,9 @@ export default function Timesheet() {
         setError('Invalid user data');
       }
     }
-    
-    // Fetch timesheet data
+      // Fetch timesheet data
     fetchTimeEntries();
-  }, [router]);
-  
-  // Fetch time entries for the current week
-  const fetchTimeEntries = async () => {
-    try {
-      setIsLoading(true);
-      
-      // Calculate start and end dates for the week
-      const startDate = formatDate(daysOfWeek[0]);
-      const endDate = formatDate(daysOfWeek[6]);
-      
-      // Fetch time entries from API
-      const data = await apiRequest(`/timekeeping/time-entries/?start_date=${startDate}&end_date=${endDate}`);
-      
-      setTimeEntries(data || []);
-      setIsLoading(false);
-    } catch (err) {
-      console.error('Error fetching time entries:', err);
-      setError('Failed to load timesheet data');
-      setIsLoading(false);
-      
-      // Show error notification
-      showNotification('Failed to load timesheet data. Please try again.', 'error');
-    }
-  };
+  }, [router, fetchTimeEntries]);
   
   // Move to previous week
   const goToPreviousWeek = () => {
@@ -170,11 +165,13 @@ export default function Timesheet() {
       showNotification('Error logging out. Please try again.', 'error');
     }
   };
-  
-  // Get entries for a specific day
+    // Get entries for a specific day
   const getEntriesForDay = (date: Date) => {
     const formattedDate = formatDate(date);
-    return timeEntries.filter(entry => entry.date === formattedDate);
+    return timeEntries.filter(entry => {
+      const entryDate = new Date(entry.clock_in).toISOString().split('T')[0];
+      return entryDate === formattedDate;
+    });
   };
   
   // Group entries by day
@@ -316,27 +313,42 @@ export default function Timesheet() {
                 {/* Main Content */}
                 <div className="flex-1 md:ml-8">
                   <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
-                    <div className="px-4 py-5 sm:p-6">
-                      <div className="flex justify-between items-center mb-6">
+                    <div className="px-4 py-5 sm:p-6">                      <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg font-medium text-gray-900 dark:text-white">Weekly Timesheet</h2>
                         <div className="flex items-center space-x-4">
                           <button 
                             onClick={goToPreviousWeek}
-                            className="p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                            className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
                           >
-                            Previous Week
-                          </button>
-                          <span className="text-gray-700 dark:text-gray-300">
-                            {`${formatDate(daysOfWeek[0])} - ${formatDate(daysOfWeek[6])}`}
+                            <FaChevronLeft className="h-5 w-5" />
+                          </button>                          <span className="text-sm text-gray-500 dark:text-gray-400">
+                            {daysOfWeek[0]?.toLocaleDateString()} - {daysOfWeek[6]?.toLocaleDateString()}
                           </span>
                           <button 
                             onClick={goToNextWeek}
-                            className="p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                            className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
                           >
-                            Next Week
+                            <FaChevronRight className="h-5 w-5" />
                           </button>
                         </div>
-                      </div>
+                      </div>                      {/* Error Display */}
+                      {error && (
+                        <div className="mb-6 bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                          <div className="flex">
+                            <div className="flex-shrink-0">
+                              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="ml-3">
+                              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                              <div className="mt-2 text-sm text-red-700 dark:text-red-300">
+                                <p>{error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       
                       <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -351,10 +363,9 @@ export default function Timesheet() {
                               <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                             </tr>
                           </thead>
-                          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            {entriesByDay.map((day) => (
+                          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">                            {entriesByDay.map((day) => (
                               day.entries.length > 0 ? (
-                                day.entries.map((entry: any, entryIndex: number) => (
+                                day.entries.map((entry: TimeEntry, entryIndex: number) => (
                                   <tr key={entry.id || entryIndex} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                                       {entryIndex === 0 ? day.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }) : ''}

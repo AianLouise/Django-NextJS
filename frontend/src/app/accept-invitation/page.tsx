@@ -1,14 +1,33 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FaClock, FaEye, FaEyeSlash, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
 import { apiRequest } from '@/lib/api';
 
-export default function AcceptInvitation() {
+interface ValidationErrors {
+    username?: string;
+    password?: string;
+    password2?: string;
+    token?: string;
+    [key: string]: string | undefined;
+}
+
+interface ApiError {
+    message?: string;
+    token?: string[];
+    password?: string[];
+    password2?: string[];
+    username?: string[];
+}
+
+// Component that uses useSearchParams
+function AcceptInvitationForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const token = searchParams.get('token');    const [formData, setFormData] = useState({
+    const token = searchParams.get('token');
+
+    const [formData, setFormData] = useState({
         token: token || '',
         username: '',
         password: '',
@@ -20,7 +39,9 @@ export default function AcceptInvitation() {
     const [success, setSuccess] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [validationErrors, setValidationErrors] = useState<any>({});    // Check if token is valid on component mount
+    const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+
+    // Check if token is valid on component mount
     useEffect(() => {
         if (!token) {
             setError('Invalid invitation link. Please check your email for the correct link.');
@@ -39,13 +60,15 @@ export default function AcceptInvitation() {
 
         // Clear validation errors when user starts typing
         if (validationErrors[name]) {
-            setValidationErrors((prev: any) => ({
+            setValidationErrors((prev) => ({
                 ...prev,
-                [name]: null
+                [name]: undefined
             }));
         }
-    };    const validateForm = () => {
-        const errors: any = {};
+    };
+
+    const validateForm = () => {
+        const errors: ValidationErrors = {};
 
         if (!formData.username) {
             errors.username = 'Username is required';
@@ -82,7 +105,9 @@ export default function AcceptInvitation() {
 
         setIsLoading(true);
         setError('');
-        setSuccess('');        try {
+        setSuccess('');
+
+        try {
             const response = await apiRequest('/users/invitation/accept/', {
                 method: 'POST',
                 body: formData
@@ -99,18 +124,19 @@ export default function AcceptInvitation() {
                 router.push('/dashboard');
             }, 2000);
 
-        } catch (err: any) {
+        } catch (err) {
             console.error('Invitation acceptance error:', err);
-            if (err.token) {
-                setError(err.token[0] || 'Invalid or expired invitation token.');
-            } else if (err.password) {
-                setValidationErrors({ password: err.password[0] });
-            } else if (err.password2) {
-                setValidationErrors({ password2: err.password2[0] });
-            } else if (err.username) {
-                setValidationErrors({ username: err.username[0] });
+            const apiError = err as ApiError;
+            if (apiError.token) {
+                setError(apiError.token[0] || 'Invalid or expired invitation token.');
+            } else if (apiError.password) {
+                setValidationErrors({ password: apiError.password[0] });
+            } else if (apiError.password2) {
+                setValidationErrors({ password2: apiError.password2[0] });
+            } else if (apiError.username) {
+                setValidationErrors({ username: apiError.username[0] });
             } else {
-                setError(err.message || 'Failed to accept invitation. Please try again.');
+                setError(apiError.message || 'Failed to accept invitation. Please try again.');
             }
         } finally {
             setIsLoading(false);
@@ -162,7 +188,9 @@ export default function AcceptInvitation() {
                             </div>
                         </div>
                     </div>
-                )}                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                )}
+
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         {/* Username Field */}
                         <div>
@@ -227,7 +255,9 @@ export default function AcceptInvitation() {
                                     {validationErrors.password}
                                 </p>
                             )}
-                        </div>                        {/* Confirm Password Field */}
+                        </div>
+
+                        {/* Confirm Password Field */}
                         <div>
                             <label htmlFor="password2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Confirm Password *
@@ -299,5 +329,22 @@ export default function AcceptInvitation() {
                 </form>
             </div>
         </div>
+    );
+}
+
+// Loading component
+function LoadingFallback() {
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+        </div>
+    );
+}
+
+export default function AcceptInvitation() {
+    return (
+        <Suspense fallback={<LoadingFallback />}>
+            <AcceptInvitationForm />
+        </Suspense>
     );
 }

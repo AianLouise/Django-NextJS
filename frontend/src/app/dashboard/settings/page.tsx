@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaUser, FaLock, FaRegBell, FaDesktop, FaMoon, FaSun } from 'react-icons/fa';
-import { apiRequest, logout } from '@/lib/api';
+import { logout, User } from '@/lib/api';
 
 export default function Settings() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('profile');
@@ -138,26 +138,28 @@ export default function Settings() {
     
     try {
       setIsLoading(true);
-      
-      // Prepare profile data
+        // Prepare profile data
       const profileData = {
         first_name: firstName,
         last_name: lastName,
         job_title: jobTitle,
         department: department,
         phone_number: phoneNumber,
-        profile: {
-          bio: bio
-        }
       };
-      
-      // Update profile via API
-      // const data = await apiRequest('/users/update-profile/', {
-      //   method: 'PUT',
-      //   body: profileData,
-      // });
-      
-      // Update user data in local storage
+        // Update profile via API
+      try {
+        // For now, just log the profile data (simulating API call)
+        console.log('Profile data to be sent:', profileData);
+        // Uncomment when API endpoint is ready:
+        // const data = await apiRequest('/users/update-profile/', {
+        //   method: 'PUT',
+        //   body: profileData,
+        // });
+      } catch (apiError) {
+        console.error('Profile update API error:', apiError);
+        throw apiError;
+      }
+        // Update user data in local storage
       if (user) {
         const updatedUser = {
           ...user,
@@ -166,10 +168,6 @@ export default function Settings() {
           job_title: jobTitle,
           department: department,
           phone_number: phoneNumber,
-          profile: {
-            ...user.profile,
-            bio: bio
-          }
         };
         
         localStorage.setItem('user_data', JSON.stringify(updatedUser));
@@ -391,9 +389,27 @@ export default function Settings() {
 
                 {/* Main Content */}
                 <div className="flex-1 md:ml-8">
-                  <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
-                    <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">                    <div className="px-4 py-5 sm:p-6">
                       <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-6">Settings</h2>
+                      
+                      {/* Error Display */}
+                      {error && (
+                        <div className="mb-6 bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                          <div className="flex">
+                            <div className="flex-shrink-0">
+                              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="ml-3">
+                              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                              <div className="mt-2 text-sm text-red-700 dark:text-red-300">
+                                <p>{error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       
                       {/* Settings Tabs */}
                       <div className="border-b border-gray-200 dark:border-gray-700">
@@ -649,7 +665,7 @@ export default function Settings() {
                                 </div>
                                 <div className="ml-3 text-sm">
                                   <label htmlFor="browser-notifications" className="font-medium text-gray-700 dark:text-gray-300">Browser Notifications</label>
-                                  <p className="text-gray-500 dark:text-gray-400">Receive browser notifications when you're using the application.</p>
+                                  <p className="text-gray-500 dark:text-gray-400">Receive browser notifications when you&apos;re using the application.</p>
                                 </div>
                               </div>
                             </div>

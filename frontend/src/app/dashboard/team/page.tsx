@@ -1,21 +1,41 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaEnvelope, FaPhone, FaCalendar, FaUser, FaBuilding, FaPlus, FaEdit } from 'react-icons/fa';
-import { apiRequest, logout } from '@/lib/api';
+import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaTimes, FaEnvelope, FaCalendar, FaUser, FaBuilding, FaPlus } from 'react-icons/fa';
+import { apiRequest, logout, User, Organization } from '@/lib/api';
+
+// Define interfaces for team-specific data
+interface TeamMember extends User {
+  role?: string;
+  status?: string;
+}
+
+interface TeamUser extends User {
+  role?: string;
+}
+
+interface PendingInvitation {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  role: string;
+  invited_at: string;
+  expires_at: string;
+}
 
 export default function Team() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<TeamUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   // Organization and team state
-  const [organization, setOrganization] = useState<any>(null);
-  const [activeMembers, setActiveMembers] = useState<any[]>([]);
-  const [pendingInvitations, setPendingInvitations] = useState<any[]>([]);
+  const [organization, setOrganization] = useState<Organization | null>(null);
+  const [activeMembers, setActiveMembers] = useState<TeamMember[]>([]);
+  const [pendingInvitations, setPendingInvitations] = useState<PendingInvitation[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Invitation modal state
@@ -34,9 +54,8 @@ export default function Team() {
     duration?: number;
   }
   const [notifications, setNotifications] = useState<Notification[]>([]);
-
   // Show notification function
-  const showNotification = (message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
+  const showNotification = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info', duration = 5000) => {
     const id = Date.now().toString();
     const newNotification = { id, message, type, duration };
 
@@ -56,14 +75,13 @@ export default function Team() {
         dismissNotification(id);
       }, duration);
     }
-  };
+  }, []);
   // Dismiss notification function
   const dismissNotification = (id: string) => {
     setNotifications(prev => prev.filter(notification => notification.id !== id));
   };
-
   // Fetch team members from organization API
-  const fetchTeamMembers = async () => {
+  const fetchTeamMembers = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -76,7 +94,7 @@ export default function Team() {
       setActiveMembers(data.active_members || []);
       setPendingInvitations(data.pending_invitations || []);
       setIsLoading(false);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error fetching team members:', err);
 
       // Set empty arrays for demo purposes
@@ -85,9 +103,10 @@ export default function Team() {
       setIsLoading(false);
 
       // Show error notification
-      showNotification('Unable to load team data - please check your connection', 'error');
+      const errorMessage = err instanceof Error ? err.message : 'Unable to load team data - please check your connection';
+      showNotification(errorMessage, 'error');
     }
-  };
+  }, [showNotification]);
 
   // Handle team member invitation
   const handleInviteTeamMember = async (e: React.FormEvent) => {
@@ -100,8 +119,7 @@ export default function Team() {
 
     setIsInviting(true);
 
-    try {
-      const response = await apiRequest('/users/organization/invite/', {
+    try {      const response = await apiRequest('/users/organization/invite/', {
         method: 'POST',
         body: {
           email: inviteEmail,
@@ -110,6 +128,9 @@ export default function Team() {
           role: inviteRole
         }
       });
+
+      // Log response for debugging
+      console.log('Invitation response:', response);
 
       showNotification('Team member invited successfully! An invitation email has been sent.', 'success');
 
@@ -121,11 +142,10 @@ export default function Team() {
       setShowInviteModal(false);
 
       // Refresh team data
-      fetchTeamMembers();
-
-    } catch (err: any) {
+      fetchTeamMembers();    } catch (err) {
       console.error('Error inviting team member:', err);
-      showNotification(err.message || 'Failed to invite team member', 'error');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to invite team member';
+      showNotification(errorMessage, 'error');
     } finally {
       setIsInviting(false);
     }
@@ -151,11 +171,9 @@ export default function Team() {
         console.error('Error parsing user data:', e);
         setError('Invalid user data');
       }
-    }
-
-    // Fetch team data
+    }    // Fetch team data
     fetchTeamMembers();
-  }, [router]);
+  }, [router, fetchTeamMembers]);
 
   // Handle logout
   const handleLogout = async () => {
@@ -193,9 +211,7 @@ export default function Team() {
     return fullName.includes(query) ||
       email.includes(query) ||
       role.includes(query);
-  });
-
-  // Check if user can invite team members (owner or admin)
+  });  // Check if user can invite team members (owner or admin)
   const canInviteMembers = user && (user.role === 'owner' || user.role === 'admin');
 
   // Format date
@@ -342,13 +358,31 @@ export default function Team() {
                   {/* Team Management Header */}
                   <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
                     <div className="px-4 py-5 sm:p-6">
-                      <div className="flex justify-between items-center mb-6">
-                        <div>
+                      <div className="flex justify-between items-center mb-6">                        <div>
                           <h2 className="text-lg font-medium text-gray-900 dark:text-white">Team Management</h2>
                           <p className="text-sm text-gray-500 dark:text-gray-400">
-                            Manage your organization's team members and invitations
+                            Manage your organization&apos;s team members and invitations
                           </p>
                         </div>
+
+                        {/* Error Display */}
+                        {error && (
+                          <div className="col-span-full mb-4 bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                            <div className="flex">
+                              <div className="flex-shrink-0">
+                                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                              <div className="ml-3">
+                                <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                                <div className="mt-2 text-sm text-red-700 dark:text-red-300">
+                                  <p>{error}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
 
                         <div className="flex items-center space-x-4">
                           {/* Search Input */}
