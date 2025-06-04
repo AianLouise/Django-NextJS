@@ -6,6 +6,9 @@ from rest_framework.generics import RetrieveUpdateAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
 
 from .models import CustomUser, Organization
 from .serializers import (
@@ -59,22 +62,62 @@ class TeamMemberInviteView(APIView):
                 'inviter': request.user
             }
         )
-        
         if serializer.is_valid():
             invited_user = serializer.save()
             
-            # In a real application, you would send an email here
-            # For now, we'll return the invitation token
-            return Response({
-                'message': 'Team member invited successfully!',
-                'invited_user': {
-                    'email': invited_user.email,
-                    'first_name': invited_user.first_name,
-                    'last_name': invited_user.last_name,
-                    'role': invited_user.role,
-                    'invitation_token': str(invited_user.invitation_token)
-                }
-            }, status=status.HTTP_201_CREATED)
+            # Send invitation email
+            try:
+                invitation_url = f"http://localhost:3000/accept-invitation?token={invited_user.invitation_token}"
+                
+                # Email content
+                subject = f"You're invited to join {request.user.organization.name}"
+                message = f"""
+Hi {invited_user.first_name},
+
+You've been invited by {request.user.get_full_name()} to join {request.user.organization.name} as a {invited_user.role}.
+
+To accept this invitation and create your account, please click the link below:
+{invitation_url}
+
+This invitation will expire in 7 days.
+
+Welcome to the team!
+
+Best regards,
+The {request.user.organization.name} Team
+                """
+                
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[invited_user.email],
+                    fail_silently=False,
+                )
+                
+                return Response({
+                    'message': 'Team member invited successfully! An invitation email has been sent.',
+                    'invited_user': {
+                        'email': invited_user.email,
+                        'first_name': invited_user.first_name,
+                        'last_name': invited_user.last_name,
+                        'role': invited_user.role,
+                    }
+                }, status=status.HTTP_201_CREATED)
+                
+            except Exception as e:
+                # If email fails, still return success but mention email issue
+                return Response({
+                    'message': 'Team member invited successfully, but email could not be sent. Please share the invitation link manually.',
+                    'invited_user': {
+                        'email': invited_user.email,
+                        'first_name': invited_user.first_name,
+                        'last_name': invited_user.last_name,
+                        'role': invited_user.role,
+                        'invitation_token': str(invited_user.invitation_token)
+                    },
+                    'invitation_url': f"http://localhost:3000/accept-invitation?token={invited_user.invitation_token}"
+                }, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
