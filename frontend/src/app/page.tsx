@@ -579,7 +579,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -595,141 +594,111 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 mb-8 md:mb-12">            {/* Company Info */}
-            <div className="sm:col-span-2 lg:col-span-2 mb-8 sm:mb-0">
-              <Link href="/" className="flex items-center space-x-3 mb-4 md:mb-6 group">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 relative z-10">
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-12">
+            {/* Company Info */}
+            <div className="sm:col-span-2">
+              <a href="/" className="flex items-center space-x-4 mb-6 group">
                 <div className="relative">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <FaClock className="text-white text-lg md:text-xl" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <FaClock className="text-white text-xl" />
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">TimeTrack</h2>
-                  <p className="text-xs md:text-sm text-gray-400 -mt-1">Smart Time Management</p>
+                  <p className="text-sm text-gray-400 -mt-1">Smart Time Management</p>
                 </div>
-              </Link>
-              <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-4 md:mb-6 max-w-md">
-                Empowering teams worldwide with intelligent time tracking solutions.
-                Boost productivity and streamline your workflow with our cutting-edge platform.
+              </a>
+              <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 max-w-md">
+                Empowering teams worldwide with intelligent time tracking solutions. Boost productivity and streamline your workflow with our cutting-edge platform.
               </p>
-              <div className="flex space-x-3 md:space-x-4">
-                <a href="#" className="w-9 h-9 md:w-10 md:h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <FaTwitter className="text-base md:text-lg" />
-                </a>
-                <a href="#" className="w-9 h-9 md:w-10 md:h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <FaLinkedin className="text-base md:text-lg" />
-                </a>
-                <a href="#" className="w-9 h-9 md:w-10 md:h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <FaGithub className="text-base md:text-lg" />
-                </a>
+              <div className="flex space-x-3">
+                {[FaTwitter, FaLinkedin, FaGithub].map((Icon, idx) => (
+                  <a key={idx} href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                    <Icon className="text-lg" />
+                  </a>
+                ))}
               </div>
-            </div>            {/* Product Links */}
-            <div className="mb-8 sm:mb-0">
-              <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 text-white">Product</h4>
-              <ul className="space-y-2 md:space-y-3">
-                <li>
-                  <a href="#features" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#pricing" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#integrations" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Integrations
-                  </a>
-                </li>
-                <li>
-                  <a href="#api" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    API Docs
-                  </a>
-                </li>
-                <li>
-                  <a href="#security" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Security
-                  </a>
-                </li>
-              </ul>
-            </div>            {/* Company Links */}
-            <div className="mb-8 sm:mb-0">
-              <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 text-white">Company</h4>
-              <ul className="space-y-2 md:space-y-3">
-                <li>
-                  <a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#careers" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#blog" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#press" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group text-sm md:text-base">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
-                    Press Kit
-                  </a>
-                </li>
+            </div>
+
+            {/* Product Links */}
+            <div>
+              <h4 className="text-lg font-bold mb-4 text-white">Product</h4>
+              <ul className="space-y-3 text-sm">
+                {[
+                  ['#features', 'Features'],
+                  ['#pricing', 'Pricing'],
+                  ['#integrations', 'Integrations'],
+                  ['#api', 'API Docs'],
+                  ['#security', 'Security'],
+                ].map(([href, label], idx) => (
+                  <li key={idx}>
+                    <a href={href} className="text-gray-400 hover:text-white flex items-center group transition">
+                      <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>{label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
-          </div>          {/* Newsletter Signup */}
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-6 md:p-8 mb-8 md:mb-12 border border-white/10">
+
+            {/* Company Links */}
+            <div>
+              <h4 className="text-lg font-bold mb-4 text-white">Company</h4>
+              <ul className="space-y-3 text-sm">
+                {[
+                  ['#about', 'About Us'],
+                  ['#careers', 'Careers'],
+                  ['#blog', 'Blog'],
+                  ['#contact', 'Contact'],
+                  ['#press', 'Press Kit'],
+                ].map(([href, label], idx) => (
+                  <li key={idx}>
+                    <a href={href} className="text-gray-400 hover:text-white flex items-center group transition">
+                      <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>{label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md rounded-2xl p-6 md:p-8 mb-12 border border-white/10">
             <div className="max-w-2xl mx-auto text-center">
               <h3 className="text-xl md:text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                 Stay Updated
               </h3>
-              <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6">
+              <p className="text-gray-300 text-sm md:text-base mb-6">
                 Get the latest updates on new features, tips, and productivity insights delivered to your inbox.
               </p>
-              <div className="flex flex-col gap-3 max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm text-sm md:text-base"
+                  className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                 />
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg text-sm md:text-base">
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-3 rounded-xl transition-transform duration-300 hover:scale-105 shadow-lg text-sm">
                   Subscribe
                 </button>
               </div>
             </div>
-          </div>          {/* Bottom Footer */}
-          <div className="border-t border-gray-700/50 pt-6 md:pt-8">
-            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs md:text-sm text-gray-400 text-center md:text-left">
+          </div>
+
+          {/* Footer Bottom */}
+          <div className="border-t border-gray-700/50 pt-6 flex flex-col gap-4 sm:flex-row sm:justify-between text-xs md:text-sm text-gray-400">
+            <div className="text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4">
               <p>&copy; {new Date().getFullYear()} TimeTrack. All rights reserved.</p>
-              <div className="flex justify-center sm:justify-start items-center space-x-4">
-                <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#cookies" className="hover:text-white transition-colors">Cookie Policy</a>
+              <div className="flex justify-center sm:justify-start gap-4">
+                <a href="#privacy" className="hover:text-white">Privacy Policy</a>
+                <a href="#terms" className="hover:text-white">Terms</a>
+                <a href="#cookies" className="hover:text-white">Cookies</a>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs md:text-sm text-gray-400 text-center md:text-right">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 sm:gap-4 text-center">
               <span>Made with ❤️ for productivity</span>
-              <div className="flex items-center justify-center md:justify-end space-x-2">
+              <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span>All systems operational</span>
               </div>
