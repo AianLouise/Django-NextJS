@@ -47,7 +47,7 @@ export default function Login() {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient Circles */}
@@ -56,7 +56,7 @@ export default function Login() {
         <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+      <div className="mx-auto w-full max-w-md relative z-10">
         <div className="flex justify-center">
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
@@ -73,10 +73,10 @@ export default function Login() {
             </div>
           </Link>
         </div>
-        <h2 className="mt-6 text-center text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+        <h2 className="mt-6 text-center text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
           Welcome Back
         </h2>
-        <p className="mt-2 text-center text-xl text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+        <p className="mt-2 text-center text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-md mx-auto px-4">
           Sign in to access your account
         </p>
         <p className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
@@ -86,8 +86,10 @@ export default function Login() {
             <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
         </p>
-      </div>      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-8 px-6 shadow-lg sm:rounded-2xl sm:px-10 border border-white/20 dark:border-gray-700/30">
+      </div>
+
+      <div className="mt-8 mx-auto w-full max-w-md relative z-10">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6 px-4 sm:py-8 sm:px-8 shadow-lg sm:rounded-2xl border border-white/20 dark:border-gray-700/30">
           {error && (
             <div className="mb-6 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-200 p-4 rounded-xl text-sm border-l-4 border-red-500 shadow-sm">
               {error}
@@ -147,7 +149,8 @@ export default function Login() {
                   </button>
                 </div>
               </div>
-            </div>            <div className="flex items-center justify-between">
+            </div>
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center">
                 <input
                   id="remember-me"
@@ -172,46 +175,12 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center py-3 px-6 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full flex justify-center py-3 px-4 sm:px-6 border border-transparent rounded-xl shadow-sm text-sm sm:text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>
             </div>
-          </form>          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-              </div>              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white/80 dark:bg-gray-800/80 text-gray-500 dark:text-gray-400 backdrop-blur-sm">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-1 gap-3">
-              <div className="flex items-center justify-center">
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center py-3 px-4 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm bg-white/80 dark:bg-gray-700/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-600 transition-all duration-300 backdrop-blur-sm w-full max-w-xs"
-                >
-                  <svg className="h-5 w-5 mr-2" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" />
-                  </svg>
-                  Sign in with Google
-                </button>
-              </div>
-
-              <button
-                type="button"
-                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm bg-white/80 dark:bg-gray-700/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-600 transition-all duration-300 backdrop-blur-sm"
-              >
-                <span className="sr-only">Sign in with Microsoft</span>
-                <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z" />
-                </svg>
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

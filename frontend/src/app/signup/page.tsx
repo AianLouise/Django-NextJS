@@ -85,7 +85,7 @@ export default function Signup() {
       setIsLoading(false);
     }
   }; return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient Circles */}
@@ -98,7 +98,7 @@ export default function Signup() {
         <div className="absolute bottom-40 left-10 w-64 h-64 bg-teal-400 dark:bg-teal-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-14000"></div>
       </div>
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+      <div className="mx-auto w-full max-w-md sm:max-w-md relative z-10">
         <div className="flex justify-center">
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
@@ -112,13 +112,12 @@ export default function Signup() {
                 TimeTrack
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
-            </div>
-          </Link>
+            </div>          </Link>
         </div>
-        <h2 className="mt-6 text-center text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+        <h2 className="mt-6 text-center text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
           Get Started
         </h2>
-        <p className="mt-2 text-center text-xl text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+        <p className="mt-2 text-center text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-md mx-auto px-4">
           Create an account for your organization and start tracking time
         </p>
         <p className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
@@ -126,12 +125,11 @@ export default function Signup() {
           <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 relative group">
             Sign in
             <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-          </Link>
-        </p>
+          </Link>        </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl relative z-10">
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-8 px-6 shadow-lg sm:rounded-2xl sm:px-10 border border-white/20 dark:border-gray-700/30">
+      <div className="mt-8 mx-auto w-full max-w-md sm:max-w-xl lg:max-w-2xl relative z-10">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6 px-4 sm:py-8 sm:px-8 shadow-lg sm:rounded-2xl border border-white/20 dark:border-gray-700/30">
           {error && (
             <div className="mb-6 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-200 p-4 rounded-xl text-sm border-l-4 border-red-500 shadow-sm">
               {error}
@@ -202,7 +200,7 @@ export default function Signup() {
               </h3>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       First Name *
@@ -340,45 +338,53 @@ export default function Signup() {
                 </div>              </div>
             </div>
 
-            <div className="flex items-center">
-              <input
-                id="terms"
-                name="terms"
-                type="checkbox"
-                required
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
-              />
-              <label htmlFor="terms" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-                I agree to the{' '}
-                <Link href="/terms" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                  Terms of Service
-                </Link>{' '}
-                and{' '}
-                <Link href="/privacy" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
-                  Privacy Policy
-                </Link>
-              </label>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  required
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
+                />
+              </div>
+              <div className="ml-2">
+                <label htmlFor="terms" className="text-sm text-gray-700 dark:text-gray-300">
+                  I agree to the{' '}
+                  <Link href="/terms" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                    Terms of Service
+                  </Link>{' '}
+                  and{' '}
+                  <Link href="/privacy" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
             </div>
 
             <div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center py-3 px-6 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full flex justify-center py-3 px-4 sm:px-6 border border-transparent rounded-xl shadow-sm text-sm sm:text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isLoading ? 'Creating organization...' : 'Create Organization & Account'}
               </button>
             </div>
-          </form>          <div className="mt-6">
-            <div className="relative">              <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-            </div>
+          </form>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+              </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white/80 dark:bg-gray-800/80 text-gray-500 dark:text-gray-400 backdrop-blur-sm">
                   Benefits of TimeTrack
                 </span>
               </div>
-            </div>            <div className="mt-6 grid grid-cols-1 gap-3">
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3">
               <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 bg-white/80 dark:bg-gray-700/80 p-3 rounded-xl shadow-sm border border-gray-300/50 dark:border-gray-600/50 backdrop-blur-sm">
                 <FaUsers className="h-4 w-4 mr-2 text-blue-600" />
                 Invite up to 50 team members
