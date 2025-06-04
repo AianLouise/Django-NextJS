@@ -12,31 +12,32 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  
-  const router = useRouter();  const handleSubmit = async (e: React.FormEvent) => {
+
+  const router = useRouter(); const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
-    try {      console.log('Attempting login with:', { email }); // Log login attempt
-      
+
+    try {
+      console.log('Attempting login with:', { email }); // Log login attempt
+
       // Call Django backend login API with correct endpoint path
       const data = await apiRequest('/users/login/', {
         method: 'POST',
         body: { email, password },
       });
-      
+
       console.log('Login response:', data); // Log successful response
-        // Store token in localStorage for future API calls
+      // Store token in localStorage for future API calls
       localStorage.setItem('auth_token', data.token);
       localStorage.setItem('user_data', JSON.stringify(data.user));
-      
+
       // Also set a cookie for the middleware
       document.cookie = `auth_token=${data.token}; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
-      
+
       // Reset the dashboard loaded flag to ensure welcome message shows
       sessionStorage.removeItem('dashboard_loaded');
-      
+
       // If login is successful, redirect to dashboard
       router.push('/dashboard');
     } catch (err: any) {
@@ -52,10 +53,10 @@ export default function Login() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <FaClock className="h-8 w-8 text-blue-600" />
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">TimeTrack</h1>
-          </div>
+          </Link>
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
           Sign in to your account
@@ -75,7 +76,7 @@ export default function Login() {
               {error}
             </div>
           )}
-          
+
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -119,8 +120,8 @@ export default function Login() {
                   placeholder="••••••••"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="text-gray-400 hover:text-gray-500 focus:outline-none"
                   >
@@ -158,9 +159,8 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-                  isLoading ? 'opacity-70 cursor-not-allowed' : ''
-                }`}
+                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
               >
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>

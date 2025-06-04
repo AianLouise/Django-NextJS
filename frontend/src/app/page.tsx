@@ -1,46 +1,129 @@
-import Image from "next/image";
 import Link from "next/link";
-import { FaClock, FaUserCheck, FaChartLine, FaCalendarAlt } from "react-icons/fa";
+import { FaClock, FaUserCheck, FaChartLine, FaCalendarAlt, FaBars, FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Header / Navigation */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <FaClock className="text-blue-600 dark:text-blue-400 text-2xl" />
-            <h1 className="text-xl font-bold text-gray-800 dark:text-white">TimeTrack</h1>
+      <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaClock className="text-white text-lg" />
+                </div>
+                <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                  TimeTrack
+                </h1>
+                <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <div className="flex items-center space-x-6">
+                <a 
+                  href="#features" 
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
+                >
+                  Features
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
+                >
+                  How It Works
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
+                >
+                  Pricing
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Link 
+                  href="/login" 
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+                >
+                  Sign In
+                </Link>
+                <Link 
+                  href="/signup" 
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <FaBars className="text-gray-600 dark:text-gray-300 text-xl" />
+            </button>
           </div>
-          <nav>
-            <ul className="flex space-x-6">
-              <li><a href="#features" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">Features</a></li>
-              <li><a href="#how-it-works" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors">How It Works</a></li>
-              <li><Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">Login</Link></li>
-            </ul>
-          </nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 flex flex-col items-center text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        {/* Background Design Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Gradient Circles */}
+          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+          
+          {/* Geometric Pattern */}
+          <div className="absolute inset-0 opacity-5 dark:opacity-10">
+            <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+          </div>
+          
+          {/* Floating Icons */}
+          <div className="absolute top-20 right-1/4 text-blue-300 dark:text-blue-500 opacity-20 animate-float">
+            <FaClock className="text-6xl" />
+          </div>
+          <div className="absolute bottom-32 left-1/4 text-purple-300 dark:text-purple-500 opacity-20 animate-float animation-delay-1000">
+            <FaChartLine className="text-5xl" />
+          </div>
+          <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
+            <FaCalendarAlt className="text-4xl" />
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
             Simple Time Tracking for Modern Teams
           </h2>
-          <p className="text-xl max-w-2xl mb-10 text-gray-600 dark:text-gray-300">
+          <p className="text-xl max-w-2xl mb-10 text-gray-600 dark:text-gray-300 leading-relaxed">
             Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
               href="/signup" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg px-6 py-3 transition-colors"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Get Started Free
             </Link>
             <Link 
               href="/demo" 
-              className="bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 font-medium rounded-lg px-6 py-3 transition-colors"
+              className="bg-white/80 backdrop-blur-sm hover:bg-white dark:bg-gray-700/80 dark:hover:bg-gray-600 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 font-medium rounded-lg px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               View Demo
             </Link>
@@ -49,103 +132,389 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Key Features</h3>
+      <section id="features" className="relative py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10 dark:opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <svg className="w-full h-full" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="features-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <circle cx="30" cy="30" r="1.5" fill="currentColor" opacity="0.5"/>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="100%" height="100%" fill="url(#features-pattern)"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+              Key Features
+            </h3>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Powerful tools designed to streamline your time tracking and boost productivity
+            </p>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-blue-50 dark:bg-gray-700 p-6 rounded-lg">
-              <FaClock className="text-blue-600 dark:text-blue-400 text-3xl mb-4" />
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Time Tracking</h4>
-              <p className="text-gray-600 dark:text-gray-300">Easy clock-in/out with our intuitive interface.</p>
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaClock className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Time Tracking</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Easy clock-in/out with our intuitive interface and real-time tracking.</p>
             </div>
-            <div className="bg-blue-50 dark:bg-gray-700 p-6 rounded-lg">
-              <FaUserCheck className="text-blue-600 dark:text-blue-400 text-3xl mb-4" />
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Attendance Management</h4>
-              <p className="text-gray-600 dark:text-gray-300">Track employee attendance and manage time-off requests.</p>
+            
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaUserCheck className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Attendance Management</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Track employee attendance and manage time-off requests seamlessly.</p>
             </div>
-            <div className="bg-blue-50 dark:bg-gray-700 p-6 rounded-lg">
-              <FaChartLine className="text-blue-600 dark:text-blue-400 text-3xl mb-4" />
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Reporting</h4>
-              <p className="text-gray-600 dark:text-gray-300">Generate detailed reports on employee hours and project time.</p>
+            
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaChartLine className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Advanced Reporting</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Generate detailed reports on employee hours and project analytics.</p>
             </div>
-            <div className="bg-blue-50 dark:bg-gray-700 p-6 rounded-lg">
-              <FaCalendarAlt className="text-blue-600 dark:text-blue-400 text-3xl mb-4" />
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Scheduling</h4>
-              <p className="text-gray-600 dark:text-gray-300">Create and manage employee schedules with ease.</p>
+            
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaCalendarAlt className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Smart Scheduling</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Create and manage employee schedules with intelligent automation.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">How It Works</h3>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">1</div>
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Sign Up</h4>
-              <p className="text-gray-600 dark:text-gray-300">Create an account for your organization and add your team members.</p>
+      <section id="how-it-works" className="relative py-20 bg-white dark:bg-gray-800 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200 dark:bg-blue-800 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 dark:bg-purple-800 rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 dark:border-gray-600 rounded-full opacity-10"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+              How It Works
+            </h3>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Get started in minutes with our simple three-step process
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
+                  1
+                </div>
+                <div className="absolute -inset-4 bg-blue-100 dark:bg-blue-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+              </div>
+              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Sign Up</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                Create an account for your organization and invite your team members with just a few clicks.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">2</div>
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Track Time</h4>
-              <p className="text-gray-600 dark:text-gray-300">Employees clock in and out with our simple interface on any device.</p>
+            
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
+                  2
+                </div>
+                <div className="absolute -inset-4 bg-purple-100 dark:bg-purple-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+              </div>
+              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Track Time</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                Employees clock in and out effortlessly with our intuitive interface on any device, anywhere.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">3</div>
-              <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Generate Reports</h4>
-              <p className="text-gray-600 dark:text-gray-300">Get insights with detailed reports on hours, attendance, and projects.</p>
+            
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
+                  3
+                </div>
+                <div className="absolute -inset-4 bg-green-100 dark:bg-green-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+              </div>
+              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Generate Reports</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                Get powerful insights with detailed reports on hours, attendance, and project analytics.
+              </p>
             </div>
+          </div>
+          
+          {/* Connection Lines for Desktop */}
+          <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl">
+            <svg className="w-full h-24" viewBox="0 0 800 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3"/>
+                  <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.3"/>
+                  <stop offset="100%" stopColor="#10B981" stopOpacity="0.3"/>
+                </linearGradient>
+              </defs>
+              <path d="M 100 50 Q 400 20 700 50" stroke="url(#line-gradient)" strokeWidth="2" fill="none" strokeDasharray="10,5"/>
+            </svg>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 dark:bg-blue-700">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-6 text-white">Ready to Streamline Your Timekeeping?</h3>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Join thousands of companies that trust TimeTrack for their time tracking needs.
-          </p>
-          <Link 
-            href="/signup" 
-            className="bg-white hover:bg-gray-100 text-blue-600 font-medium rounded-lg px-6 py-3 transition-colors"
-          >
-            Start Your Free Trial
-          </Link>
+      <section className="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-700 dark:via-purple-700 dark:to-blue-900 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="cta-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <polygon points="10,0 20,10 10,20 0,10" fill="currentColor" opacity="0.1"/>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="100%" height="100%" fill="url(#cta-pattern)"/>
+            </svg>
+          </div>
+        </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 right-10 w-20 h-20 border-2 border-white/20 rounded-full animate-spin-slow"></div>
+          <div className="absolute bottom-10 left-10 w-16 h-16 border-2 border-white/20 rounded-full animate-bounce"></div>
+          <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-8 h-8 bg-white/10 rounded-full animate-pulse animation-delay-2000"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
+              Ready to Streamline Your 
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-300">
+                Timekeeping?
+              </span>
+            </h3>
+            <p className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              Join thousands of companies that trust TimeTrack for their time tracking needs. 
+              Start your journey to better productivity today.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link 
+                href="/signup" 
+                className="group relative bg-white hover:bg-gray-50 text-blue-600 font-bold rounded-2xl px-10 py-5 text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
+              >
+                <span className="relative z-10">Start Your Free Trial</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </Link>
+              
+              <div className="flex items-center text-white/80 text-sm">
+                <div className="flex -space-x-2 mr-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-white/20 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">+</div>
+                </div>
+                <span>Trusted by 10,000+ teams</span>
+              </div>
+            </div>
+            
+            <div className="mt-12 flex justify-center items-center space-x-8 text-white/60 text-sm">
+              <div className="flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                </svg>
+                No credit card required
+              </div>
+              <div className="flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                </svg>
+                14-day free trial
+              </div>
+              <div className="flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                </svg>
+                Cancel anytime
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-6 md:mb-0">
-              <FaClock className="text-blue-400 text-xl" />
-              <h2 className="text-lg font-bold">TimeTrack</h2>
-            </div>
-            <div className="flex space-x-8">
-              <div>
-                <h4 className="font-semibold mb-3">Product</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-                </ul>
+      <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="footer-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="10" cy="10" r="1" fill="currentColor" opacity="0.3"/>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="100%" height="100%" fill="url(#footer-pattern)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 py-16 relative z-10">
+          {/* Main Footer Content */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Company Info */}
+            <div className="lg:col-span-2">
+              <Link href="/" className="flex items-center space-x-3 mb-6 group">
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <FaClock className="text-white text-xl" />
+                  </div>
+                  <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">TimeTrack</h2>
+                  <p className="text-sm text-gray-400 -mt-1">Smart Time Management</p>
+                </div>
+              </Link>
+              <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
+                Empowering teams worldwide with intelligent time tracking solutions. 
+                Boost productivity and streamline your workflow with our cutting-edge platform.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                  <FaTwitter className="text-lg" />
+                </a>
+                <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                  <FaLinkedin className="text-lg" />
+                </a>
+                <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                  <FaGithub className="text-lg" />
+                </a>
               </div>
-              <div>
-                <h4 className="font-semibold mb-3">Company</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                </ul>
+            </div>
+
+            {/* Product Links */}
+            <div>
+              <h4 className="text-lg font-bold mb-6 text-white">Product</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#features" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#pricing" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#integrations" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a href="#api" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    API Docs
+                  </a>
+                </li>
+                <li>
+                  <a href="#security" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Security
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company Links */}
+            <div>
+              <h4 className="text-lg font-bold mb-6 text-white">Company</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#careers" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#blog" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="#press" className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group">
+                    <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all duration-300"></span>
+                    Press Kit
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Newsletter Signup */}
+          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-8 mb-12 border border-white/10">
+            <div className="max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                Stay Updated
+              </h3>
+              <p className="text-gray-300 mb-6">
+                Get the latest updates on new features, tips, and productivity insights delivered to your inbox.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
+                />
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                  Subscribe
+                </button>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} TimeTrack. All rights reserved.</p>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-gray-700/50 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="flex items-center space-x-6 text-sm text-gray-400">
+                <p>&copy; {new Date().getFullYear()} TimeTrack. All rights reserved.</p>
+                <span className="hidden md:block">|</span>
+                <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#cookies" className="hover:text-white transition-colors">Cookie Policy</a>
+              </div>
+              <div className="flex items-center space-x-4 text-sm text-gray-400">
+                <span>Made with ❤️ for productivity</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>All systems operational</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
