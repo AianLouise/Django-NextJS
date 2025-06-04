@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'timetrack',
         'USER': 'root',
         'PASSWORD': 'Aianlouise',
         'HOST': 'localhost',
