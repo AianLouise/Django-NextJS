@@ -691,9 +691,9 @@ export default function Home() {
             <div className="text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4">
               <p>&copy; {new Date().getFullYear()} TimeTrack. All rights reserved.</p>
               <div className="flex justify-center sm:justify-start gap-4">
-                <a href="#privacy" className="hover:text-white">Privacy Policy</a>
-                <a href="#terms" className="hover:text-white">Terms</a>
-                <a href="#cookies" className="hover:text-white">Cookies</a>
+                <Link href="#privacy" className="hover:text-white">Privacy Policy</Link>
+                <Link href="#terms" className="hover:text-white">Terms</Link>
+                <Link href="#cookies" className="hover:text-white">Cookies</Link>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 sm:gap-4 text-center">
