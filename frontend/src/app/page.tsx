@@ -39,27 +39,27 @@ export default function Home() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <div className="flex items-center space-x-6">
-                <a
+                <Link
                   href="#features"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   Features
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#how-it-works"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   How It Works
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#pricing"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   Pricing
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
+                </Link>
               </div>
 
               <div className="flex items-center space-x-3">
@@ -95,27 +95,27 @@ export default function Home() {
           {isMobileMenuOpen && (
             <div className="md:hidden">
               <div className="px-4 pt-2 mt-4 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-                <a
+                <Link
                   href="#features"
                   onClick={closeMobileMenu}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   Features
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#how-it-works"
                   onClick={closeMobileMenu}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   How It Works
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#pricing"
                   onClick={closeMobileMenu}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   Pricing
-                </a>
+                </Link>
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
                   <Link
                     href="/login"
@@ -599,7 +599,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-12">
             {/* Company Info */}
             <div className="sm:col-span-2">
-              <a href="/" className="flex items-center space-x-4 mb-6 group">
+              <Link href="/" className="flex items-center space-x-4 mb-6 group">
                 <div className="relative">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <FaClock className="text-white text-xl" />
@@ -610,15 +610,15 @@ export default function Home() {
                   <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">TimeTrack</h2>
                   <p className="text-sm text-gray-400 -mt-1">Smart Time Management</p>
                 </div>
-              </a>
+              </Link>
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 max-w-md">
                 Empowering teams worldwide with intelligent time tracking solutions. Boost productivity and streamline your workflow with our cutting-edge platform.
               </p>
               <div className="flex space-x-3">
                 {[FaTwitter, FaLinkedin, FaGithub].map((Icon, idx) => (
-                  <a key={idx} href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                  <Link key={idx} href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-transform duration-300 hover:scale-110">
                     <Icon className="text-lg" />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -635,9 +635,9 @@ export default function Home() {
                   ['#security', 'Security'],
                 ].map(([href, label], idx) => (
                   <li key={idx}>
-                    <a href={href} className="text-gray-400 hover:text-white flex items-center group transition">
+                    <Link href={href} className="text-gray-400 hover:text-white flex items-center group transition">
                       <span className="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>{label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -655,9 +655,9 @@ export default function Home() {
                   ['#press', 'Press Kit'],
                 ].map(([href, label], idx) => (
                   <li key={idx}>
-                    <a href={href} className="text-gray-400 hover:text-white flex items-center group transition">
+                    <Link href={href} className="text-gray-400 hover:text-white flex items-center group transition">
                       <span className="w-1 h-1 bg-purple-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>{label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
