@@ -5,6 +5,7 @@ import { FaClock, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { apiRequest } from '@/lib/api';
+import { toast } from 'react-hot-toast';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,7 +14,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const router = useRouter(); const handleSubmit = async (e: React.FormEvent) => {
+  const router = useRouter();
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -31,17 +33,16 @@ export default function Login() {
       // Store token in localStorage for future API calls
       localStorage.setItem('auth_token', data.token);
       localStorage.setItem('user_data', JSON.stringify(data.user));
-
-      // Also set a cookie for the middleware
       document.cookie = `auth_token=${data.token}; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
-
-      // Reset the dashboard loaded flag to ensure welcome message shows
-      sessionStorage.removeItem('dashboard_loaded');      // If login is successful, redirect to dashboard
+      sessionStorage.removeItem('dashboard_loaded');
+      toast.success('Login successful! Redirecting...');
+      // If login is successful, redirect to dashboard
       router.push('/dashboard');
     } catch (err) {
       console.error('Login error details:', err);
-      // Show more detailed error message
-      setError(err instanceof Error ? err.message : 'Invalid email or password. Please try again.');
+      const message = err instanceof Error ? err.message : 'Invalid email or password. Please try again.';
+      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -100,10 +101,8 @@ export default function Login() {
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Email address
               </label>
-              <div className="mt-1 relative rounded-xl shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaEnvelope className="h-5 w-5 text-gray-400" />
-                </div>
+              <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                <FaEnvelope className="h-4 w-4 text-gray-400" />
                 <input
                   id="email"
                   name="email"
@@ -112,18 +111,17 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                  className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                   placeholder="you@example.com"
                 />
               </div>
-            </div>            <div>
+            </div>
+            <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Password
               </label>
-              <div className="mt-1 relative rounded-xl shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="h-5 w-5 text-gray-400" />
-                </div>
+              <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2 relative">
+                <FaLock className="h-4 w-4 text-gray-400" />
                 <input
                   id="password"
                   name="password"
@@ -132,22 +130,21 @@ export default function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-10 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                  className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                   placeholder="••••••••"
                 />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="text-gray-400 hover:text-gray-500 focus:outline-none"
-                  >
-                    {showPassword ? (
-                      <FaEyeSlash className="h-5 w-5" />
-                    ) : (
-                      <FaEye className="h-5 w-5" />
-                    )}
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 text-gray-400 hover:text-gray-500 focus:outline-none"
+                  style={{ top: '50%', transform: 'translateY(-50%)' }}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="h-4 w-4" />
+                  ) : (
+                    <FaEye className="h-4 w-4" />
+                  )}
+                </button>
               </div>
             </div>
             <div className="flex items-center justify-between flex-wrap gap-2">

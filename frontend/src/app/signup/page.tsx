@@ -5,6 +5,7 @@ import { FaClock, FaEnvelope, FaLock, FaUser, FaEye, FaEyeSlash, FaBuilding, FaU
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { apiRequest } from '@/lib/api';
+import { toast } from 'react-hot-toast';
 
 export default function Signup() {
   // Organization details
@@ -22,8 +23,6 @@ export default function Signup() {
   // UI state
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   const router = useRouter();
 
@@ -32,23 +31,21 @@ export default function Signup() {
 
     // Basic validation
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      toast.error('Passwords do not match');
       return;
     }
 
     if (!organizationName.trim()) {
-      setError('Organization name is required');
+      toast.error('Organization name is required');
       return;
     }
 
     if (!firstName.trim() || !lastName.trim()) {
-      setError('First name and last name are required');
+      toast.error('First name and last name are required');
       return;
     }
 
     setIsLoading(true);
-    setError('');
-    setSuccess('');
 
     try {
       // Call Django backend organization register API
@@ -72,15 +69,16 @@ export default function Signup() {
         localStorage.setItem('user_data', JSON.stringify(response.user));
       }
 
-      setSuccess('Organization created successfully! Redirecting to dashboard...');
+      toast.success('Organization created successfully! Redirecting...');
 
       // Redirect to dashboard after a short delay
       setTimeout(() => {
         router.push('/dashboard');
-      }, 2000);
+      }, 1200);
     } catch (err) {
       console.error('Registration error:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred during signup. Please try again.');
+      const message = err instanceof Error ? err.message : 'An error occurred during signup. Please try again.';
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -112,7 +110,8 @@ export default function Signup() {
                 TimeTrack
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
-            </div>          </Link>
+            </div>
+          </Link>
         </div>
         <h2 className="mt-6 text-center text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
           Get Started
@@ -130,18 +129,6 @@ export default function Signup() {
 
       <div className="mt-8 mx-auto w-full max-w-md sm:max-w-xl lg:max-w-2xl relative z-10">
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6 px-4 sm:py-8 sm:px-8 shadow-lg sm:rounded-2xl border border-white/20 dark:border-gray-700/30">
-          {error && (
-            <div className="mb-6 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-200 p-4 rounded-xl text-sm border-l-4 border-red-500 shadow-sm">
-              {error}
-            </div>
-          )}
-
-          {success && (
-            <div className="mb-6 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200 p-4 rounded-xl text-sm border-l-4 border-green-500 shadow-sm">
-              {success}
-            </div>
-          )}
-
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Organization Section */}
             <div className="border-b border-gray-200 dark:border-gray-600 pb-6">
@@ -205,10 +192,8 @@ export default function Signup() {
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       First Name *
                     </label>
-                    <div className="mt-1 relative rounded-xl shadow-sm">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <FaUser className="h-5 w-5 text-gray-400" />
-                      </div>
+                    <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                      <FaUser className="h-4 w-4 text-gray-400" />
                       <input
                         id="firstName"
                         name="firstName"
@@ -216,7 +201,7 @@ export default function Signup() {
                         required
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        className="block w-full pl-10 pr-3 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                        className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                         placeholder="John"
                       />
                     </div>
@@ -226,7 +211,8 @@ export default function Signup() {
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       Last Name *
                     </label>
-                    <div className="mt-1">
+                    <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                      <FaUser className="h-4 w-4 text-gray-400" />
                       <input
                         id="lastName"
                         name="lastName"
@@ -234,19 +220,18 @@ export default function Signup() {
                         required
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        className="block w-full px-4 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                        className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                         placeholder="Doe"
                       />
                     </div>
                   </div>
-                </div>                <div>
+                </div>
+                <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Email Address *
                   </label>
-                  <div className="mt-1 relative rounded-xl shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaEnvelope className="h-5 w-5 text-gray-400" />
-                    </div>
+                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                    <FaEnvelope className="h-4 w-4 text-gray-400" />
                     <input
                       id="email"
                       name="email"
@@ -255,7 +240,7 @@ export default function Signup() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                       placeholder="admin@acmecorp.com"
                     />
                   </div>
@@ -265,10 +250,8 @@ export default function Signup() {
                   <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Username *
                   </label>
-                  <div className="mt-1 relative rounded-xl shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaUser className="h-5 w-5 text-gray-400" />
-                    </div>
+                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                    <FaUser className="h-4 w-4 text-gray-400" />
                     <input
                       id="username"
                       name="username"
@@ -276,18 +259,17 @@ export default function Signup() {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                       placeholder="john_doe"
                     />
                   </div>
-                </div>                <div>
+                </div>
+                <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Password *
                   </label>
-                  <div className="mt-1 relative rounded-xl shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-gray-400" />
-                    </div>
+                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2 relative">
+                    <FaLock className="h-4 w-4 text-gray-400" />
                     <input
                       id="password"
                       name="password"
@@ -296,22 +278,21 @@ export default function Signup() {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="block w-full pl-10 pr-10 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                       placeholder="••••••••"
                     />
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="text-gray-400 hover:text-gray-500 focus:outline-none"
-                      >
-                        {showPassword ? (
-                          <FaEyeSlash className="h-5 w-5" />
-                        ) : (
-                          <FaEye className="h-5 w-5" />
-                        )}
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 text-gray-400 hover:text-gray-500 focus:outline-none"
+                      style={{ top: '50%', transform: 'translateY(-50%)' }}
+                    >
+                      {showPassword ? (
+                        <FaEyeSlash className="h-4 w-4" />
+                      ) : (
+                        <FaEye className="h-4 w-4" />
+                      )}
+                    </button>
                   </div>
                 </div>
 
@@ -319,10 +300,8 @@ export default function Signup() {
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Confirm Password *
                   </label>
-                  <div className="mt-1 relative rounded-xl shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-gray-400" />
-                    </div>
+                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
+                    <FaLock className="h-4 w-4 text-gray-400" />
                     <input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -331,11 +310,12 @@ export default function Signup() {
                       required
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300/50 dark:border-gray-600/50 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700/70 dark:text-white sm:text-sm backdrop-blur-sm"
+                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
                       placeholder="••••••••"
                     />
                   </div>
-                </div>              </div>
+                </div>
+              </div>
             </div>
 
             <div className="flex items-start">
@@ -372,33 +352,6 @@ export default function Signup() {
               </button>
             </div>
           </form>
-
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white/80 dark:bg-gray-800/80 text-gray-500 dark:text-gray-400 backdrop-blur-sm">
-                  Benefits of TimeTrack
-                </span>
-              </div>
-            </div>
-            <div className="mt-6 grid grid-cols-1 gap-3">
-              <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 bg-white/80 dark:bg-gray-700/80 p-3 rounded-xl shadow-sm border border-gray-300/50 dark:border-gray-600/50 backdrop-blur-sm">
-                <FaUsers className="h-4 w-4 mr-2 text-blue-600" />
-                Invite up to 50 team members
-              </div>
-              <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 bg-white/80 dark:bg-gray-700/80 p-3 rounded-xl shadow-sm border border-gray-300/50 dark:border-gray-600/50 backdrop-blur-sm">
-                <FaClock className="h-4 w-4 mr-2 text-blue-600" />
-                Track time across projects
-              </div>
-              <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 bg-white/80 dark:bg-gray-700/80 p-3 rounded-xl shadow-sm border border-gray-300/50 dark:border-gray-600/50 backdrop-blur-sm">
-                <FaBuilding className="h-4 w-4 mr-2 text-blue-600" />
-                Manage your organization
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
