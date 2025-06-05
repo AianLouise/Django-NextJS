@@ -31,7 +31,6 @@ export default function Team() {
   const router = useRouter();
   const [user, setUser] = useState<TeamUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
 
   // Organization and team state
   const [organization, setOrganization] = useState<Organization | null>(null);
@@ -130,7 +129,7 @@ export default function Team() {
         setUser(parsedUser);
       } catch (e) {
         console.error('Error parsing user data:', e);
-        setError('Invalid user data');
+        toast.error('Invalid user data. Please log in again.');
       }
     }    // Fetch team data
     fetchTeamMembers();

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FaClock, FaEye, FaEyeSlash, FaUserPlus, FaLock, FaUser } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaUserPlus, FaLock, FaUser } from 'react-icons/fa';
 import { apiRequest } from '@/lib/api';
 import toast from 'react-hot-toast';
 
