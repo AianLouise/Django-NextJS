@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FaClock, FaEye, FaEyeSlash, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { FaClock, FaEye, FaEyeSlash, FaCheckCircle, FaExclamationTriangle, FaUserPlus, FaLock, FaUser } from 'react-icons/fa';
 import { apiRequest } from '@/lib/api';
 
 interface ValidationErrors {
@@ -144,189 +144,215 @@ function AcceptInvitationForm() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8">
-                <div>
-                    <div className="flex items-center justify-center">
-                        <FaClock className="h-12 w-12 text-blue-600" />
-                    </div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-                        Accept Invitation
-                    </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-                        Complete your account setup to join the team
-                    </p>
-                </div>
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
 
-                {/* Success Message */}
-                {success && (
-                    <div className="rounded-md bg-green-50 dark:bg-green-900/20 p-4">
-                        <div className="flex">
-                            <div className="flex-shrink-0">
-                                <FaCheckCircle className="h-5 w-5 text-green-400" />
-                            </div>
-                            <div className="ml-3">
-                                <p className="text-sm font-medium text-green-800 dark:text-green-400">
-                                    {success}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {/* Error Message */}
-                {error && (
-                    <div className="rounded-md bg-red-50 dark:bg-red-900/20 p-4">
-                        <div className="flex">
-                            <div className="flex-shrink-0">
-                                <FaExclamationTriangle className="h-5 w-5 text-red-400" />
-                            </div>
-                            <div className="ml-3">
-                                <p className="text-sm font-medium text-red-800 dark:text-red-400">
-                                    {error}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="space-y-4">
-                        {/* Username Field */}
-                        <div>
-                            <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Username *
-                            </label>
-                            <div className="mt-1">
-                                <input
-                                    id="username"
-                                    name="username"
-                                    type="text"
-                                    autoComplete="username"
-                                    required
-                                    value={formData.username}
-                                    onChange={handleChange}
-                                    className={`appearance-none relative block w-full px-3 py-2 border ${validationErrors.username ? 'border-red-300' : 'border-gray-300'
-                                        } dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                                    placeholder="Enter your username"
-                                />
-                            </div>
-                            {validationErrors.username && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
-                                    {validationErrors.username}
-                                </p>
-                            )}
-                        </div>
-
-                        {/* Password Field */}
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Create Password *
-                            </label>
-                            <div className="mt-1 relative">
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    autoComplete="new-password"
-                                    required
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className={`appearance-none relative block w-full px-3 py-2 border ${validationErrors.password ? 'border-red-300' : 'border-gray-300'
-                                        } dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                                    placeholder="Enter your password"
-                                />
-                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <button
-                                        type="button"
-                                        className="text-gray-400 hover:text-gray-500 focus:outline-none"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                    >
-                                        {showPassword ? (
-                                            <FaEyeSlash className="h-5 w-5" />
-                                        ) : (
-                                            <FaEye className="h-5 w-5" />
-                                        )}
-                                    </button>
+            <div className="relative z-10 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md w-full">
+                    {/* Header */}
+                    <div className="text-center mb-8">
+                        <div className="flex items-center justify-center mb-6">
+                            <div className="relative">
+                                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                                    <FaUserPlus className="h-8 w-8 text-white" />
                                 </div>
+                                <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl opacity-20 -z-10"></div>
                             </div>
-                            {validationErrors.password && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
-                                    {validationErrors.password}
-                                </p>
-                            )}
                         </div>
-
-                        {/* Confirm Password Field */}
-                        <div>
-                            <label htmlFor="password2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Confirm Password *
-                            </label>
-                            <div className="mt-1 relative">
-                                <input
-                                    id="password2"
-                                    name="password2"
-                                    type={showConfirmPassword ? 'text' : 'password'}
-                                    autoComplete="new-password"
-                                    required
-                                    value={formData.password2}
-                                    onChange={handleChange}
-                                    className={`appearance-none relative block w-full px-3 py-2 border ${validationErrors.password2 ? 'border-red-300' : 'border-gray-300'
-                                        } dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                                    placeholder="Confirm your password"
-                                />
-                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <button
-                                        type="button"
-                                        className="text-gray-400 hover:text-gray-500 focus:outline-none"
-                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    >
-                                        {showConfirmPassword ? (
-                                            <FaEyeSlash className="h-5 w-5" />
-                                        ) : (
-                                            <FaEye className="h-5 w-5" />
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                            {validationErrors.password2 && (
-                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
-                                    {validationErrors.password2}
-                                </p>
-                            )}
-                        </div>
-                    </div>
-
-                    <div>
-                        <button
-                            type="submit"
-                            disabled={isLoading || !token}
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {isLoading ? (
-                                <div className="flex items-center">
-                                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
-                                    Accepting Invitation...
-                                </div>
-                            ) : (
-                                'Accept Invitation & Join Team'
-                            )}
-                        </button>
-                    </div>
-
-                    <div className="text-center">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                            Already have an account?{' '}
-                            <button
-                                type="button"
-                                onClick={() => router.push('/login')}
-                                className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
-                            >
-                                Sign in here
-                            </button>
+                        <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                            Accept Invitation
+                        </h2>
+                        <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                            Complete your account setup to join the team
                         </p>
                     </div>
-                </form>
+
+                    {/* Form Container */}
+                    <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 overflow-hidden">
+                        <div className="p-8">
+                            {/* Success Message */}
+                            {success && (
+                                <div className="mb-6 bg-green-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-xl border border-green-200/50 dark:border-green-800/30 p-4">
+                                    <div className="flex">
+                                        <div className="flex-shrink-0">
+                                            <div className="w-6 h-6 bg-green-100 dark:bg-green-800/30 rounded-lg flex items-center justify-center">
+                                                <FaCheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                                            </div>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm font-medium text-green-800 dark:text-green-400">
+                                                {success}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Error Message */}
+                            {error && (
+                                <div className="mb-6 bg-red-50/80 dark:bg-red-900/30 backdrop-blur-sm rounded-xl border border-red-200/50 dark:border-red-800/30 p-4">
+                                    <div className="flex">
+                                        <div className="flex-shrink-0">
+                                            <div className="w-6 h-6 bg-red-100 dark:bg-red-800/30 rounded-lg flex items-center justify-center">
+                                                <FaExclamationTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                                            </div>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm font-medium text-red-800 dark:text-red-400">
+                                                {error}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Username Field */}
+                                <div>
+                                    <label htmlFor="username" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Username *
+                                    </label>
+                                    <div className="flex items-center gap-3 rounded-xl shadow-sm bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm transition-all duration-200 px-3 py-3">
+                                        <FaUser className="h-4 w-4 text-gray-400" />
+                                        <input
+                                            id="username"
+                                            name="username"
+                                            type="text"
+                                            autoComplete="username"
+                                            required
+                                            value={formData.username}
+                                            onChange={handleChange}
+                                            className={`block w-full bg-transparent outline-none border-none placeholder-gray-400 dark:text-white ${validationErrors.username
+                                                ? 'text-red-600 dark:text-red-400'
+                                                : ''
+                                                }`}
+                                            placeholder="Enter your username"
+                                        />
+                                    </div>
+                                    {validationErrors.username && (
+                                        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                            {validationErrors.username}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Password Field */}
+                                <div>
+                                    <label htmlFor="password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Create Password *
+                                    </label>
+                                    <div className="flex items-center gap-3 rounded-xl shadow-sm bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm transition-all duration-200 px-3 py-3 relative">
+                                        <FaLock className="h-4 w-4 text-gray-400" />
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            type={showPassword ? 'text' : 'password'}
+                                            autoComplete="new-password"
+                                            required
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            className={`block w-full bg-transparent outline-none border-none placeholder-gray-400 dark:text-white ${validationErrors.password
+                                                ? 'text-red-600 dark:text-red-400'
+                                                : ''
+                                                }`}
+                                            placeholder="Enter your password"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none transition-colors duration-200"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? (
+                                                <FaEyeSlash className="h-4 w-4" />
+                                            ) : (
+                                                <FaEye className="h-4 w-4" />
+                                            )}
+                                        </button>
+                                    </div>
+                                    {validationErrors.password && (
+                                        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                            {validationErrors.password}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Confirm Password Field */}
+                                <div>
+                                    <label htmlFor="password2" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Confirm Password *
+                                    </label>
+                                    <div className="flex items-center gap-3 rounded-xl shadow-sm bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm transition-all duration-200 px-3 py-3 relative">
+                                        <FaLock className="h-4 w-4 text-gray-400" />
+                                        <input
+                                            id="password2"
+                                            name="password2"
+                                            type={showConfirmPassword ? 'text' : 'password'}
+                                            autoComplete="new-password"
+                                            required
+                                            value={formData.password2}
+                                            onChange={handleChange}
+                                            className={`block w-full bg-transparent outline-none border-none placeholder-gray-400 dark:text-white ${validationErrors.password2
+                                                ? 'text-red-600 dark:text-red-400'
+                                                : ''
+                                                }`}
+                                            placeholder="Confirm your password"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none transition-colors duration-200"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        >
+                                            {showConfirmPassword ? (
+                                                <FaEyeSlash className="h-4 w-4" />
+                                            ) : (
+                                                <FaEye className="h-4 w-4" />
+                                            )}
+                                        </button>
+                                    </div>
+                                    {validationErrors.password2 && (
+                                        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                                            {validationErrors.password2}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={isLoading || !token}
+                                    className="w-full flex justify-center items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                                >
+                                    {isLoading ? (
+                                        <div className="flex items-center">
+                                            <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-3"></div>
+                                            Accepting Invitation...
+                                        </div>
+                                    ) : (
+                                        'Accept Invitation & Join Team'
+                                    )}
+                                </button>
+
+                                {/* Sign In Link */}
+                                <div className="text-center pt-4">
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        Already have an account?{' '}
+                                        <button
+                                            type="button"
+                                            onClick={() => router.push('/login')}
+                                            className="font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200"
+                                        >
+                                            Sign in here
+                                        </button>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
@@ -335,8 +361,14 @@ function AcceptInvitationForm() {
 // Loading component
 function LoadingFallback() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+            <div className="relative z-10 min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+            </div>
         </div>
     );
 }
