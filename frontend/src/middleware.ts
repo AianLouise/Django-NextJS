@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Define paths that are considered public (no auth required)
-  const publicPaths = ['/login', '/signup', '/'];
+  const publicPaths = ['/login', '/signup', '/', '/accept-invitation'];
   const isPublicPath = publicPaths.some(publicPath => path === publicPath || path.startsWith('/api/'));
 
   // Get the token from the cookies

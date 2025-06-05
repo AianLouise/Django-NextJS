@@ -2,8 +2,9 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FaClock, FaEye, FaEyeSlash, FaCheckCircle, FaExclamationTriangle, FaUserPlus, FaLock, FaUser } from 'react-icons/fa';
+import { FaClock, FaEye, FaEyeSlash, FaUserPlus, FaLock, FaUser } from 'react-icons/fa';
 import { apiRequest } from '@/lib/api';
+import toast from 'react-hot-toast';
 
 interface ValidationErrors {
     username?: string;
@@ -35,8 +36,6 @@ function AcceptInvitationForm() {
     });
 
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
@@ -44,7 +43,7 @@ function AcceptInvitationForm() {
     // Check if token is valid on component mount
     useEffect(() => {
         if (!token) {
-            setError('Invalid invitation link. Please check your email for the correct link.');
+            toast.error('Invalid invitation link. Please check your email for the correct link.');
         } else {
             // Update token in form data when component mounts
             setFormData(prev => ({ ...prev, token: token }));
@@ -104,8 +103,6 @@ function AcceptInvitationForm() {
         }
 
         setIsLoading(true);
-        setError('');
-        setSuccess('');
 
         try {
             const response = await apiRequest('/users/invitation/accept/', {
@@ -117,7 +114,9 @@ function AcceptInvitationForm() {
             localStorage.setItem('auth_token', response.token);
             localStorage.setItem('user_data', JSON.stringify(response.user));
 
-            setSuccess('Welcome to the team! Redirecting to dashboard...');
+            toast.success('Welcome to the team! Redirecting to dashboard...', {
+                duration: 2000,
+            });
 
             // Redirect to dashboard after a short delay
             setTimeout(() => {
@@ -128,7 +127,7 @@ function AcceptInvitationForm() {
             console.error('Invitation acceptance error:', err);
             const apiError = err as ApiError;
             if (apiError.token) {
-                setError(apiError.token[0] || 'Invalid or expired invitation token.');
+                toast.error(apiError.token[0] || 'Invalid or expired invitation token.');
             } else if (apiError.password) {
                 setValidationErrors({ password: apiError.password[0] });
             } else if (apiError.password2) {
@@ -136,7 +135,7 @@ function AcceptInvitationForm() {
             } else if (apiError.username) {
                 setValidationErrors({ username: apiError.username[0] });
             } else {
-                setError(apiError.message || 'Failed to accept invitation. Please try again.');
+                toast.error(apiError.message || 'Failed to accept invitation. Please try again.');
             }
         } finally {
             setIsLoading(false);
@@ -174,42 +173,6 @@ function AcceptInvitationForm() {
                     {/* Form Container */}
                     <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 overflow-hidden">
                         <div className="p-8">
-                            {/* Success Message */}
-                            {success && (
-                                <div className="mb-6 bg-green-50/80 dark:bg-green-900/30 backdrop-blur-sm rounded-xl border border-green-200/50 dark:border-green-800/30 p-4">
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-6 h-6 bg-green-100 dark:bg-green-800/30 rounded-lg flex items-center justify-center">
-                                                <FaCheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
-                                            </div>
-                                        </div>
-                                        <div className="ml-3">
-                                            <p className="text-sm font-medium text-green-800 dark:text-green-400">
-                                                {success}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Error Message */}
-                            {error && (
-                                <div className="mb-6 bg-red-50/80 dark:bg-red-900/30 backdrop-blur-sm rounded-xl border border-red-200/50 dark:border-red-800/30 p-4">
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <div className="w-6 h-6 bg-red-100 dark:bg-red-800/30 rounded-lg flex items-center justify-center">
-                                                <FaExclamationTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
-                                            </div>
-                                        </div>
-                                        <div className="ml-3">
-                                            <p className="text-sm font-medium text-red-800 dark:text-red-400">
-                                                {error}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Username Field */}
                                 <div>
