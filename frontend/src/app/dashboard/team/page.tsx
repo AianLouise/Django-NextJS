@@ -197,11 +197,13 @@ export default function Team() {
         <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
           <FaUserCircle className="text-4xl" />
         </div>
-      </div>      <Header user={user} onLogout={handleLogout} />
+      </div>      
+      <Header user={user} onLogout={handleLogout} />
 
       <div className="relative z-10 py-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            <Sidebar />
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            
+            <Sidebar />
 
             {/* Main Content */}
             <div className="flex-1">

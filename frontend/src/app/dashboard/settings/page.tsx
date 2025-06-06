@@ -240,14 +240,11 @@ export default function Settings() {
           <FaLock className="text-4xl" />
         </div>
       </div>
-
-      {/* Header */}
       <Header user={user} onLogout={handleLogout} />
 
       <div className="py-10 relative z-10">
         <main>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
-            {/* Sidebar */}
             <Sidebar />
 
             {/* Main Content */}

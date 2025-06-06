@@ -155,7 +155,6 @@ export default function Dashboard() {
           <FaCalendarAlt className="text-4xl" />
         </div>
       </div>  
-          
       <Header user={user} onLogout={handleLogout} />
 
       <div className="py-10 relative z-10">
