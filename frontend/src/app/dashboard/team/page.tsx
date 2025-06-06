@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FaTimes, FaEnvelope, FaCalendar, FaUser, FaBuilding, FaPlus, FaUsers, FaUserCircle, FaClock } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { apiRequest, logout, User, Organization } from '@/lib/api';
-import { Header, Sidebar } from '../components';
+import { Header, Sidebar, PageLoader } from '../components';
 
 // Define interfaces for team-specific data
 interface TeamMember extends User {
@@ -179,14 +179,9 @@ export default function Team() {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  } return (
+    return <PageLoader message="Loading team members..." size="lg" />;
+  }return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Animated Gradient Circles & Floating Icons */}
       <div className="absolute inset-0 pointer-events-none z-0">

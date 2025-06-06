@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FaClock, FaChartBar, FaDownload, FaFilter } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { apiRequest, logout, User } from '@/lib/api';
-import { Header, Sidebar } from '../components';
+import { Header, Sidebar, PageLoader } from '../components';
 
 // Define interfaces for report data
 interface ReportData {
@@ -144,13 +144,8 @@ export default function Reports() {
       setStartDate(formatDate(firstDayOfYear));
       setEndDate(formatDate(lastDayOfYear));
     }
-  };
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-      </div>
-    );
+  };  if (isLoading) {
+    return <PageLoader message="Loading reports..." size="lg" />;
   }
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">

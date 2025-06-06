@@ -49,7 +49,8 @@ export default function Sidebar() {
                             className={`${isActive
                                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
                                     : 'text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900'
-                                } group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive ? 'shadow hover:scale-105' : ''
+                                } group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
+                                    isActive ? 'shadow hover:scale-105' : ''
                                 }`}
                         >
                             <Icon className="mr-3 h-5 w-5" />

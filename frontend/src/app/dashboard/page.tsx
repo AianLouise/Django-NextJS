@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FaClock, FaCalendarAlt, FaChartBar, FaTimes } from 'react-icons/fa';
 import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
 import { toast } from 'react-hot-toast';
-import { Header, Sidebar } from './components';
+import { Header, Sidebar, PageLoader } from './components';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -135,13 +135,8 @@ export default function Dashboard() {
       toast.error('Error logging out. Please try again.');
     }
   };
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <PageLoader message="Loading dashboard..." size="lg" />;
   }
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
@@ -159,11 +154,14 @@ export default function Dashboard() {
         <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
           <FaCalendarAlt className="text-4xl" />
         </div>
-      </div>      <Header user={user} onLogout={handleLogout} />
+      </div>  
+          
+      <Header user={user} onLogout={handleLogout} />
 
       <div className="py-10 relative z-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            <Sidebar />
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            
+            <Sidebar />
 
             {/* Main Content */}
             <section className="flex-1">
