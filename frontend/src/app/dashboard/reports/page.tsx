@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaClock, FaUserCircle, FaBell, FaSignOutAlt, FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog, FaDownload, FaFilter } from 'react-icons/fa';
+import { FaClock, FaChartBar, FaDownload, FaFilter } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { apiRequest, logout, User } from '@/lib/api';
+import { Header, Sidebar } from '../components';
 
 // Define interfaces for report data
 interface ReportData {
@@ -168,93 +168,11 @@ export default function Reports() {
         <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
           <FaFilter className="text-4xl" />
         </div>
-      </div>
-
-      {/* Header */}
-      <header className="z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/dashboard" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <FaClock className="text-white text-lg" />
-              </div>
-              <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
-            </div>
-            <div>
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                WorkTally
-              </span>
-              <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Reports</p>
-            </div>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => toast('You have no new notifications', { icon: '🔔' })}
-              className="p-2 rounded-full text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <span className="sr-only">View notifications</span>
-              <FaBell className="h-6 w-6" />
-            </button>
-            <div className="flex items-center space-x-2 bg-white/60 dark:bg-gray-800/60 px-3 py-1 rounded-xl shadow border border-white/20 dark:border-gray-700/30">
-              <FaUserCircle className="h-7 w-7 text-gray-400" />
-              <span className="text-gray-700 dark:text-gray-300 font-medium">
-                {user ? `${user.first_name} ${user.last_name}` : 'User'}
-              </span>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="flex items-center text-gray-400 hover:text-red-500 focus:outline-none transition-colors"
-            >
-              <FaSignOutAlt className="h-5 w-5" />
-              <span className="ml-1 text-sm font-semibold">Logout</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      </div>      <Header user={user} onLogout={handleLogout} />
 
       <div className="py-10 relative z-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
-            {/* Sidebar */}
-            <aside className="w-full md:w-64 mb-8 md:mb-0">
-              <nav className="space-y-3 bg-white/70 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
-                <Link
-                  href="/dashboard"
-                  className="text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900 group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-colors"
-                >
-                  <FaHome className="mr-3 h-5 w-5" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="/dashboard/timesheet"
-                  className="text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900 group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-colors"
-                >
-                  <FaCalendarAlt className="mr-3 h-5 w-5" />
-                  Timesheet
-                </Link>
-                <Link
-                  href="/dashboard/reports"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white group flex items-center px-4 py-3 text-base font-semibold rounded-xl shadow hover:scale-105 transition-transform"
-                >
-                  <FaChartBar className="mr-3 h-5 w-5" />
-                  Reports
-                </Link>
-                <Link
-                  href="/dashboard/team"
-                  className="text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900 group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-colors"
-                >
-                  <FaUsers className="mr-3 h-5 w-5" />
-                  Team
-                </Link>
-                <Link
-                  href="/dashboard/settings"
-                  className="text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900 group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-colors"
-                >
-                  <FaCog className="mr-3 h-5 w-5" />
-                  Settings
-                </Link>
-              </nav>
-            </aside>
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            <Sidebar />
 
             {/* Main Content */}
             <section className="flex-1">
