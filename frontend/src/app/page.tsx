@@ -30,7 +30,7 @@ export default function Home() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                  TimeTrack
+                  WorkTally
                 </h1>
                 <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
               </div>
@@ -531,7 +531,7 @@ export default function Home() {
               </span>
             </h3>
             <p className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Join thousands of companies that trust TimeTrack for their time tracking needs.
+              Join thousands of companies that trust WorkTally for their time tracking needs.
               Start your journey to better productivity today.
             </p>
 
@@ -607,7 +607,7 @@ export default function Home() {
                   <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
                 </div>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">TimeTrack</h2>
+                  <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">WorkTally</h2>
                   <p className="text-sm text-gray-400 -mt-1">Smart Time Management</p>
                 </div>
               </Link>
@@ -689,7 +689,7 @@ export default function Home() {
           {/* Footer Bottom */}
           <div className="border-t border-gray-700/50 pt-6 flex flex-col gap-4 sm:flex-row sm:justify-between text-xs md:text-sm text-gray-400">
             <div className="text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4">
-              <p>&copy; {new Date().getFullYear()} TimeTrack. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} WorkTally. All rights reserved.</p>
               <div className="flex justify-center sm:justify-start gap-4">
                 <Link href="#privacy" className="hover:text-white">Privacy Policy</Link>
                 <Link href="#terms" className="hover:text-white">Terms</Link>

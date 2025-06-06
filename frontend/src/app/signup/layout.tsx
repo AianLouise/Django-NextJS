@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign Up | TimeTrack",
-  description: "Create a new account for TimeTrack time tracking system",
+  title: "Sign Up | WorkTally",
+  description: "Create a new account for WorkTally time tracking system",
 };
 
 export default function SignupLayout({

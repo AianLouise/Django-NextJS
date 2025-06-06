@@ -21,7 +21,7 @@ from users.models import CustomUser, Organization
 def demo_complete_flow():
     """Demo the complete organization signup and email invitation flow"""
     
-    print("=== TimeTrack Organization & Email Invitation Demo ===\n")
+    print("=== WorkTally Organization & Email Invitation Demo ===\n")
     
     # Base URL for API
     BASE_URL = 'http://127.0.0.1:8000'
@@ -39,7 +39,7 @@ def demo_complete_flow():
     
     signup_data = {
         'organization_name': 'Demo Tech Solutions',
-        'organization_description': 'A demonstration technology company for TimeTrack',
+        'organization_description': 'A demonstration technology company for WorkTally',
         'first_name': 'Alice',
         'last_name': 'Manager',
         'username': 'alice.manager',

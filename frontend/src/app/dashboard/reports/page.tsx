@@ -182,7 +182,7 @@ export default function Reports() {
             </div>
             <div>
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                TimeTrack
+                WorkTally
               </span>
               <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Reports</p>
             </div>

@@ -1,4 +1,4 @@
-# TimeTrack - Simple Time Tracking System
+# WorkTally - Simple Time Tracking System
 
 A full-stack timekeeping system built with Django and Next.js.
 

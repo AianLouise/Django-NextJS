@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login | TimeTrack",
-  description: "Sign in to your TimeTrack account",
+  title: "Login | WorkTally",
+  description: "Sign in to your WorkTally account",
 };
 
 export default function LoginLayout({

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TimeTrack | Simple Time Tracking System",
+  title: "WorkTally | Simple Time Tracking System",
   description: "Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.",
   icons: {
     icon: [

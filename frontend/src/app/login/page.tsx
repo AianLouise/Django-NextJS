@@ -68,7 +68,7 @@ export default function Login() {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                TimeTrack
+                WorkTally
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
             </div>
