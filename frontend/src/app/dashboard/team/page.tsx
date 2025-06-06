@@ -181,7 +181,7 @@ export default function Team() {
   };
   if (isLoading) {
     return <PageLoader message="Loading team members..." size="lg" />;
-  }return (
+  } return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Animated Gradient Circles & Floating Icons */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -197,19 +197,19 @@ export default function Team() {
         <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
           <FaUserCircle className="text-4xl" />
         </div>
-      </div>      
+      </div>
       <Header user={user} onLogout={handleLogout} />
 
       <div className="relative z-10 py-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
             <Sidebar />
 
             {/* Main Content */}
             <div className="flex-1">
               {/* Organization Header */}
               {organization && (
-              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 mb-8">
+                <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 mb-8">
                   <div className="px-6 py-6 sm:p-8">
                     <div className="flex items-center">
                       <div className="relative">
@@ -230,7 +230,7 @@ export default function Team() {
               )}
 
               {/* Team Management Header */}
-                            <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
                 <div className="px-6 py-6 sm:p-8">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-8">
                     <div>
