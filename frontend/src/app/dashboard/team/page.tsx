@@ -209,7 +209,7 @@ export default function Team() {
             <div className="flex-1">
               {/* Organization Header */}
               {organization && (
-                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 overflow-hidden mb-8">
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 mb-8">
                   <div className="px-6 py-6 sm:p-8">
                     <div className="flex items-center">
                       <div className="relative">
@@ -230,7 +230,7 @@ export default function Team() {
               )}
 
               {/* Team Management Header */}
-              <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 overflow-hidden">
+                            <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
                 <div className="px-6 py-6 sm:p-8">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-8">
                     <div>

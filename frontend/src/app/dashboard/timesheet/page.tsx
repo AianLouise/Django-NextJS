@@ -177,149 +177,147 @@ export default function Timesheet() {
         <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
           <FaClock className="text-4xl" />
         </div>
-      </div>      
+      </div>
       <Header user={user} onLogout={handleLogout} />
 
       <div className="py-10 relative z-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
             <Sidebar />
 
             {/* Main Content */}
             <section className="flex-1">
-              <div className="bg-white/70 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 dark:border-gray-700/30 overflow-hidden">
-                <div className="p-8">
-                  {/* Header with Week Navigation */}
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                    <div>
-                      <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                        Weekly Timesheet
-                      </h2>
-                      <p className="text-gray-600 dark:text-gray-400 mt-1">Track your time entries for the week</p>
-                    </div>
-                    <div className="flex items-center space-x-4 bg-white/50 dark:bg-gray-700/50 rounded-xl p-3">
-                      <button
-                        onClick={goToPreviousWeek}
-                        className="p-2 rounded-lg text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-600/50 transition-all duration-300"
-                      >
-                        <FaChevronLeft className="h-5 w-5" />
-                      </button>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 px-4 py-2 bg-white/60 dark:bg-gray-600/60 rounded-lg">
-                        {daysOfWeek[0]?.toLocaleDateString()} - {daysOfWeek[6]?.toLocaleDateString()}
-                      </span>
-                      <button
-                        onClick={goToNextWeek}
-                        className="p-2 rounded-lg text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-600/50 transition-all duration-300"
-                      >
-                        <FaChevronRight className="h-5 w-5" />
-                      </button>
-                    </div>
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-8">
+                {/* Header with Week Navigation */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                  <div>
+                    <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                      Weekly Timesheet
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-400 mt-1">Track your time entries for the week</p>
                   </div>
+                  <div className="flex items-center space-x-4 bg-white/50 dark:bg-gray-700/50 rounded-xl p-3">
+                    <button
+                      onClick={goToPreviousWeek}
+                      className="p-2 rounded-lg text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-600/50 transition-all duration-300"
+                    >
+                      <FaChevronLeft className="h-5 w-5" />
+                    </button>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 px-4 py-2 bg-white/60 dark:bg-gray-600/60 rounded-lg">
+                      {daysOfWeek[0]?.toLocaleDateString()} - {daysOfWeek[6]?.toLocaleDateString()}
+                    </span>
+                    <button
+                      onClick={goToNextWeek}
+                      className="p-2 rounded-lg text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-600/50 transition-all duration-300"
+                    >
+                      <FaChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+                </div>
 
-                  {/* Error Display */}
-                  {error && (
-                    <div className="mb-6 bg-red-50/80 dark:bg-red-900/60 backdrop-blur-md border border-red-200/50 dark:border-red-700/50 rounded-xl p-4">
-                      <div className="flex">
-                        <div className="flex-shrink-0">
-                          <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <div className="ml-3">
-                          <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
-                          <div className="mt-2 text-sm text-red-700 dark:text-red-300">
-                            <p>{error}</p>
-                          </div>
+                {/* Error Display */}
+                {error && (
+                  <div className="mb-6 bg-red-50/80 dark:bg-red-900/60 backdrop-blur-md border border-red-200/50 dark:border-red-700/50 rounded-xl p-4">
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
+                        <div className="mt-2 text-sm text-red-700 dark:text-red-300">
+                          <p>{error}</p>
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  {/* Timesheet Table */}
-                  <div className="overflow-x-auto rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/30">
-                    <table className="min-w-full">
-                      <thead>
-                        <tr className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 dark:from-blue-900/40 dark:to-purple-900/40">
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Date</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Clock In</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Clock Out</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Duration</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Project</th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Notes</th>
-                          <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
-                        {entriesByDay.map((day) => (
-                          day.entries.length > 0 ? (
-                            day.entries.map((entry: TimeEntry, entryIndex: number) => (
-                              <tr key={entry.id || entryIndex} className="hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors duration-200">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                  {entryIndex === 0 ? (
-                                    <div className="flex items-center space-x-2">
-                                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                      <span>{day.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}</span>
-                                    </div>
-                                  ) : ''}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{formatTime(entry.clock_in)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{formatTime(entry.clock_out)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-lg text-xs">
-                                    {calculateDuration(entry.clock_in, entry.clock_out)}
-                                  </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{entry.project?.name || '-'}</td>
-                                <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">{entry.notes || '-'}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <div className="flex justify-end space-x-2">
-                                    <button className="p-2 rounded-lg text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-all duration-200">
-                                      <FaEdit className="h-4 w-4" />
-                                    </button>
-                                    <button className="p-2 rounded-lg text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/50 transition-all duration-200">
-                                      <FaTrash className="h-4 w-4" />
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr key={day.date.toISOString()} className="hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors duration-200">
+                {/* Timesheet Table */}
+                <div className="overflow-x-auto rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/30">
+                  <table className="min-w-full">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 dark:from-blue-900/40 dark:to-purple-900/40">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Date</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Clock In</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Clock Out</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Duration</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Project</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Notes</th>
+                        <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
+                      {entriesByDay.map((day) => (
+                        day.entries.length > 0 ? (
+                          day.entries.map((entry: TimeEntry, entryIndex: number) => (
+                            <tr key={entry.id || entryIndex} className="hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors duration-200">
                               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                <div className="flex items-center space-x-2">
-                                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                                  <span>{day.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}</span>
+                                {entryIndex === 0 ? (
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    <span>{day.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}</span>
+                                  </div>
+                                ) : ''}
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{formatTime(entry.clock_in)}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{formatTime(entry.clock_out)}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-lg text-xs">
+                                  {calculateDuration(entry.clock_in, entry.clock_out)}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{entry.project?.name || '-'}</td>
+                              <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">{entry.notes || '-'}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <div className="flex justify-end space-x-2">
+                                  <button className="p-2 rounded-lg text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-all duration-200">
+                                    <FaEdit className="h-4 w-4" />
+                                  </button>
+                                  <button className="p-2 rounded-lg text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/50 transition-all duration-200">
+                                    <FaTrash className="h-4 w-4" />
+                                  </button>
                                 </div>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 italic" colSpan={6}>
-                                No time entries for this day
-                              </td>
                             </tr>
-                          )
-                        ))}
-                      </tbody>
-                      <tfoot>
-                        <tr className="bg-gradient-to-r from-gray-50/80 to-blue-50/80 dark:from-gray-800/60 dark:to-blue-900/40">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 dark:text-white">Total Weekly Hours</td>
-                          <td colSpan={2}></td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
-                            <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg">
-                              {totalWeeklyHours.toFixed(2)}h
-                            </span>
-                          </td>
-                          <td colSpan={3}></td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
+                          ))
+                        ) : (
+                          <tr key={day.date.toISOString()} className="hover:bg-white/50 dark:hover:bg-gray-700/30 transition-colors duration-200">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                              <div className="flex items-center space-x-2">
+                                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                <span>{day.date.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}</span>
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 italic" colSpan={6}>
+                              No time entries for this day
+                            </td>
+                          </tr>
+                        )
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr className="bg-gradient-to-r from-gray-50/80 to-blue-50/80 dark:from-gray-800/60 dark:to-blue-900/40">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 dark:text-white">Total Weekly Hours</td>
+                        <td colSpan={2}></td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
+                          <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg">
+                            {totalWeeklyHours.toFixed(2)}h
+                          </span>
+                        </td>
+                        <td colSpan={3}></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
 
-                  {/* Add Time Entry Button */}
-                  <div className="mt-8 flex justify-end">
-                    <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                      <FaPlus className="mr-2 h-4 w-4" />
-                      Add Time Entry
-                    </button>
-                  </div>
+                {/* Add Time Entry Button */}
+                <div className="mt-8 flex justify-end">
+                  <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    <FaPlus className="mr-2 h-4 w-4" />
+                    Add Time Entry
+                  </button>
                 </div>
               </div>
             </section>
