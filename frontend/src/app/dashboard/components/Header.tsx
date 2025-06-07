@@ -53,11 +53,36 @@ export default function Header({ user, onLogout }: HeaderProps) {
                                 <span className="sm:hidden">{user.first_name}</span>
                             )}
                         </span>
-                    </div>
-
+                    </div>                    
                     {/* Logout Button */}
                     <button
-                        onClick={onLogout}
+                        onClick={() => {
+                            toast((t) => (
+                                <div className="flex items-center space-x-2">
+                                    <span>Are you sure you want to logout?</span>
+                                    <div className="flex space-x-2">                                        
+                                        <button
+                                            onClick={() => {
+                                                toast.dismiss(t.id);
+                                                onLogout();
+                                            }}
+                                            className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition-colors"
+                                        >
+                                            Yes
+                                        </button>
+                                        <button
+                                            onClick={() => toast.dismiss(t.id)}
+                                            className="bg-gray-300 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-400 transition-colors"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            ), {
+                                duration: 10000,
+                                position: 'top-center',
+                            });
+                        }}
                         className="flex items-center text-gray-400 hover:text-red-500 focus:outline-none transition-colors p-1 sm:p-2"
                         title="Logout"
                     >

@@ -315,11 +315,10 @@ export default function Reports() {
                         </div>
                       </div>
                     )}
-                  </div>) : (
-                  <div className="text-center py-8 sm:py-12">
+                  </div>) : (                  <div className="text-center py-8 sm:py-12">
                     <FaChartBar className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
                     <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">No Report Generated</h3>
-                    <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 px-4">Click "Generate Report" to view your time tracking analytics.</p>
+                    <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 px-4">Click &quot;Generate Report&quot; to view your time tracking analytics.</p>
                   </div>
                 )}
               </div>

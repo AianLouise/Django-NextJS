@@ -227,9 +227,8 @@ export default function Team() {
                     <div className="min-w-0 flex-1">
                       <h2 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 break-words">
                         Team Management
-                      </h2>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        Manage your organization's team members and invitations
+                      </h2>                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        Manage your organization&apos;s team members and invitations
                       </p>
                     </div>
 
