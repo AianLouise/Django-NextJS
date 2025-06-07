@@ -183,37 +183,37 @@ export default function Team() {
     return <PageLoader message="Loading team members..." size="lg" />;
   } return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Animated Gradient Circles & Floating Icons */}
+      {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
       <Header user={user} onLogout={handleLogout} />
 
-      <div className="relative z-10 py-10">
+      <div className="relative z-10 py-6 sm:py-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {/* Organization Header */}
               {organization && (
-                <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 mb-8">
-                  <div className="px-6 py-6 sm:p-8">
+                <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 mb-6 sm:mb-8">
+                  <div className="px-4 py-4 sm:px-6 sm:py-6 lg:p-8">
                     <div className="flex items-center">
-                      <div className="relative">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                          <FaBuilding className="text-white text-xl" />
+                      <div className="relative flex-shrink-0">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                          <FaBuilding className="text-white text-lg sm:text-xl" />
                         </div>
                         <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 -z-10"></div>
                       </div>
-                      <div className="ml-4">
-                        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                      <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                        <h1 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 break-words">
                           {organization.name}
                         </h1>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{organization.description}</p>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 break-words">{organization.description}</p>
                       </div>
                     </div>
                   </div>
@@ -221,15 +221,15 @@ export default function Team() {
               )}
 
               {/* Team Management Header */}
-              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
-                <div className="px-6 py-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-8">
-                    <div>
-                      <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
+                <div className="px-4 py-4 sm:px-6 sm:py-6 lg:p-8">
+                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6 sm:mb-8 gap-4">
+                    <div className="min-w-0 flex-1">
+                      <h2 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 break-words">
                         Team Management
                       </h2>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        Manage your organization&apos;s team members and invitations
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        Manage your organization's team members and invitations
                       </p>
                     </div>
 
@@ -237,7 +237,7 @@ export default function Team() {
                     {canInviteMembers && (
                       <button
                         onClick={() => setShowInviteModal(true)}
-                        className="mt-4 sm:mt-0 inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="w-full lg:w-auto inline-flex items-center justify-center px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 min-h-[44px]"
                       >
                         <FaPlus className="mr-2 h-4 w-4" />
                         Invite Team Member
@@ -246,7 +246,7 @@ export default function Team() {
                   </div>
 
                   {/* Search Input */}
-                  <div className="mb-8">
+                  <div className="mb-6 sm:mb-8">
                     <div className="relative max-w-md">
                       <input
                         type="text"
@@ -264,15 +264,15 @@ export default function Team() {
                   </div>
 
                   {/* Active Members Section */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-                      <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-3">
-                        <FaUser className="h-4 w-4 text-white" />
+                  <div className="mb-6 sm:mb-8">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                        <FaUser className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                       </div>
                       Active Members ({filteredActiveMembers.length})
                     </h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                       {filteredActiveMembers.length > 0 ? (
                         filteredActiveMembers.map((member, idx) => (
                           <div key={member.id || `active-${idx}`}

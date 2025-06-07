@@ -144,34 +144,32 @@ export default function Reports() {
       setStartDate(formatDate(firstDayOfYear));
       setEndDate(formatDate(lastDayOfYear));
     }
-  };  if (isLoading) {
+  }; if (isLoading) {
     return <PageLoader message="Loading reports..." size="lg" />;
   }
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Animated Gradient Circles & Floating Icons */}
+      {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>      
+        <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
       <Header user={user} onLogout={handleLogout} />
-
-      <div className="py-10 relative z-10">
+      <div className="py-6 sm:py-10 relative z-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">            
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
             <Sidebar />
 
             {/* Main Content */}
-            <section className="flex-1">
-              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-8">
-                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <section className="flex-1 min-w-0">
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-4 sm:p-6 lg:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300 break-words">
                   Reports & Analytics
                 </h2>
-
                 {/* Error Display */}
                 {error && (
-                  <div className="mb-6 bg-red-50/80 dark:bg-red-900/20 backdrop-blur-md border border-red-200/50 dark:border-red-700/30 rounded-2xl p-6 shadow-lg">
+                  <div className="mb-4 sm:mb-6 bg-red-50/80 dark:bg-red-900/20 backdrop-blur-md border border-red-200/50 dark:border-red-700/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
                     <div className="flex">
                       <div className="flex-shrink-0">
                         <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -189,13 +187,13 @@ export default function Reports() {
                 )}
 
                 {/* Report Filters */}
-                <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-2xl p-6 mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
                     <FaFilter className="mr-2 text-blue-600" />
                     Report Options
                   </h3>
 
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="report-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Report Type
@@ -237,59 +235,56 @@ export default function Reports() {
                         onChange={(e) => setEndDate(e.target.value)}
                         className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60"
                       />
-                    </div>
-
-                    <div className="flex items-end">
+                    </div>                    <div className="flex items-end">
                       <button
                         onClick={generateReport}
                         disabled={isLoading}
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
                       >
                         {isLoading ? 'Generating...' : 'Generate Report'}
                       </button>
                     </div>
                   </div>
                 </div>
-
                 {/* Report Content */}
                 {reportData ? (
-                  <div className="space-y-8">
+                  <div className="space-y-6 sm:space-y-8">
                     {/* Summary Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                              <FaClock className="text-white text-lg" />
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                              <FaClock className="text-white text-base sm:text-lg" />
                             </div>
                           </div>
-                          <div className="ml-4">
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Hours</p>
-                            <p className="text-2xl font-bold text-gray-900 dark:text-white">{reportData.total_hours.toFixed(1)}h</p>
+                          <div className="ml-3 sm:ml-4 min-w-0">
+                            <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Hours</p>
+                            <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{reportData.total_hours.toFixed(1)}h</p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
-                            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                              <FaChartBar className="text-white text-lg" />
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                              <FaChartBar className="text-white text-base sm:text-lg" />
                             </div>
                           </div>
-                          <div className="ml-4">
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Entries</p>
-                            <p className="text-2xl font-bold text-gray-900 dark:text-white">{reportData.total_entries}</p>
+                          <div className="ml-3 sm:ml-4 min-w-0">
+                            <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Entries</p>
+                            <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{reportData.total_entries}</p>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Export Button */}
-                    <div className="flex justify-end">
+                    <div className="flex justify-center sm:justify-end">
                       <button
                         onClick={exportReport}
-                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center"
+                        className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center min-h-[44px]"
                       >
                         <FaDownload className="mr-2" />
                         Export Report
@@ -298,15 +293,15 @@ export default function Reports() {
 
                     {/* Projects Breakdown */}
                     {reportData.projects && reportData.projects.length > 0 && (
-                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Project Breakdown</h3>
+                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4">Project Breakdown</h3>
                         <div className="space-y-4">
                           {reportData.projects.map((project, index) => (
                             <div key={index} className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <div className="flex justify-between text-sm mb-1">
-                                  <span className="font-medium text-gray-700 dark:text-gray-300">{project.name}</span>
-                                  <span className="text-gray-500 dark:text-gray-400">{project.hours.toFixed(1)}h ({project.percentage.toFixed(1)}%)</span>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-col sm:flex-row sm:justify-between text-sm mb-1 gap-1 sm:gap-0">
+                                  <span className="font-medium text-gray-700 dark:text-gray-300 truncate">{project.name}</span>
+                                  <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">{project.hours.toFixed(1)}h ({project.percentage.toFixed(1)}%)</span>
                                 </div>
                                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                   <div
@@ -320,12 +315,11 @@ export default function Reports() {
                         </div>
                       </div>
                     )}
-                  </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <FaChartBar className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No Report Generated</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Click &quot;Generate Report&quot; to view your time tracking analytics.</p>
+                  </div>) : (
+                  <div className="text-center py-8 sm:py-12">
+                    <FaChartBar className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
+                    <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">No Report Generated</h3>
+                    <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 px-4">Click "Generate Report" to view your time tracking analytics.</p>
                   </div>
                 )}
               </div>

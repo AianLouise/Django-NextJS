@@ -223,25 +223,25 @@ export default function Settings() {
   };
   if (isLoading && !user) {
     return <PageLoader message="Loading settings..." size="lg" />;
-  }return (
+  } return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Animated Gradient Circles & Floating Icons */}
+      {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
       <Header user={user} onLogout={handleLogout} />
 
-      <div className="py-10 relative z-10">
+      <div className="py-6 sm:py-10 relative z-10">
         <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
             <Sidebar />
 
             {/* Main Content */}
-            <section className="flex-1">
-              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-8">
-                <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <section className="flex-1 min-w-0">
+              <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-4 sm:p-6 lg:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300 break-words">
                   Settings
                 </h2>
                 {/* Error Display */}
@@ -262,49 +262,52 @@ export default function Settings() {
                     </div>
                   </div>
                 )}
-
                 {/* Settings Tabs */}
                 <div className="border-b border-gray-200/30 dark:border-gray-700/30">
-                  <nav className="-mb-px flex space-x-8">
+                  <nav className="-mb-px flex overflow-x-auto scrollbar-hide space-x-2 sm:space-x-8 pb-2 sm:pb-0">
                     <button
                       onClick={() => setActiveTab('profile')}
                       className={`${activeTab === 'profile'
                         ? 'border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30'
                         : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-500'
-                        } whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm flex items-center rounded-t-xl transition-all duration-200`}
+                        } flex-shrink-0 whitespace-nowrap py-3 sm:py-4 px-3 sm:px-4 border-b-2 font-medium text-xs sm:text-sm flex items-center rounded-t-xl transition-all duration-200 min-h-[44px] touch-manipulation`}
                     >
-                      <FaUser className="mr-2 h-5 w-5" />
-                      Profile
+                      <FaUser className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="hidden xs:inline sm:inline">Profile</span>
+                      <span className="xs:hidden sm:hidden">Prof</span>
                     </button>
                     <button
                       onClick={() => setActiveTab('password')}
                       className={`${activeTab === 'password'
                         ? 'border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30'
                         : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-500'
-                        } whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm flex items-center rounded-t-xl transition-all duration-200`}
+                        } flex-shrink-0 whitespace-nowrap py-3 sm:py-4 px-3 sm:px-4 border-b-2 font-medium text-xs sm:text-sm flex items-center rounded-t-xl transition-all duration-200 min-h-[44px] touch-manipulation`}
                     >
-                      <FaLock className="mr-2 h-5 w-5" />
-                      Password
+                      <FaLock className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="hidden xs:inline sm:inline">Password</span>
+                      <span className="xs:hidden sm:hidden">Pass</span>
                     </button>
                     <button
                       onClick={() => setActiveTab('notifications')}
                       className={`${activeTab === 'notifications'
                         ? 'border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30'
                         : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-500'
-                        } whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm flex items-center rounded-t-xl transition-all duration-200`}
+                        } flex-shrink-0 whitespace-nowrap py-3 sm:py-4 px-3 sm:px-4 border-b-2 font-medium text-xs sm:text-sm flex items-center rounded-t-xl transition-all duration-200 min-h-[44px] touch-manipulation`}
                     >
-                      <FaRegBell className="mr-2 h-5 w-5" />
-                      Notifications
+                      <FaRegBell className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="hidden xs:inline sm:inline">Notifications</span>
+                      <span className="xs:hidden sm:hidden">Notif</span>
                     </button>
                     <button
                       onClick={() => setActiveTab('appearance')}
                       className={`${activeTab === 'appearance'
                         ? 'border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30'
                         : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-500'
-                        } whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm flex items-center rounded-t-xl transition-all duration-200`}
+                        } flex-shrink-0 whitespace-nowrap py-3 sm:py-4 px-3 sm:px-4 border-b-2 font-medium text-xs sm:text-sm flex items-center rounded-t-xl transition-all duration-200 min-h-[44px] touch-manipulation`}
                     >
-                      <FaDesktop className="mr-2 h-5 w-5" />
-                      Appearance
+                      <FaDesktop className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      <span className="hidden xs:inline sm:inline">Appearance</span>
+                      <span className="xs:hidden sm:hidden">Theme</span>
                     </button>
                   </nav>
                 </div>
