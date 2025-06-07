@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaClock, FaCalendarAlt, FaChartBar, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 import { Header, Sidebar, PageLoader } from './components';
@@ -145,15 +145,6 @@ export default function Dashboard() {
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute top-20 right-1/4 text-blue-300 dark:text-blue-500 opacity-20 animate-float">
-          <FaClock className="text-6xl" />
-        </div>
-        <div className="absolute bottom-32 left-1/4 text-purple-300 dark:text-purple-500 opacity-20 animate-float animation-delay-1000">
-          <FaChartBar className="text-5xl" />
-        </div>
-        <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
-          <FaCalendarAlt className="text-4xl" />
-        </div>
       </div>  
       <Header user={user} onLogout={handleLogout} />
 
