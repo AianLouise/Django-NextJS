@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaPlus, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
-import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
+import { apiRequest, User, TimeEntry } from '@/lib/api';
 import { Header, PageLoader, Sidebar } from '../components';
 
 export default function Timesheet() {
@@ -112,22 +112,8 @@ export default function Timesheet() {
   const goToNextWeek = () => {
     const nextWeek = new Date(currentWeek);
     nextWeek.setDate(nextWeek.getDate() + 7);
-    setCurrentWeek(nextWeek);
-  };
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      await logout();
-      toast.success('Successfully logged out!');
-      // Short delay to show the notification before redirecting
-      setTimeout(() => {
-        router.push('/login');
-      }, 500);
-    } catch (error) {
-      console.error('Logout error:', error);
-      toast.error('Error logging out. Please try again.');
-    }
-  };
+    setCurrentWeek(nextWeek);  };
+
   // Get entries for a specific day
   const getEntriesForDay = (date: Date) => {
     const formattedDate = formatDate(date);
@@ -161,10 +147,9 @@ export default function Timesheet() {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">      {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
-      <Header user={user} onLogout={handleLogout} />      
+      <Header user={user} />      
       <div className="py-6 sm:py-10 relative z-10">
         <main>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6 lg:gap-8">

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaTimes } from 'react-icons/fa';
-import { apiRequest, logout, User, TimeEntry } from '@/lib/api';
+import { apiRequest, User, TimeEntry } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 import { Header, Sidebar, PageLoader } from './components';
 
@@ -119,21 +119,7 @@ export default function Dashboard() {
     } catch (err) {
       console.error('Clock in/out error:', err);
       setError('Failed to clock in/out. Please try again.');
-      toast.error('Failed to clock in/out. Please try again.');
-    }
-  };
-  const handleLogout = async () => {
-    try {
-      await logout();
-      toast.success('Successfully logged out!', { duration: 2000 });
-      // Short delay to show the notification before redirecting
-      setTimeout(() => {
-        router.push('/login');
-      }, 500);
-    } catch (error) {
-      console.error('Logout error:', error);
-      toast.error('Error logging out. Please try again.');
-    }
+      toast.error('Failed to clock in/out. Please try again.');    }
   };
   if (isLoading) {
     return <PageLoader message="Loading dashboard..." size="lg" />;
@@ -144,9 +130,8 @@ export default function Dashboard() {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-5 left-5 sm:top-10 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-20 right-5 sm:top-40 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-1/4 sm:bottom-20 sm:left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
-      <Header user={user} onLogout={handleLogout} />
+        <div className="absolute bottom-10 left-1/4 sm:bottom-20 sm:left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>      </div>
+      <Header user={user} />
       <div className="py-4 sm:py-6 lg:py-10 relative z-10">
         <main>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 lg:gap-8">

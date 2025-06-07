@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaClock, FaChartBar, FaDownload, FaFilter } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
-import { apiRequest, logout, User } from '@/lib/api';
+import { apiRequest, User } from '@/lib/api';
 import { Header, Sidebar, PageLoader } from '../components';
 
 // Define interfaces for report data
@@ -97,22 +97,7 @@ export default function Reports() {
   };
   // Export report
   const exportReport = () => {
-    toast.success('Report exported successfully!');
-  };
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      await logout();
-      toast.success('Successfully logged out!');
-      // Short delay to show the notification before redirecting
-      setTimeout(() => {
-        router.push('/login');
-      }, 500);
-    } catch (error) {
-      console.error('Logout error:', error);
-      toast.error('Error logging out. Please try again.');
-    }
-  };
+    toast.success('Report exported successfully!');  };
 
   // Handle report type change
   const handleReportTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -152,10 +137,9 @@ export default function Reports() {
       {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
-      <Header user={user} onLogout={handleLogout} />
+      <Header user={user} />
       <div className="py-6 sm:py-10 relative z-10">
         <main>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -315,7 +299,8 @@ export default function Reports() {
                         </div>
                       </div>
                     )}
-                  </div>) : (                  <div className="text-center py-8 sm:py-12">
+                  </div>) : (
+                  <div className="text-center py-8 sm:py-12">
                     <FaChartBar className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
                     <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">No Report Generated</h3>
                     <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 px-4">Click &quot;Generate Report&quot; to view your time tracking analytics.</p>

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaTimes, FaEnvelope, FaCalendar, FaUser, FaBuilding, FaPlus, FaUsers, FaUserCircle, FaClock } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
-import { apiRequest, logout, User, Organization } from '@/lib/api';
+import { apiRequest, User, Organization } from '@/lib/api';
 import { Header, Sidebar, PageLoader } from '../components';
 
 // Define interfaces for team-specific data
@@ -132,22 +132,7 @@ export default function Team() {
         toast.error('Invalid user data. Please log in again.');
       }
     }    // Fetch team data
-    fetchTeamMembers();
-  }, [router, fetchTeamMembers]);
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      await logout();
-      toast.success('Successfully logged out!');
-      // Short delay to show the notification before redirecting
-      setTimeout(() => {
-        router.push('/login');
-      }, 500);
-    } catch (error) {
-      console.error('Logout error:', error);
-      toast.error('Error logging out. Please try again.');
-    }
-  };
+    fetchTeamMembers();  }, [router, fetchTeamMembers]);
 
   // Filter team members based on search query
   const filteredActiveMembers = activeMembers.filter(member => {
@@ -187,9 +172,8 @@ export default function Team() {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-4 left-4 w-32 h-32 sm:top-10 sm:left-10 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-20 right-4 w-40 h-40 sm:top-40 sm:right-10 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
-      <Header user={user} onLogout={handleLogout} />
+        <div className="absolute bottom-10 left-1/4 w-36 h-36 sm:bottom-20 sm:left-1/3 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>      </div>
+      <Header user={user} />
 
       <div className="relative z-10 py-6 sm:py-10">
         <main>

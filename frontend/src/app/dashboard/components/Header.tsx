@@ -1,16 +1,33 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FaClock, FaUserCircle, FaBell, FaSignOutAlt } from 'react-icons/fa';
-import { User } from '@/lib/api';
+import { User, logout } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 
 interface HeaderProps {
     user: User | null;
-    onLogout: () => void;
 }
 
-export default function Header({ user, onLogout }: HeaderProps) {
+export default function Header({ user }: HeaderProps) {
+    const router = useRouter();
+
+    // Handle logout
+    const handleLogout = async () => {
+        try {
+            await logout();
+            toast.success('Successfully logged out!', { duration: 1500 });
+            // Short delay to show the notification before redirecting
+            setTimeout(() => {
+                toast.dismiss(); // Clear all toasts before redirect
+                router.push('/login');
+            }, 1200);
+        } catch (error) {
+            console.error('Logout error:', error);
+            toast.error('Error logging out. Please try again.');
+        }
+    };
     return (
         <header className="z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
@@ -60,11 +77,10 @@ export default function Header({ user, onLogout }: HeaderProps) {
                             toast((t) => (
                                 <div className="flex items-center space-x-2">
                                     <span>Are you sure you want to logout?</span>
-                                    <div className="flex space-x-2">                                        
-                                        <button
+                                    <div className="flex space-x-2">                                          <button
                                             onClick={() => {
                                                 toast.dismiss(t.id);
-                                                onLogout();
+                                                handleLogout();
                                             }}
                                             className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition-colors"
                                         >
