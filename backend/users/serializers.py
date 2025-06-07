@@ -205,7 +205,7 @@ class AcceptInvitationSerializer(serializers.Serializer):
         return user
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
+    email = serializers.CharField(required=True)  # Can be email or username
     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
     
     def validate(self, attrs):
@@ -213,9 +213,8 @@ class LoginSerializer(serializers.Serializer):
         password = attrs.get('password')
         
         if email and password:
-            # We're using email as the USERNAME_FIELD, so provide email as the
-            # credential for authentication
-            user = authenticate(request=self.context.get('request'), email=email, password=password)
+            # Try to authenticate with the custom backend that supports email or username
+            user = authenticate(request=self.context.get('request'), username=email, password=password)
             
             if not user:
                 msg = 'Unable to log in with provided credentials.'
