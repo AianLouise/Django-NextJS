@@ -19,17 +19,20 @@ export default function Home() {
       {/* Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
+          <div className="flex justify-between items-center">            {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <FaClock className="text-white text-lg" />
+                {/* Enhanced 3D Logo */}
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                  <FaClock className="text-white text-xl drop-shadow-lg" />
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+                {/* 3D depth shadow */}
+                <div className="absolute top-1 left-1 w-12 h-12 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
                   WorkTally
                 </h1>
                 <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
@@ -60,20 +63,19 @@ export default function Home() {
                   Pricing
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </Link>
-              </div>
-
-              <div className="flex items-center space-x-3">
+              </div>              <div className="flex items-center space-x-3">
                 <Link
                   href="/login"
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium px-4 py-2 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-2.5 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
                 >
-                  Get Started
+                  <span className="relative z-10">Get Started</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
               </div>
             </nav>
@@ -142,26 +144,24 @@ export default function Home() {
       <section className="relative py-16 md:py-24 overflow-hidden">
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Gradient Circles */}
-          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-
-
-          {/* Floating Icons */}
-          <div className="absolute top-20 right-1/4 text-blue-300 dark:text-blue-500 opacity-20 animate-float">
-            <FaClock className="text-6xl" />
-          </div>
-          <div className="absolute bottom-32 left-1/4 text-purple-300 dark:text-purple-500 opacity-20 animate-float animation-delay-1000">
-            <FaChartLine className="text-5xl" />
-          </div>
-          <div className="absolute top-1/3 left-20 text-pink-300 dark:text-pink-500 opacity-20 animate-float animation-delay-3000">
-            <FaCalendarAlt className="text-4xl" />
-          </div>
+          {/* Enhanced 3D Gradient Circles */}
+          <div className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-br from-blue-400 via-blue-500 to-cyan-500 dark:from-blue-600 dark:via-blue-700 dark:to-cyan-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob shadow-2xl"></div>
+          <div className="absolute top-40 right-10 w-96 h-96 bg-gradient-to-br from-purple-400 via-purple-500 to-pink-500 dark:from-purple-600 dark:via-purple-700 dark:to-pink-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-2000 shadow-2xl"></div>
+          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-gradient-to-br from-pink-400 via-rose-500 to-orange-500 dark:from-pink-600 dark:via-rose-700 dark:to-orange-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-4000 shadow-2xl"></div>
         </div>
 
         <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+          {/* Enhanced 3D Hero Icon */}
+          <div className="relative mb-8 group">
+            <div className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-600 to-blue-700 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+              <FaClock className="text-white text-5xl drop-shadow-lg" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-xl opacity-60 -z-10 group-hover:opacity-80 transition-opacity duration-500"></div>
+            </div>
+            {/* 3D depth shadow */}
+            <div className="absolute top-2 left-2 w-32 h-32 bg-gradient-to-br from-blue-800 to-purple-900 rounded-3xl opacity-30 -z-20 transform rotate-3"></div>
+          </div>
+
+          <h2 className="text-4xl py-1 md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300 drop-shadow-sm">
             Simple Time Tracking for Modern Teams
           </h2>
           <p className="text-xl max-w-2xl mb-10 text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -170,15 +170,17 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/signup"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
             >
-              Get Started Free
+              <span className="relative z-10">Get Started Free</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
             <Link
               href="/demo"
-              className="bg-white/80 backdrop-blur-sm hover:bg-white dark:bg-gray-700/80 dark:hover:bg-gray-600 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 font-medium rounded-lg px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="group relative bg-white/90 backdrop-blur-sm hover:bg-white dark:bg-gray-700/90 dark:hover:bg-gray-600 text-gray-800 dark:text-white border-2 border-gray-200/50 dark:border-gray-600/50 font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
             >
-              View Demo
+              <span className="relative z-10">View Demo</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-600 dark:to-gray-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
         </div>
@@ -208,36 +210,53 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Powerful tools designed to streamline your time tracking and boost productivity
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaClock className="text-white text-2xl" />
+          </div>          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-blue-200/50 dark:hover:border-blue-600/50">
+              {/* Enhanced 3D Icon Container */}
+              <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
+                <div className="w-full h-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 group-hover:rotate-6">
+                  <FaClock className="text-white text-3xl drop-shadow-lg" />
+                </div>
+                {/* 3D depth effect */}
+                <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Time Tracking</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Easy clock-in/out with our intuitive interface and real-time tracking.</p>
             </div>
 
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaUserCheck className="text-white text-2xl" />
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-purple-200/50 dark:hover:border-purple-600/50">
+              <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
+                <div className="w-full h-full bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-3 group-hover:-rotate-6">
+                  <FaUserCheck className="text-white text-3xl drop-shadow-lg" />
+                </div>
+                <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-purple-700 to-purple-900 rounded-2xl opacity-40 -z-10 transform -rotate-3"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Attendance Management</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Track employee attendance and manage time-off requests seamlessly.</p>
             </div>
 
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaChartLine className="text-white text-2xl" />
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-green-200/50 dark:hover:border-green-600/50">
+              <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
+                <div className="w-full h-full bg-gradient-to-br from-green-500 via-emerald-600 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-2 group-hover:rotate-4">
+                  <FaChartLine className="text-white text-3xl drop-shadow-lg" />
+                </div>
+                <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-green-700 to-emerald-900 rounded-2xl opacity-40 -z-10 transform rotate-2"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Advanced Reporting</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Generate detailed reports on employee hours and project analytics.</p>
             </div>
 
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 dark:border-gray-600/30">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaCalendarAlt className="text-white text-2xl" />
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-orange-200/50 dark:hover:border-orange-600/50">
+              <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
+                <div className="w-full h-full bg-gradient-to-br from-orange-500 via-amber-600 to-orange-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-2 group-hover:-rotate-4">
+                  <FaCalendarAlt className="text-white text-3xl drop-shadow-lg" />
+                </div>
+                <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-orange-700 to-amber-900 rounded-2xl opacity-40 -z-10 transform -rotate-2"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Smart Scheduling</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Create and manage employee schedules with intelligent automation.</p>
@@ -263,15 +282,23 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Get started in minutes with our simple three-step process
             </p>
-          </div>
-
+          </div>          
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
-                  1
+                {/* Enhanced 3D Step Number */}
+                <div className="relative w-28 h-28 mx-auto">
+                  <div className="w-full h-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl group-hover:scale-110 transition-all duration-500 transform rotate-3 group-hover:rotate-6">
+                    1
+                  </div>
+                  {/* 3D depth shadow */}
+                  <div className="absolute top-2 left-2 w-full h-full bg-gradient-to-br from-blue-700 to-blue-900 rounded-full opacity-40 -z-10 transform rotate-3"></div>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full blur-xl opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
                 </div>
-                <div className="absolute -inset-4 bg-blue-100 dark:bg-blue-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+                {/* Floating decorative elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse animation-delay-1000"></div>
               </div>
               <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Sign Up</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
@@ -281,10 +308,15 @@ export default function Home() {
 
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
-                  2
+                <div className="relative w-28 h-28 mx-auto">
+                  <div className="w-full h-full bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl group-hover:scale-110 transition-all duration-500 transform -rotate-3 group-hover:-rotate-6">
+                    2
+                  </div>
+                  <div className="absolute top-2 left-2 w-full h-full bg-gradient-to-br from-purple-700 to-purple-900 rounded-full opacity-40 -z-10 transform -rotate-3"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full blur-xl opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
                 </div>
-                <div className="absolute -inset-4 bg-purple-100 dark:bg-purple-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse animation-delay-2000"></div>
+                <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse animation-delay-3000"></div>
               </div>
               <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Track Time</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
@@ -294,30 +326,21 @@ export default function Home() {
 
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-2xl group-hover:scale-110 transition-all duration-300">
-                  3
+                <div className="relative w-28 h-28 mx-auto">
+                  <div className="w-full h-full bg-gradient-to-br from-green-500 via-emerald-600 to-green-700 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl group-hover:scale-110 transition-all duration-500 transform rotate-2 group-hover:rotate-4">
+                    3
+                  </div>
+                  <div className="absolute top-2 left-2 w-full h-full bg-gradient-to-br from-green-700 to-emerald-900 rounded-full opacity-40 -z-10 transform rotate-2"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full blur-xl opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
                 </div>
-                <div className="absolute -inset-4 bg-green-100 dark:bg-green-900 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse animation-delay-4000"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
               </div>
               <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Generate Reports</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
                 Get powerful insights with detailed reports on hours, attendance, and project analytics.
               </p>
             </div>
-          </div>
-
-          {/* Connection Lines for Desktop */}
-          <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl">
-            <svg className="w-full h-24" viewBox="0 0 800 100" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-              <path d="M 100 50 Q 400 20 700 50" stroke="url(#line-gradient)" strokeWidth="2" fill="none" strokeDasharray="10,5" />
-            </svg>
           </div>
         </div>
       </section>
