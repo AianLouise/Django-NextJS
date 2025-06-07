@@ -22,11 +22,10 @@ export default function Login() {
 
     try {
       console.log('Attempting login with:', { email }); // Log login attempt
-
       // Call Django backend login API with correct endpoint path
       const data = await apiRequest('/users/login/', {
         method: 'POST',
-        body: { email, password },
+        body: { login: email, password },
       });
 
       console.log('Login response:', data); // Log successful response
