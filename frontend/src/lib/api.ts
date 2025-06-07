@@ -129,11 +129,11 @@ export async function apiRequest(endpoint: string, options: ApiOptions = {}) {
   } = options;
 
   const headers: Record<string, string> = {};
-  
+
   if (token) {
     headers['Authorization'] = `Token ${token}`;
   }
-  
+
   if (!isFormData && body) {
     headers['Content-Type'] = 'application/json';
   }
@@ -155,12 +155,12 @@ export async function apiRequest(endpoint: string, options: ApiOptions = {}) {
       statusText: response.statusText,
       errorData
     });
-    
+
     // Create a more descriptive error message
-    const errorMessage = errorData.detail || 
-                        Object.values(errorData).flat().join(', ') || 
-                        `Request failed with status ${response.status}`;
-    
+    const errorMessage = errorData.detail ||
+      Object.values(errorData).flat().join(', ') ||
+      `Request failed with status ${response.status}`;
+
     throw new Error(errorMessage);
   }
 
@@ -179,10 +179,10 @@ export async function logout() {
   try {
     // Get token for the API call
     const token = typeof localStorage !== 'undefined' ? localStorage.getItem('auth_token') : null;
-    
+
     // Call logout API if we have a token
     if (token) {
-      await apiRequest('/users/logout/', { 
+      await apiRequest('/users/logout/', {
         method: 'POST',
         token
       });
@@ -195,13 +195,13 @@ export async function logout() {
       localStorage.removeItem('auth_token');
       localStorage.removeItem('user_data');
     }
-    
+
     // Clear the cookie
     document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    
+
     // Clear the dashboard loaded flag to ensure welcome message shows on next login
     sessionStorage.removeItem('dashboard_loaded');
-    
+
     // Clear any other session data if needed
     // sessionStorage.clear(); // Uncomment if you want to clear all session storage
   }
