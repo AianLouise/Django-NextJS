@@ -19,7 +19,8 @@ export default function Home() {
       {/* Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">            {/* Logo */}
+          <div className="flex justify-between items-center">
+            {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 {/* Enhanced 3D Logo */}
@@ -63,7 +64,8 @@ export default function Home() {
                   Pricing
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </Link>
-              </div>              <div className="flex items-center space-x-3">
+              </div>
+              <div className="flex items-center space-x-3">
                 <Link
                   href="/login"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium px-4 py-2 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm"
@@ -210,7 +212,8 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Powerful tools designed to streamline your time tracking and boost productivity
             </p>
-          </div>          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-blue-200/50 dark:hover:border-blue-600/50">
               {/* Enhanced 3D Icon Container */}
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
@@ -282,7 +285,7 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Get started in minutes with our simple three-step process
             </p>
-          </div>          
+          </div>
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div className="text-center group">
               <div className="relative mb-8">
