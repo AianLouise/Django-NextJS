@@ -36,7 +36,7 @@ export default function Home() {
                 <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
                   WorkTally
                 </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
               </div>
             </Link>
 
@@ -146,10 +146,17 @@ export default function Home() {
       <section className="relative py-16 md:py-24 overflow-hidden">
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Enhanced 3D Gradient Circles */}
-          <div className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-br from-blue-400 via-blue-500 to-cyan-500 dark:from-blue-600 dark:via-blue-700 dark:to-cyan-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob shadow-2xl"></div>
-          <div className="absolute top-40 right-10 w-96 h-96 bg-gradient-to-br from-purple-400 via-purple-500 to-pink-500 dark:from-purple-600 dark:via-purple-700 dark:to-pink-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-2000 shadow-2xl"></div>
-          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-gradient-to-br from-pink-400 via-rose-500 to-orange-500 dark:from-pink-600 dark:via-rose-700 dark:to-orange-600 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-blob animation-delay-4000 shadow-2xl"></div>
+          {/* Enhanced Wavy Lines Background */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            {/* Top wavy line - more curves */}
+            <path d="M0,150 Q150,100 300,120 Q450,140 600,110 Q750,80 900,120 Q1050,160 1200,130" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+
+            {/* Middle wavy line - flowing waves */}
+            <path d="M0,300 Q100,250 200,280 Q350,320 500,260 Q650,200 800,280 Q950,360 1100,300 Q1150,280 1200,300" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+
+            {/* Bottom wavy line - gentle undulations */}
+            <path d="M0,450 Q120,400 240,430 Q360,460 480,420 Q600,380 720,420 Q840,460 960,430 Q1080,400 1200,450" stroke="rgba(236, 72, 153, 0.1)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
+          </svg>
         </div>
 
         <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
@@ -190,20 +197,6 @@ export default function Home() {
 
       {/* Features Section */}
       <section id="features" className="relative py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10 dark:opacity-5">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <svg className="w-full h-full" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="features-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <circle cx="30" cy="30" r="1.5" fill="currentColor" opacity="0.5" />
-                </pattern>
-              </defs>
-              <rect x="0" y="0" width="100%" height="100%" fill="url(#features-pattern)" />
-            </svg>
-          </div>
-        </div>
-
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
@@ -220,9 +213,7 @@ export default function Home() {
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 group-hover:rotate-6">
                   <FaClock className="text-white text-3xl drop-shadow-lg" />
                 </div>
-                {/* 3D depth effect */}
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
-                {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Time Tracking</h4>
@@ -714,20 +705,13 @@ export default function Home() {
 
           {/* Footer Bottom */}
           <div className="border-t border-gray-700/50 pt-6 flex flex-col gap-4 sm:flex-row sm:justify-between text-xs md:text-sm text-gray-400">
-            <div className="text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4">
+            <div className="text-center sm:text-left">
               <p>&copy; {new Date().getFullYear()} WorkTally. All rights reserved.</p>
-              <div className="flex justify-center sm:justify-start gap-4">
-                <Link href="#privacy" className="hover:text-white">Privacy Policy</Link>
-                <Link href="#terms" className="hover:text-white">Terms</Link>
-                <Link href="#cookies" className="hover:text-white">Cookies</Link>
-              </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2 sm:gap-4 text-center">
-              <span>Made with ❤️ for productivity</span>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>All systems operational</span>
-              </div>
+            <div className="flex justify-center sm:justify-end gap-4">
+              <Link href="#privacy" className="hover:text-white">Privacy Policy</Link>
+              <Link href="#terms" className="hover:text-white">Terms</Link>
+              <Link href="#cookies" className="hover:text-white">Cookies</Link>
             </div>
           </div>
         </div>
