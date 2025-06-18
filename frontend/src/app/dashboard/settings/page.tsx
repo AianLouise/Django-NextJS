@@ -77,7 +77,8 @@ export default function Settings() {
       }
     }
 
-    setIsLoading(false);  }, [router]);
+    setIsLoading(false);
+  }, [router]);
 
   // Handle profile update
   const handleProfileUpdate = async (e: React.FormEvent) => {
@@ -297,6 +298,7 @@ export default function Settings() {
                 </div>
                 {/* Tab Content */}
                 <div className="mt-8">
+
                   {/* Profile Settings */}
                   {activeTab === 'profile' && (
                     <div className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30">
@@ -311,7 +313,7 @@ export default function Settings() {
                               id="first-name"
                               value={firstName}
                               onChange={(e) => setFirstName(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
                           </div>
                           <div>
@@ -323,7 +325,7 @@ export default function Settings() {
                               id="last-name"
                               value={lastName}
                               onChange={(e) => setLastName(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
                           </div>
                           <div>
@@ -335,7 +337,7 @@ export default function Settings() {
                               id="email"
                               value={email}
                               disabled
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm bg-gray-100/70 dark:bg-gray-600/50 text-gray-500 dark:text-gray-400 text-sm backdrop-blur-sm"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm bg-gray-100/70 dark:bg-gray-600/50 text-gray-500 dark:text-gray-400 text-sm backdrop-blur-sm"
                             />
                             <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                               Email cannot be changed. Contact support for assistance.
@@ -350,7 +352,7 @@ export default function Settings() {
                               id="job-title"
                               value={jobTitle}
                               onChange={(e) => setJobTitle(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
                           </div>
                           <div>
@@ -362,7 +364,7 @@ export default function Settings() {
                               id="department"
                               value={department}
                               onChange={(e) => setDepartment(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
                           </div>
                           <div>
@@ -374,7 +376,7 @@ export default function Settings() {
                               id="phone-number"
                               value={phoneNumber}
                               onChange={(e) => setPhoneNumber(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
                           </div>
                         </div>
@@ -388,7 +390,7 @@ export default function Settings() {
                             rows={4}
                             value={bio}
                             onChange={(e) => setBio(e.target.value)}
-                            className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                            className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                           ></textarea>
                           <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                             Brief description about yourself.
@@ -406,6 +408,7 @@ export default function Settings() {
                       </form>
                     </div>
                   )}
+
                   {/* Password Settings */}
                   {activeTab === 'password' && (
                     <div className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30">
@@ -419,8 +422,9 @@ export default function Settings() {
                               type="password"
                               id="current-password"
                               value={currentPassword}
+                              placeholder='Enter your current password'
                               onChange={(e) => setCurrentPassword(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                               required
                             />
                           </div>
@@ -432,8 +436,9 @@ export default function Settings() {
                               type="password"
                               id="new-password"
                               value={newPassword}
+                              placeholder='Enter your new password'
                               onChange={(e) => setNewPassword(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                               required
                             />
                           </div>
@@ -445,8 +450,9 @@ export default function Settings() {
                               type="password"
                               id="confirm-password"
                               value={confirmPassword}
+                              placeholder='Re-enter your new password'
                               onChange={(e) => setConfirmPassword(e.target.value)}
-                              className="block p-1 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
+                              className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                               required
                             />
                           </div>
@@ -469,6 +475,7 @@ export default function Settings() {
                       </form>
                     </div>
                   )}
+
                   {/* Notification Settings */}
                   {activeTab === 'notifications' && (
                     <div className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-md rounded-2xl p-8 border border-white/20 dark:border-gray-700/30">

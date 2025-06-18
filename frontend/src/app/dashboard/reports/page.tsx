@@ -23,7 +23,7 @@ interface ReportData {
 }
 
 export default function Reports() {
-  const router = useRouter();  const [user, setUser] = useState<User | null>(null);
+  const router = useRouter(); const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isGeneratingReport, setIsGeneratingReport] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
@@ -142,6 +142,7 @@ export default function Reports() {
   }; if (isLoading) {
     return <PageLoader message="Loading reports..." size="lg" />;
   }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Animated Gradient Circles & Floating Icons - Responsive */}
@@ -178,7 +179,9 @@ export default function Reports() {
                       </div>
                     </div>
                   </div>
-                )}                {/* Report Filters */}
+                )}
+
+                {/* Report Filters */}
                 <div className={`bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg relative ${isGeneratingReport ? 'opacity-75' : ''}`}>
                   {isGeneratingReport && (
                     <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl z-10 flex items-center justify-center">
@@ -197,12 +200,13 @@ export default function Reports() {
                     <div>
                       <label htmlFor="report-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Report Type
-                      </label>                      <select
+                      </label>
+                      <select
                         id="report-type"
                         value={reportType}
                         onChange={handleReportTypeChange}
                         disabled={isGeneratingReport}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="block w-full p-3 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
@@ -213,29 +217,32 @@ export default function Reports() {
 
                     <div>
                       <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Start Date
-                      </label>                      <input
+                        Start Date                                  
+                      </label>
+                      <input
                         type="date"
                         id="start-date"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
                         disabled={isGeneratingReport}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="block w-full p-3 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="end-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         End Date
-                      </label>                      <input
+                      </label>
+                      <input
                         type="date"
                         id="end-date"
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         disabled={isGeneratingReport}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="block w-full p-3 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       />
-                    </div>                    <div className="flex items-end">
+                    </div>
+                    <div className="flex items-end">
                       <button
                         onClick={generateReport}
                         disabled={isGeneratingReport}
@@ -252,7 +259,9 @@ export default function Reports() {
                       </button>
                     </div>
                   </div>
-                </div>                {/* Report Content */}
+                </div>
+
+                {/* Report Content */}
                 {isGeneratingReport ? (
                   <div className="space-y-6 sm:space-y-8">
                     {/* Loading Skeleton for Summary Cards */}
@@ -345,7 +354,9 @@ export default function Reports() {
                           </div>
                         </div>
                       </div>
-                    </div>                    {/* Export Button */}
+                    </div>
+
+                    {/* Export Button */}
                     <div className="flex justify-center sm:justify-end">
                       <button
                         onClick={exportReport}
