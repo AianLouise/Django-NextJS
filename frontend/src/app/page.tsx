@@ -148,14 +148,14 @@ export default function Home() {
         <div className="absolute inset-0 pointer-events-none">
           {/* Enhanced Wavy Lines Background */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            {/* Top wavy line - more curves */}
-            <path d="M0,150 Q150,100 300,120 Q450,140 600,110 Q750,80 900,120 Q1050,160 1200,130" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-
-            {/* Middle wavy line - flowing waves */}
-            <path d="M0,300 Q100,250 200,280 Q350,320 500,260 Q650,200 800,280 Q950,360 1100,300 Q1150,280 1200,300" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
-
-            {/* Bottom wavy line - gentle undulations */}
-            <path d="M0,450 Q120,400 240,430 Q360,460 480,420 Q600,380 720,420 Q840,460 960,430 Q1080,400 1200,450" stroke="rgba(236, 72, 153, 0.1)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
+            <path d="M0,60 Q150,20 300,40 Q450,60 600,30 Q750,10 900,40 Q1050,80 1200,50" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+            <path d="M0,140 Q100,90 200,120 Q350,160 500,100 Q650,40 800,120 Q950,200 1100,140 Q1150,120 1200,140" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+            <path d="M0,220 Q120,170 240,200 Q360,230 480,190 Q600,150 720,190 Q840,230 960,200 Q1080,170 1200,220" stroke="rgba(236, 72, 153, 0.1)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
+            <path d="M0,300 Q150,250 300,280 Q450,300 600,270 Q750,240 900,280 Q1050,340 1200,300" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+            <path d="M0,380 Q180,330 360,360 Q540,390 720,350 Q900,310 1080,350 Q1140,370 1200,380" stroke="rgba(34, 197, 94, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
+            <path d="M0,460 Q90,410 180,440 Q270,470 360,430 Q450,390 540,430 Q630,470 720,440 Q810,410 900,440 Q990,470 1080,450 Q1140,440 1200,460" stroke="rgba(249, 115, 22, 0.1)" strokeWidth="2" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
+            <path d="M0,540 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+            <path d="M0,600 Q150,550 300,580 Q450,600 600,570 Q750,540 900,580 Q1050,640 1200,600" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '7.5s' }} />
           </svg>
         </div>
 
