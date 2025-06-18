@@ -23,9 +23,10 @@ interface ReportData {
 }
 
 export default function Reports() {
-  const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const [error, setError] = useState('');
   const [reportType, setReportType] = useState('weekly'); const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -75,29 +76,38 @@ export default function Reports() {
 
     setIsLoading(false);
   }, [router]);
-
   // Generate report
   const generateReport = async () => {
     try {
-      setIsLoading(true);
+      setIsGeneratingReport(true);
+      setError('');
 
       // Fetch report data from API
       const data = await apiRequest(`/timekeeping/reports/?type=${reportType}&start_date=${startDate}&end_date=${endDate}`);
       setReportData(data);
-      setIsLoading(false);
       toast.success('Report generated successfully!');
     } catch (err) {
       console.error('Error generating report:', err);
       setError('Failed to generate report');
-      setIsLoading(false);
 
       // Show error notification
       toast.error('Failed to generate report. Please try again.');
+    } finally {
+      setIsGeneratingReport(false);
+    }
+  };  // Export report
+  const exportReport = async () => {
+    try {
+      setIsExporting(true);
+      // Simulate export delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      toast.success('Report exported successfully!');
+    } catch (err) {
+      toast.error('Failed to export report. Please try again.');
+    } finally {
+      setIsExporting(false);
     }
   };
-  // Export report
-  const exportReport = () => {
-    toast.success('Report exported successfully!');  };
 
   // Handle report type change
   const handleReportTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -168,10 +178,16 @@ export default function Reports() {
                       </div>
                     </div>
                   </div>
-                )}
-
-                {/* Report Filters */}
-                <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                )}                {/* Report Filters */}
+                <div className={`bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg relative ${isGeneratingReport ? 'opacity-75' : ''}`}>
+                  {isGeneratingReport && (
+                    <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl z-10 flex items-center justify-center">
+                      <div className="text-center">
+                        <FaClock className="animate-spin text-blue-600 dark:text-blue-400 text-2xl mx-auto mb-2" />
+                        <p className="text-blue-600 dark:text-blue-400 font-medium">Processing...</p>
+                      </div>
+                    </div>
+                  )}
                   <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
                     <FaFilter className="mr-2 text-blue-600" />
                     Report Options
@@ -181,12 +197,12 @@ export default function Reports() {
                     <div>
                       <label htmlFor="report-type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Report Type
-                      </label>
-                      <select
+                      </label>                      <select
                         id="report-type"
                         value={reportType}
                         onChange={handleReportTypeChange}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60"
+                        disabled={isGeneratingReport}
+                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
@@ -198,40 +214,107 @@ export default function Reports() {
                     <div>
                       <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Start Date
-                      </label>
-                      <input
+                      </label>                      <input
                         type="date"
                         id="start-date"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60"
+                        disabled={isGeneratingReport}
+                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="end-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         End Date
-                      </label>
-                      <input
+                      </label>                      <input
                         type="date"
                         id="end-date"
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60"
+                        disabled={isGeneratingReport}
+                        className="block w-full p-1 border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700/60 dark:text-white backdrop-blur-md bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>                    <div className="flex items-end">
                       <button
                         onClick={generateReport}
-                        disabled={isLoading}
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
+                        disabled={isGeneratingReport}
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] disabled:transform-none"
                       >
-                        {isLoading ? 'Generating...' : 'Generate Report'}
+                        {isGeneratingReport ? (
+                          <div className="flex items-center justify-center">
+                            <FaClock className="animate-spin mr-2" />
+                            Generating...
+                          </div>
+                        ) : (
+                          'Generate Report'
+                        )}
                       </button>
                     </div>
                   </div>
-                </div>
-                {/* Report Content */}
-                {reportData ? (
+                </div>                {/* Report Content */}
+                {isGeneratingReport ? (
+                  <div className="space-y-6 sm:space-y-8">
+                    {/* Loading Skeleton for Summary Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 rounded-xl animate-pulse flex items-center justify-center">
+                              <FaClock className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
+                            </div>
+                          </div>
+                          <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                            <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-2"></div>
+                            <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 rounded-xl animate-pulse flex items-center justify-center">
+                              <FaChartBar className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
+                            </div>
+                          </div>
+                          <div className="ml-3 sm:ml-4 min-w-0 flex-1">
+                            <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-2"></div>
+                            <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-16"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Loading Skeleton for Project Breakdown */}
+                    <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+                      <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-4 w-32"></div>
+                      <div className="space-y-4">
+                        {[1, 2, 3].map((item) => (
+                          <div key={item} className="flex items-center justify-between">
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1 sm:gap-0">
+                                <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-24"></div>
+                                <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-16"></div>
+                              </div>
+                              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div className="bg-gray-300 dark:bg-gray-600 h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Loading text */}
+                    <div className="text-center py-4">
+                      <div className="flex items-center justify-center text-blue-600 dark:text-blue-400">
+                        <FaClock className="animate-spin mr-2" />
+                        <span className="text-sm font-medium">Generating your report...</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : reportData ? (
                   <div className="space-y-6 sm:space-y-8">
                     {/* Summary Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -262,16 +345,24 @@ export default function Reports() {
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Export Button */}
+                    </div>                    {/* Export Button */}
                     <div className="flex justify-center sm:justify-end">
                       <button
                         onClick={exportReport}
-                        className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center min-h-[44px]"
+                        disabled={isExporting}
+                        className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       >
-                        <FaDownload className="mr-2" />
-                        Export Report
+                        {isExporting ? (
+                          <div className="flex items-center">
+                            <FaDownload className="animate-pulse mr-2" />
+                            Exporting...
+                          </div>
+                        ) : (
+                          <div className="flex items-center">
+                            <FaDownload className="mr-2" />
+                            Export Report
+                          </div>
+                        )}
                       </button>
                     </div>
 
