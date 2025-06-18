@@ -95,14 +95,15 @@ export default function Reports() {
     } finally {
       setIsGeneratingReport(false);
     }
-  };  // Export report
-  const exportReport = async () => {
-    try {
+  };
+
+  // Export report
+  const exportReport = async () => {    try {
       setIsExporting(true);
       // Simulate export delay
       await new Promise(resolve => setTimeout(resolve, 1500));
       toast.success('Report exported successfully!');
-    } catch (err) {
+    } catch {
       toast.error('Failed to export report. Please try again.');
     } finally {
       setIsExporting(false);
@@ -217,7 +218,7 @@ export default function Reports() {
 
                     <div>
                       <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Start Date                                  
+                        Start Date
                       </label>
                       <input
                         type="date"

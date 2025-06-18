@@ -119,18 +119,21 @@ export default function Dashboard() {
     } catch (err) {
       console.error('Clock in/out error:', err);
       setError('Failed to clock in/out. Please try again.');
-      toast.error('Failed to clock in/out. Please try again.');    }
+      toast.error('Failed to clock in/out. Please try again.');
+    }
   };
   if (isLoading) {
     return <PageLoader message="Loading dashboard..." size="lg" />;
   }
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Animated Gradient Circles & Floating Icons - Responsive */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-5 left-5 sm:top-10 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-20 right-5 sm:top-40 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-10 left-1/4 sm:bottom-20 sm:left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>      </div>
+        <div className="absolute bottom-10 left-1/4 sm:bottom-20 sm:left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-pink-400 dark:bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
       <Header user={user} />
       <div className="py-4 sm:py-6 lg:py-10 relative z-10">
         <main>
