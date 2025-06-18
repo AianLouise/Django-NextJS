@@ -60,7 +60,7 @@ export default function Login() {
               <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                 WorkTally
               </h1>
-              <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Management</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
             </div>
           </Link>
         </div>
