@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
-import { FaClock, FaUserCheck, FaChartLine, FaCalendarAlt, FaBars, FaGithub, FaTwitter, FaLinkedin, FaTimes } from "react-icons/fa";
+import { FaClock, FaUserCheck, FaChartLine, FaCalendarAlt, FaBars, FaGithub, FaTwitter, FaLinkedin, FaTimes, FaRocket, FaDollarSign, FaShieldAlt } from "react-icons/fa";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,6 +14,7 @@ export default function Home() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Header / Navigation */}
@@ -49,19 +50,11 @@ export default function Home() {
                 >
                   Features
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </Link>
-                <Link
+                </Link>                <Link
                   href="#how-it-works"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   How It Works
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </Link>
-                <Link
-                  href="#pricing"
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
-                >
-                  Pricing
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </Link>
               </div>
@@ -105,20 +98,12 @@ export default function Home() {
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   Features
-                </Link>
-                <Link
+                </Link>                <Link
                   href="#how-it-works"
                   onClick={closeMobileMenu}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   How It Works
-                </Link>
-                <Link
-                  href="#pricing"
-                  onClick={closeMobileMenu}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                >
-                  Pricing
                 </Link>
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
                   <Link
@@ -175,21 +160,13 @@ export default function Home() {
           </h2>
           <p className="text-xl max-w-2xl mb-10 text-gray-600 dark:text-gray-300 leading-relaxed">
             Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          </p>          <div className="flex justify-center">
             <Link
               href="/signup"
               className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
             >
-              <span className="relative z-10">Get Started Free</span>
+              <span className="relative z-10">Get Started</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
-            <Link
-              href="/demo"
-              className="group relative bg-white/90 backdrop-blur-sm hover:bg-white dark:bg-gray-700/90 dark:hover:bg-gray-600 text-gray-800 dark:text-white border-2 border-gray-200/50 dark:border-gray-600/50 font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
-            >
-              <span className="relative z-10">View Demo</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-600 dark:to-gray-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
         </div>
@@ -337,179 +314,209 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="relative py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+      </section>      {/* Statistics Section */}
+      <section className="relative py-20 bg-gray-50 dark:bg-gray-700 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-48 h-48 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-20 left-20 w-40 h-40 bg-blue-200 dark:bg-blue-800 rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-200 dark:bg-purple-800 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
-              Simple, Transparent Pricing
+              Trusted by Teams Worldwide
             </h3>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Choose the perfect plan for your team size and needs. No hidden fees, cancel anytime.
+              See how WorkTally is transforming productivity across industries
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Plan */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border border-gray-200 dark:border-gray-700 relative group hover:scale-105">
-              <div className="text-center">
-                <h4 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Starter</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">Perfect for small teams</p>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white">$9</span>
-                  <span className="text-gray-600 dark:text-gray-300">/user/month</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="text-center group">
+              <div className="relative mb-4">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-all duration-500 transform rotate-3 group-hover:rotate-6">
+                  <span className="text-3xl font-bold text-white">10K+</span>
                 </div>
-                <div className="space-y-4 mb-8 text-left">
-                  <div className="flex items-center">
-                    <FaUserCheck className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Up to 10 team members</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaClock className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Basic time tracking</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaChartLine className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Standard reports</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaCalendarAlt className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Email support</span>
-                  </div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-blue-700 to-blue-800 rounded-2xl opacity-40 -z-10 rotate-3"></div>
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Active Users</h4>
+              <p className="text-gray-600 dark:text-gray-300">Teams using WorkTally daily</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-4">
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-all duration-500 transform -rotate-3 group-hover:-rotate-6">
+                  <span className="text-3xl font-bold text-white">95%</span>
                 </div>
-                <Link
-                  href="/signup"
-                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 inline-block text-center group-hover:scale-105"
-                >
-                  Get Started
-                </Link>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-green-700 to-emerald-800 rounded-2xl opacity-40 -z-10 -rotate-3"></div>
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Accuracy Rate</h4>
+              <p className="text-gray-600 dark:text-gray-300">Time tracking precision</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-4">
+                <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-all duration-500 transform rotate-2 group-hover:rotate-4">
+                  <span className="text-3xl font-bold text-white">30%</span>
+                </div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-purple-700 to-purple-800 rounded-2xl opacity-40 -z-10 rotate-2"></div>
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Time Saved</h4>
+              <p className="text-gray-600 dark:text-gray-300">On administrative tasks</p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-4">
+                <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-all duration-500 transform -rotate-2 group-hover:-rotate-4">
+                  <span className="text-3xl font-bold text-white">24/7</span>
+                </div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-orange-700 to-amber-800 rounded-2xl opacity-40 -z-10 -rotate-2"></div>
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Support</h4>
+              <p className="text-gray-600 dark:text-gray-300">Always here to help</p>
+            </div>
+          </div>        
+            {/* Key Benefits */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaRocket className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Increase Productivity</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Streamline workflows and eliminate time-wasting activities with intelligent automation and real-time insights.
+              </p>
+            </div>
+
+            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaDollarSign className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Reduce Costs</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Cut administrative overhead by 30% with automated reporting and streamlined payroll processing.
+              </p>
+            </div>
+
+            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <FaShieldAlt className="text-white text-2xl" />
+              </div>
+              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Improve Accuracy</h4>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Eliminate manual errors with automated time capture and GPS-enabled location verification.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative py-20 bg-white dark:bg-gray-800 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200 dark:bg-blue-800 rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-40 h-40 bg-purple-200 dark:bg-purple-800 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 dark:border-gray-600 rounded-full opacity-5"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+              What Our Users Say
+            </h3>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Real feedback from teams who transformed their productivity with WorkTally
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Testimonial 1 */}
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30">
+              <div className="flex items-center mb-6">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                "WorkTally completely transformed how we manage our team's time. The automated reporting saves us hours every week, and the accuracy is incredible."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-sm">SJ</span>
+                </div>
+                <div>
+                  <h5 className="font-semibold text-gray-900 dark:text-white">Sarah Johnson</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">HR Director, TechCorp</p>
+                </div>
               </div>
             </div>
 
-            {/* Professional Plan */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border-2 border-blue-500 relative group hover:scale-105">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-medium">
-                  Most Popular
-                </span>
+            {/* Testimonial 2 */}
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30">
+              <div className="flex items-center mb-6">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
               </div>
-              <div className="text-center">
-                <h4 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Professional</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">For growing businesses</p>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white">$19</span>
-                  <span className="text-gray-600 dark:text-gray-300">/user/month</span>
+              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                "As a project manager, I love how easy it is to track time across multiple projects. The insights help us optimize our workflows and meet deadlines."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-sm">MC</span>
                 </div>
-                <div className="space-y-4 mb-8 text-left">
-                  <div className="flex items-center">
-                    <FaUserCheck className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Up to 50 team members</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaClock className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Advanced time tracking</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaChartLine className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Advanced analytics</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaCalendarAlt className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Project management</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaUserCheck className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Priority support</span>
-                  </div>
+                <div>
+                  <h5 className="font-semibold text-gray-900 dark:text-white">Mike Chen</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Project Manager, Design Studio</p>
                 </div>
-                <Link
-                  href="/signup"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 inline-block text-center group-hover:scale-105"
-                >
-                  Get Started
-                </Link>
               </div>
             </div>
 
-            {/* Enterprise Plan */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border border-gray-200 dark:border-gray-700 relative group hover:scale-105">
-              <div className="text-center">
-                <h4 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Enterprise</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">For large organizations</p>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white">$39</span>
-                  <span className="text-gray-600 dark:text-gray-300">/user/month</span>
+            {/* Testimonial 3 */}
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30">
+              <div className="flex items-center mb-6">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
                 </div>
-                <div className="space-y-4 mb-8 text-left">
-                  <div className="flex items-center">
-                    <FaUserCheck className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Unlimited team members</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaClock className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Enterprise time tracking</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaChartLine className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Custom reports & API</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaCalendarAlt className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">Advanced integrations</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaUserCheck className="text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">24/7 dedicated support</span>
-                  </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                "The mobile app is fantastic! Our field team can clock in from anywhere, and I get real-time updates. It's made managing remote work so much easier."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-sm">ER</span>
                 </div>
-                <Link
-                  href="/signup"
-                  className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 inline-block text-center group-hover:scale-105"
-                >
-                  Contact Sales
-                </Link>
+                <div>
+                  <h5 className="font-semibold text-gray-900 dark:text-white">Emily Rodriguez</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Operations Manager, FieldWork Inc</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Additional Information */}
-          <div className="text-center mt-16 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
-              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">All Plans Include</h4>
-              <div className="grid md:grid-cols-3 gap-6 text-left">
-                <div className="flex items-center">
-                  <FaUserCheck className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">14-day free trial</span>
-                </div>
-                <div className="flex items-center">
-                  <FaClock className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">Mobile apps</span>
-                </div>
-                <div className="flex items-center">
-                  <FaChartLine className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">Data export</span>
-                </div>
-                <div className="flex items-center">
-                  <FaCalendarAlt className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">SSL security</span>
-                </div>
-                <div className="flex items-center">
-                  <FaUserCheck className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">Regular backups</span>
-                </div>
-                <div className="flex items-center">
-                  <FaClock className="text-blue-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700 dark:text-gray-300">No setup fees</span>
-                </div>
-              </div>
+          {/* Customer Logos */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium">Trusted by leading companies</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">TechCorp</div>
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">Design Studio</div>
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">FieldWork Inc</div>
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">BuildCo</div>
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">StartupX</div>
             </div>
           </div>
         </div>
@@ -549,7 +556,7 @@ export default function Home() {
             </h3>
             <p className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Join thousands of companies that trust WorkTally for their time tracking needs.
-              Start your journey to better productivity today.
+              Transform your productivity today.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -557,7 +564,7 @@ export default function Home() {
                 href="/signup"
                 className="group relative bg-white hover:bg-gray-50 text-blue-600 font-bold rounded-2xl px-10 py-5 text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
               >
-                <span className="relative z-10">Start Your Free Trial</span>
+                <span className="relative z-10">Get Started Now</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </Link>
 
@@ -577,19 +584,19 @@ export default function Home() {
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                No credit card required
+                Secure & Reliable
               </div>
               <div className="flex items-center">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                14-day free trial
+                Full Access
               </div>
               <div className="flex items-center">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                Cancel anytime
+                24/7 Support
               </div>
             </div>
           </div>
@@ -646,7 +653,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm">
                 {[
                   ['#features', 'Features'],
-                  ['#pricing', 'Pricing'],
+                  ['#how-it-works', 'How It Works'],
                   ['#integrations', 'Integrations'],
                   ['#api', 'API Docs'],
                   ['#security', 'Security'],
