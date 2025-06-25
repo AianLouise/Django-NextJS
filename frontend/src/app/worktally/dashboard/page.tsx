@@ -3,16 +3,17 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { 
-  FaClock, 
-  FaPlay, 
-  FaStop, 
-  FaCalendarAlt, 
-  FaUsers, 
-  FaProjectDiagram,
-  FaChartLine,
-  FaCheckCircle,
-  FaExclamationTriangle 
-} from 'react-icons/fa';
+  LuClock, 
+  LuPlay, 
+  LuSquare, 
+  LuCalendar, 
+  LuUsers, 
+  LuGitBranch,
+  LuTrendingUp,
+  LuCircleCheck,
+  LuTriangleAlert,
+  LuSettings
+} from 'react-icons/lu';
 import { apiRequest, User, TimeEntry, Project } from '@/lib/api';
 
 interface DashboardData {
@@ -153,9 +154,8 @@ export default function DashboardPage() {
       </div>
 
       {/* Clock In/Out Section */}
-      <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-          <FaClock className="mr-2" />
+      <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 p-6">        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+          <LuClock className="mr-2" />
           Time Tracking
         </h2>
         
@@ -170,12 +170,11 @@ export default function DashboardPage() {
                 <p className="text-lg font-mono text-green-900 dark:text-green-200 mt-2">
                   {calculateWorkingTime(dashboardData.active_time_entry.clock_in)}
                 </p>
-              </div>
-              <button
+              </div>              <button
                 onClick={handleClockOut}
                 className="flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
               >
-                <FaStop className="mr-2" />
+                <LuSquare className="mr-2" />
                 Clock Out
               </button>
             </div>
@@ -188,12 +187,11 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Click the button to begin tracking your time
                 </p>
-              </div>
-              <button
+              </div>              <button
                 onClick={handleClockIn}
                 className="flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
               >
-                <FaPlay className="mr-2" />
+                <LuPlay className="mr-2" />
                 Clock In
               </button>
             </div>
@@ -202,11 +200,10 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">        <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
           <div className="flex items-center">
             <div className="p-3 bg-blue-500/10 rounded-lg">
-              <FaChartLine className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              <LuTrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Recent Entries</p>
@@ -220,7 +217,7 @@ export default function DashboardPage() {
         <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
           <div className="flex items-center">
             <div className="p-3 bg-green-500/10 rounded-lg">
-              <FaProjectDiagram className="h-6 w-6 text-green-600 dark:text-green-400" />
+              <LuGitBranch className="h-6 w-6 text-green-600 dark:text-green-400" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Projects</p>
@@ -234,7 +231,7 @@ export default function DashboardPage() {
         <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
           <div className="flex items-center">
             <div className="p-3 bg-yellow-500/10 rounded-lg">
-              <FaCalendarAlt className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+              <LuCalendar className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Pending Time Off</p>
@@ -248,7 +245,7 @@ export default function DashboardPage() {
         <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
           <div className="flex items-center">
             <div className={`p-3 rounded-lg ${dashboardData?.active_time_entry ? 'bg-green-500/10' : 'bg-gray-500/10'}`}>
-              <FaCheckCircle className={`h-6 w-6 ${dashboardData?.active_time_entry ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`} />
+              <LuCircleCheck className={`h-6 w-6 ${dashboardData?.active_time_entry ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`} />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Status</p>
@@ -267,10 +264,9 @@ export default function DashboardPage() {
         {dashboardData?.recent_time_entries && dashboardData.recent_time_entries.length > 0 ? (
           <div className="space-y-3">
             {dashboardData.recent_time_entries.map((entry, index) => (
-              <div key={entry.id || index} className="flex items-center justify-between p-4 bg-gray-50/50 dark:bg-gray-800/50 rounded-lg">
-                <div className="flex items-center">
+              <div key={entry.id || index} className="flex items-center justify-between p-4 bg-gray-50/50 dark:bg-gray-800/50 rounded-lg">                <div className="flex items-center">
                   <div className="p-2 bg-blue-500/10 rounded-lg mr-3">
-                    <FaClock className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <LuClock className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">
@@ -300,10 +296,9 @@ export default function DashboardPage() {
                 </div>
               </div>
             ))}
-          </div>
-        ) : (
+          </div>        ) : (
           <div className="text-center py-8">
-            <FaExclamationTriangle className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+            <LuTriangleAlert className="mx-auto h-12 w-12 text-gray-400 mb-4" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No Recent Activity</h3>
             <p className="text-gray-600 dark:text-gray-400">Start tracking your time to see recent entries here.</p>
           </div>
@@ -313,12 +308,11 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 p-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">          <a
             href="/worktally/timesheet"
             className="flex items-center justify-center p-4 bg-blue-50/50 dark:bg-blue-900/20 hover:bg-blue-100/50 dark:hover:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700 transition-colors"
           >
-            <FaClock className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
+            <LuClock className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
             <span className="font-medium text-blue-700 dark:text-blue-300">View Timesheet</span>
           </a>
           
@@ -326,7 +320,7 @@ export default function DashboardPage() {
             href="/worktally/reports"
             className="flex items-center justify-center p-4 bg-green-50/50 dark:bg-green-900/20 hover:bg-green-100/50 dark:hover:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-700 transition-colors"
           >
-            <FaChartLine className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+            <LuTrendingUp className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
             <span className="font-medium text-green-700 dark:text-green-300">Generate Reports</span>
           </a>
           
@@ -334,7 +328,7 @@ export default function DashboardPage() {
             href="/worktally/team"
             className="flex items-center justify-center p-4 bg-purple-50/50 dark:bg-purple-900/20 hover:bg-purple-100/50 dark:hover:bg-purple-900/30 rounded-lg border border-purple-200 dark:border-purple-700 transition-colors"
           >
-            <FaUsers className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-2" />
+            <LuUsers className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-2" />
             <span className="font-medium text-purple-700 dark:text-purple-300">Manage Team</span>
           </a>
           
@@ -342,7 +336,7 @@ export default function DashboardPage() {
             href="/worktally/settings"
             className="flex items-center justify-center p-4 bg-gray-50/50 dark:bg-gray-800/20 hover:bg-gray-100/50 dark:hover:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors"
           >
-            <FaClock className="h-5 w-5 text-gray-600 dark:text-gray-400 mr-2" />
+            <LuSettings className="h-5 w-5 text-gray-600 dark:text-gray-400 mr-2" />
             <span className="font-medium text-gray-700 dark:text-gray-300">Settings</span>
           </a>
         </div>

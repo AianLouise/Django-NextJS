@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaClock, FaChartBar, FaDownload, FaFilter } from 'react-icons/fa';
+import { LuClock, LuChartBar, LuDownload, LuFilter } from 'react-icons/lu';
 import { toast } from 'react-hot-toast';
 import { apiRequest, User } from '@/lib/api';
 
@@ -184,18 +184,17 @@ export default function ReportsPage() {
           </div>
         )}
 
-        {/* Report Filters */}
-        <div className={`bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg relative ${isGeneratingReport ? 'opacity-75' : ''}`}>
+        {/* Report Filters */}        <div className={`bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20 dark:border-gray-700/30 shadow-lg relative ${isGeneratingReport ? 'opacity-75' : ''}`}>
           {isGeneratingReport && (
             <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl z-10 flex items-center justify-center">
               <div className="text-center">
-                <FaClock className="animate-spin text-blue-600 dark:text-blue-400 text-2xl mx-auto mb-2" />
+                <LuClock className="animate-spin text-blue-600 dark:text-blue-400 text-2xl mx-auto mb-2" />
                 <p className="text-blue-600 dark:text-blue-400 font-medium">Processing...</p>
               </div>
             </div>
           )}
           <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
-            <FaFilter className="mr-2 text-blue-600" />
+            <LuFilter className="mr-2 text-blue-600" />
             Report Options
           </h3>
 
@@ -250,10 +249,9 @@ export default function ReportsPage() {
                 onClick={generateReport}
                 disabled={isGeneratingReport}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] disabled:transform-none"
-              >
-                {isGeneratingReport ? (
+              >                {isGeneratingReport ? (
                   <div className="flex items-center justify-center">
-                    <FaClock className="animate-spin mr-2" />
+                    <LuClock className="animate-spin mr-2" />
                     Generating...
                   </div>
                 ) : (
@@ -268,12 +266,11 @@ export default function ReportsPage() {
         {isGeneratingReport ? (
           <div className="space-y-6 sm:space-y-8">
             {/* Loading Skeleton for Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 rounded-xl animate-pulse flex items-center justify-center">
-                      <FaClock className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
+                      <LuClock className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
                     </div>
                   </div>
                   <div className="ml-3 sm:ml-4 min-w-0 flex-1">
@@ -281,13 +278,11 @@ export default function ReportsPage() {
                     <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20"></div>
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+              </div>              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 rounded-xl animate-pulse flex items-center justify-center">
-                      <FaChartBar className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
+                      <LuChartBar className="text-gray-500 dark:text-gray-400 text-base sm:text-lg" />
                     </div>
                   </div>
                   <div className="ml-3 sm:ml-4 min-w-0 flex-1">
@@ -296,12 +291,10 @@ export default function ReportsPage() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Loading text */}
+            </div>            {/* Loading text */}
             <div className="text-center py-4">
               <div className="flex items-center justify-center text-blue-600 dark:text-blue-400">
-                <FaClock className="animate-spin mr-2" />
+                <LuClock className="animate-spin mr-2" />
                 <span className="text-sm font-medium">Generating your report...</span>
               </div>
             </div>
@@ -309,12 +302,11 @@ export default function ReportsPage() {
         ) : reportData ? (
           <div className="space-y-6 sm:space-y-8">
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">              <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/30 shadow-lg">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                      <FaClock className="text-white text-base sm:text-lg" />
+                      <LuClock className="text-white text-base sm:text-lg" />
                     </div>
                   </div>
                   <div className="ml-3 sm:ml-4 min-w-0">
@@ -328,7 +320,7 @@ export default function ReportsPage() {
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                      <FaChartBar className="text-white text-base sm:text-lg" />
+                      <LuChartBar className="text-white text-base sm:text-lg" />
                     </div>
                   </div>
                   <div className="ml-3 sm:ml-4 min-w-0">
@@ -345,15 +337,14 @@ export default function ReportsPage() {
                 onClick={exportReport}
                 disabled={isExporting}
                 className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 px-4 sm:px-6 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isExporting ? (
+              >                {isExporting ? (
                   <div className="flex items-center">
-                    <FaDownload className="animate-pulse mr-2" />
+                    <LuDownload className="animate-pulse mr-2" />
                     Exporting...
                   </div>
                 ) : (
                   <div className="flex items-center">
-                    <FaDownload className="mr-2" />
+                    <LuDownload className="mr-2" />
                     Export Report
                   </div>
                 )}
@@ -384,10 +375,9 @@ export default function ReportsPage() {
                 </div>
               </div>
             )}
-          </div>
-        ) : (
+          </div>        ) : (
           <div className="text-center py-8 sm:py-12">
-            <FaChartBar className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
+            <LuChartBar className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
             <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">No Report Generated</h3>
             <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 px-4">Click &quot;Generate Report&quot; to view your time tracking analytics.</p>
           </div>

@@ -3,33 +3,33 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { FaHome, FaCalendarAlt, FaChartBar, FaUsers, FaCog } from 'react-icons/fa';
+import { LuHouse, LuCalendar, LuChartBar, LuUsers, LuSettings } from 'react-icons/lu';
 
 const navigationItems = [
     {
         name: 'Dashboard',
         href: '/worktally/dashboard',
-        icon: FaHome,
+        icon: LuHouse,
     },
     {
         name: 'Timesheet',
         href: '/worktally/timesheet',
-        icon: FaCalendarAlt,
+        icon: LuCalendar,
     },
     {
         name: 'Reports',
         href: '/worktally/reports',
-        icon: FaChartBar,
+        icon: LuChartBar,
     },
     {
         name: 'Team',
         href: '/worktally/team',
-        icon: FaUsers,
+        icon: LuUsers,
     },
     {
         name: 'Settings',
         href: '/worktally/settings',
-        icon: FaCog,
+        icon: LuSettings,
     },
 ];
 
