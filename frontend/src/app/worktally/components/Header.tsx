@@ -59,17 +59,22 @@ export default function Header({ user }: HeaderProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
 
                 {/* Logo Section */}
-                <Link href="/worktally/dashboard" className="flex items-center space-x-2 sm:space-x-3 group">
+                <Link href="/" className="flex items-center space-x-4 group">
                     <div className="relative">
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <LuClock className="text-white text-base sm:text-lg" />
+                        {/* Enhanced 3D Logo */}
+                        <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                            <LuClock className="text-white text-xl drop-shadow-lg" />
                         </div>
-                        <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+                        {/* 3D depth shadow */}
+                        <div className="absolute top-1 left-1 w-11 h-11 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                        {/* Glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
                     </div>
-                    <div className="hidden sm:block">
-                        <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                    <div>
+                        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
                             WorkTally
-                        </span>
+                        </h1>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
                     </div>
                 </Link>
 
