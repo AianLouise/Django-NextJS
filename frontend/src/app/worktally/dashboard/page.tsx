@@ -7,7 +7,6 @@ import {
     LuPlay,
     LuSquare,
     LuCalendar,
-    LuGitBranch,
     LuTrendingUp,
     LuCircleCheck,
     LuTriangleAlert
@@ -26,6 +25,8 @@ export default function DashboardPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [isClockingIn, setIsClockingIn] = useState(false);
+    const [isClockingOut, setIsClockingOut] = useState(false);
 
     // Update current time every second
     useEffect(() => {
@@ -72,6 +73,21 @@ export default function DashboardPage() {
     };
 
     const handleClockIn = async () => {
+        // Validation: Check if already clocked in
+        if (dashboardData?.active_time_entry) {
+            toast.error('You are already clocked in. Please clock out first.');
+            return;
+        }
+
+        // Validation: Check if user is authenticated
+        const token = localStorage.getItem('auth_token');
+        if (!token) {
+            toast.error('Please log in to clock in.');
+            window.location.href = '/login';
+            return;
+        }
+
+        setIsClockingIn(true);
         try {
             await apiRequest('/timekeeping/clock-in/', {
                 method: 'POST',
@@ -80,11 +96,105 @@ export default function DashboardPage() {
             loadDashboardData(); // Refresh data
         } catch (error) {
             console.error('Error clocking in:', error);
-            toast.error('Failed to clock in');
+            const message = error instanceof Error ? error.message : 'Failed to clock in. Please try again.';
+            toast.error(message);
+        } finally {
+            setIsClockingIn(false);
         }
     };
 
     const handleClockOut = async () => {
+        // Validation: Check if not clocked in
+        if (!dashboardData?.active_time_entry) {
+            toast.error('You are not currently clocked in. Please clock in first.');
+            return;
+        }
+
+        // Validation: Check if user is authenticated
+        const token = localStorage.getItem('auth_token');
+        if (!token) {
+            toast.error('Please log in to clock out.');
+            window.location.href = '/login';
+            return;
+        }        // Validation: Check minimum work duration (optional - e.g., at least 1 minute)
+        const clockInTime = new Date(dashboardData.active_time_entry.clock_in);
+        const now = new Date();
+        const workDuration = now.getTime() - clockInTime.getTime();
+        const minimumDuration = 60 * 1000; // 1 minute in milliseconds
+
+        if (workDuration < minimumDuration) {
+            toast((t) => (
+                <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-2">
+                        <LuTriangleAlert className="h-5 w-5 text-amber-500" />
+                        <span className="font-medium">Short Work Session</span>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        You have been clocked in for less than 1 minute. Are you sure you want to clock out?
+                    </p>
+                    <div className="flex gap-2 mt-2">
+                        <button
+                            onClick={() => {
+                                toast.dismiss(t.id);
+                                executeClockOut();
+                            }}
+                            className="px-3 py-1.5 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+                        >
+                            Yes, Clock Out
+                        </button>
+                        <button
+                            onClick={() => toast.dismiss(t.id)}
+                            className="px-3 py-1.5 bg-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-400 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            ), {
+                duration: 10000,
+                position: 'top-center',
+            });
+            return;
+        } performClockOut();
+    };
+
+    const performClockOut = async () => {
+        // Final confirmation before clocking out
+        toast((t) => (
+            <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                    <LuClock className="h-5 w-5 text-blue-500" />
+                    <span className="font-medium">Confirm Clock Out</span>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Are you sure you want to clock out? This will end your current work session.
+                </p>
+                <div className="flex gap-2 mt-2">
+                    <button
+                        onClick={() => {
+                            toast.dismiss(t.id);
+                            executeClockOut();
+                        }}
+                        className="px-3 py-1.5 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+                    >
+                        Yes, Clock Out
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-3 py-1.5 bg-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-400 transition-colors"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        ), {
+            duration: 8000,
+            position: 'top-center',
+        });
+    };
+
+    const executeClockOut = async () => {
+        setIsClockingOut(true);
         try {
             await apiRequest('/timekeeping/clock-out/', {
                 method: 'POST',
@@ -93,7 +203,10 @@ export default function DashboardPage() {
             loadDashboardData(); // Refresh data
         } catch (error) {
             console.error('Error clocking out:', error);
-            toast.error('Failed to clock out');
+            const message = error instanceof Error ? error.message : 'Failed to clock out. Please try again.';
+            toast.error(message);
+        } finally {
+            setIsClockingOut(false);
         }
     };
 
@@ -170,12 +283,14 @@ export default function DashboardPage() {
                                 <p className="text-lg font-mono text-green-900 dark:text-green-200 mt-2">
                                     {calculateWorkingTime(dashboardData.active_time_entry.clock_in)}
                                 </p>
-                            </div>              <button
+                            </div>
+                            <button
                                 onClick={handleClockOut}
-                                className="flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                                disabled={isClockingOut}
+                                className={`flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 disabled:bg-red-400 disabled:cursor-not-allowed text-white rounded-lg transition-colors ${isClockingOut ? 'opacity-70' : ''}`}
                             >
                                 <LuSquare className="mr-2" />
-                                Clock Out
+                                {isClockingOut ? 'Clocking Out...' : 'Clock Out'}
                             </button>
                         </div>
                     </div>
@@ -187,12 +302,14 @@ export default function DashboardPage() {
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                     Click the button to begin tracking your time
                                 </p>
-                            </div>              <button
+                            </div>
+                            <button
                                 onClick={handleClockIn}
-                                className="flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                                disabled={isClockingIn}
+                                className={`flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 disabled:bg-green-400 disabled:cursor-not-allowed text-white rounded-lg transition-colors ${isClockingIn ? 'opacity-70' : ''}`}
                             >
                                 <LuPlay className="mr-2" />
-                                Clock In
+                                {isClockingIn ? 'Clocking In...' : 'Clock In'}
                             </button>
                         </div>
                     </div>
@@ -200,7 +317,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
                     <div className="flex items-center">
                         <div className="p-3 bg-blue-500/10 rounded-lg">
@@ -214,21 +331,6 @@ export default function DashboardPage() {
                         </div>
                     </div>
                 </div>
-
-                <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
-                    <div className="flex items-center">
-                        <div className="p-3 bg-green-500/10 rounded-lg">
-                            <LuGitBranch className="h-6 w-6 text-green-600 dark:text-green-400" />
-                        </div>
-                        <div className="ml-4">
-                            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Projects</p>
-                            <p className="text-2xl font-semibold text-gray-900 dark:text-white">
-                                {dashboardData?.active_projects?.length || 0}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg border border-white/20 dark:border-gray-700/30 p-6">
                     <div className="flex items-center">
                         <div className="p-3 bg-yellow-500/10 rounded-lg">
@@ -280,9 +382,6 @@ export default function DashboardPage() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="font-medium text-gray-900 dark:text-white">
-                                        {entry.project?.name || 'No Project'}
-                                    </p>
                                     {entry.clock_out && (
                                         <p className="text-sm text-gray-600 dark:text-gray-400">
                                             {(() => {
@@ -305,7 +404,7 @@ export default function DashboardPage() {
                         <p className="text-gray-600 dark:text-gray-400">Start tracking your time to see recent entries here.</p>
                     </div>
                 )}
-            </div> 
+            </div>
         </div>
     );
 }
