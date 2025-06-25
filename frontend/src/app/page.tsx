@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
-import { FaClock, FaUserCheck, FaChartLine, FaCalendarAlt, FaBars, FaGithub, FaTwitter, FaLinkedin, FaTimes, FaRocket, FaDollarSign, FaShieldAlt } from "react-icons/fa";
+import { LuClock, LuUserCheck, LuTrendingUp, LuCalendarDays, LuMenu, LuGithub, LuTwitter, LuLinkedin, LuX, LuRocket, LuDollarSign, LuShield } from "react-icons/lu";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,6 +15,22 @@ export default function Home() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const headerHeight = 80; // Height of sticky header
+      const elementPosition = targetElement.offsetTop;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    closeMobileMenu(); // Close mobile menu if open
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Header / Navigation */}
@@ -22,11 +38,11 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group">
+            <Link href="#top" className="flex items-center space-x-3 group">
               <div className="relative">
                 {/* Enhanced 3D Logo */}
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
-                  <FaClock className="text-white text-xl drop-shadow-lg" />
+                  <LuClock className="text-white text-xl drop-shadow-lg" />
                 </div>
                 {/* 3D depth shadow */}
                 <div className="absolute top-1 left-1 w-12 h-12 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
@@ -46,6 +62,7 @@ export default function Home() {
               <div className="flex items-center space-x-6">
                 <Link
                   href="#features"
+                  onClick={(e) => handleSmoothScroll(e, 'features')}
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   Features
@@ -53,6 +70,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="#how-it-works"
+                  onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   How It Works
@@ -82,9 +100,9 @@ export default function Home() {
               className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
               {isMobileMenuOpen ? (
-                <FaTimes className="text-gray-600 dark:text-gray-300 text-xl" />
+                <LuX className="text-gray-600 dark:text-gray-300 text-xl" />
               ) : (
-                <FaBars className="text-gray-600 dark:text-gray-300 text-xl" />
+                <LuMenu className="text-gray-600 dark:text-gray-300 text-xl" />
               )}
             </button>
           </div>
@@ -95,14 +113,14 @@ export default function Home() {
               <div className="px-4 pt-2 mt-4 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
                 <Link
                   href="#features"
-                  onClick={closeMobileMenu}
+                  onClick={(e) => handleSmoothScroll(e, 'features')}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   Features
                 </Link>
                 <Link
                   href="#how-it-works"
-                  onClick={closeMobileMenu}
+                  onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 >
                   How It Works
@@ -130,7 +148,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section id='top' className="relative py-16 md:py-24 overflow-hidden">
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
           {/* Enhanced Wavy Lines Background */}
@@ -141,8 +159,7 @@ export default function Home() {
             <path d="M0,300 Q150,250 300,280 Q450,300 600,270 Q750,240 900,280 Q1050,340 1200,300" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
             <path d="M0,380 Q180,330 360,360 Q540,390 720,350 Q900,310 1080,350 Q1140,370 1200,380" stroke="rgba(34, 197, 94, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
             <path d="M0,460 Q90,410 180,440 Q270,470 360,430 Q450,390 540,430 Q630,470 720,440 Q810,410 900,440 Q990,470 1080,450 Q1140,440 1200,460" stroke="rgba(249, 115, 22, 0.1)" strokeWidth="2" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
-            <path d="M0,540 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-            <path d="M0,600 Q150,550 300,580 Q450,600 600,570 Q750,540 900,580 Q1050,640 1200,600" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '7.5s' }} />
+            <path d="M0,560 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
           </svg>
         </div>
 
@@ -150,7 +167,7 @@ export default function Home() {
           {/* Enhanced 3D Hero Icon */}
           <div className="relative mb-8 group">
             <div className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-600 to-blue-700 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
-              <FaClock className="text-white text-5xl drop-shadow-lg" />
+              <LuClock className="text-white text-5xl drop-shadow-lg" />
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-xl opacity-60 -z-10 group-hover:opacity-80 transition-opacity duration-500"></div>
             </div>
             {/* 3D depth shadow */}
@@ -187,11 +204,10 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-blue-200/50 dark:hover:border-blue-600/50 relative z-30">
-              {/* Enhanced 3D Icon Container */}
+            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-blue-200/50 dark:hover:border-blue-600/50 relative z-30">              {/* Enhanced 3D Icon Container */}
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 group-hover:rotate-6">
-                  <FaClock className="text-white text-3xl drop-shadow-lg" />
+                  <LuClock className="text-white text-3xl drop-shadow-lg" />
                 </div>
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
@@ -199,11 +215,10 @@ export default function Home() {
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Time Tracking</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Easy clock-in/out with our intuitive interface and real-time tracking.</p>
             </div>
-
             <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-purple-200/50 dark:hover:border-purple-600/50 relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-3 group-hover:-rotate-6">
-                  <FaUserCheck className="text-white text-3xl drop-shadow-lg" />
+                  <LuUserCheck className="text-white text-3xl drop-shadow-lg" />
                 </div>
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-purple-700 to-purple-900 rounded-2xl opacity-40 -z-10 transform -rotate-3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
@@ -211,11 +226,10 @@ export default function Home() {
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Attendance Management</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Track employee attendance and manage time-off requests seamlessly.</p>
             </div>
-
             <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-green-200/50 dark:hover:border-green-600/50 relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-green-500 via-emerald-600 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-2 group-hover:rotate-4">
-                  <FaChartLine className="text-white text-3xl drop-shadow-lg" />
+                  <LuTrendingUp className="text-white text-3xl drop-shadow-lg" />
                 </div>
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-green-700 to-emerald-900 rounded-2xl opacity-40 -z-10 transform rotate-2"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
@@ -223,11 +237,10 @@ export default function Home() {
               <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Advanced Reporting</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Generate detailed reports on employee hours and project analytics.</p>
             </div>
-
             <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-orange-200/50 dark:hover:border-orange-600/50 relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-orange-500 via-amber-600 to-orange-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-2 group-hover:-rotate-4">
-                  <FaCalendarAlt className="text-white text-3xl drop-shadow-lg" />
+                  <LuCalendarDays className="text-white text-3xl drop-shadow-lg" />
                 </div>
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-orange-700 to-amber-900 rounded-2xl opacity-40 -z-10 transform -rotate-2"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
@@ -387,27 +400,23 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaRocket className="text-white text-2xl" />
+                <LuRocket className="text-white text-2xl" />
               </div>
               <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Increase Productivity</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Streamline workflows and eliminate time-wasting activities with intelligent automation and real-time insights.
               </p>
-            </div>
-
-            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
+            </div>            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaDollarSign className="text-white text-2xl" />
+                <LuDollarSign className="text-white text-2xl" />
               </div>
               <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Reduce Costs</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Cut administrative overhead by 30% with automated reporting and streamlined payroll processing.
               </p>
-            </div>
-
-            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
+            </div>            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FaShieldAlt className="text-white text-2xl" />
+                <LuShield className="text-white text-2xl" />
               </div>
               <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Improve Accuracy</h4>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -524,6 +533,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* CTA Section */}
       <section className="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-700 dark:via-purple-700 dark:to-blue-900 overflow-hidden">
         {/* Background Pattern */}
@@ -625,23 +635,30 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 mb-12">
             {/* Company Info */}
             <div className="sm:col-span-2">
+              {/* Logo */}
               <Link href="/" className="flex items-center space-x-4 mb-6 group">
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <FaClock className="text-white text-xl" />
+                  {/* Enhanced 3D Logo */}
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                    <LuClock className="text-white text-xl drop-shadow-lg" />
                   </div>
-                  <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+                  {/* 3D depth shadow */}
+                  <div className="absolute top-1 left-1 w-12 h-12 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
                 </div>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">WorkTally</h2>
-                  <p className="text-sm text-gray-400 -mt-1">Smart Time Management</p>
+                  <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
+                    WorkTally
+                  </h1>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
                 </div>
               </Link>
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 max-w-md">
                 Empowering teams worldwide with intelligent time tracking solutions. Boost productivity and streamline your workflow with our cutting-edge platform.
               </p>
               <div className="flex space-x-3">
-                {[FaTwitter, FaLinkedin, FaGithub].map((Icon, idx) => (
+                {[LuTwitter, LuLinkedin, LuGithub].map((Icon, idx) => (
                   <Link key={idx} href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-transform duration-300 hover:scale-110">
                     <Icon className="text-lg" />
                   </Link>
