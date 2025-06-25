@@ -20,7 +20,7 @@ from .serializers import (
 
 class OrganizationRegisterView(APIView):
     """
-    Create an account for your organization and become the organization owner
+    Create an account for your organization and become the organization creator
     """
     permission_classes = [AllowAny]
     
@@ -44,10 +44,10 @@ class TeamMemberInviteView(APIView):
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
-        # Only owners and admins can invite team members
-        if request.user.role not in ['owner', 'admin']:
+        # Only creators and admins can invite team members
+        if request.user.role not in ['creator', 'admin']:
             return Response({
-                'error': 'Only organization owners and administrators can invite team members.'
+                'error': 'Only organization creators and administrators can invite team members.'
             }, status=status.HTTP_403_FORBIDDEN)
         
         if not request.user.organization:

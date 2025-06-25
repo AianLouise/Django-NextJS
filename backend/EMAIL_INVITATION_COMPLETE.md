@@ -35,7 +35,7 @@ The organization-based signup with email invitation functionality has been succe
 - [x] **Organization Model** - Company/organization data
 - [x] **CustomUser Model** - Extended user with organization relationship
 - [x] **Invitation Tracking** - Token-based invitation system
-- [x] **Role Management** - Owner, Admin, Manager, Employee roles
+- [x] **Role Management** - Creator, Admin, Manager, Employee roles
 
 #### Security & Validation
 - [x] **Token Security** - UUID-based invitation tokens
@@ -48,7 +48,7 @@ The organization-based signup with email invitation functionality has been succe
 
 ### Email Invitation Flow
 ```
-1. Organization Owner/Admin creates invitation
+1. Organization Creator/Admin creates invitation
    ↓
 2. System generates unique invitation token
    ↓
@@ -119,7 +119,7 @@ DEFAULT_FROM_EMAIL = 'WorkTally <your-email@gmail.com>'
 
 ### Test Organization
 - **Name**: Demo Tech Solutions
-- **Owner**: Alice Manager (alice.manager@demo.com)
+- **Creator**: Alice Manager (alice.manager@demo.com)
 - **Password**: DemoPassword123!
 
 ### Test Team Members
@@ -135,7 +135,7 @@ DEFAULT_FROM_EMAIL = 'WorkTally <your-email@gmail.com>'
 
 ### 1. Organization-Based Signup
 - Creates organization and first admin user in one step
-- Automatic owner role assignment
+- Automatic creator role assignment
 - Organization branding and description
 
 ### 2. Email Invitations
@@ -194,7 +194,7 @@ frontend/src/app/
 ### Security Enhancements
 1. Add invitation expiration times
 2. Implement rate limiting for invitations
-3. Add email verification for organization owners
+3. Add email verification for organization creators
 
 ### Additional Features
 1. Bulk invitation uploads (CSV)

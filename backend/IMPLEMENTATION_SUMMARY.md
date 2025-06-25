@@ -10,14 +10,14 @@ The user registration system has been successfully transformed from individual a
 - **Database Migration**: Successfully applied changes with zero downtime
 
 ### 🔧 **API Endpoints**
-- **`POST /api/users/organization/register/`** - Create organization + owner account
-- **`POST /api/users/organization/invite/`** - Invite team members (owners/admins only)
+- **`POST /api/users/organization/register/`** - Create organization + creator account
+- **`POST /api/users/organization/invite/`** - Invite team members (creators/admins only)
 - **`POST /api/users/invitation/accept/`** - Accept invitations and activate accounts
 - **`GET /api/users/organization/team/`** - View organization team members
 - **Backward compatibility maintained** - Original `/register/` endpoint still works
 
 ### 🔐 **Security Features**
-- **Role-based permissions** (Owner, Admin, Manager, Employee)
+- **Role-based permissions** (Creator, Admin, Manager, Employee)
 - **Invitation-only team joining** with secure UUID tokens
 - **Organization isolation** - users only see their team members
 - **User limits** - configurable maximum team size per organization
@@ -26,14 +26,14 @@ The user registration system has been successfully transformed from individual a
 
 #### New Primary Flow: "Sign Up - Create an account for your organization and add your team members"
 
-1. **Organization Owner Signs Up**
+1. **Organization Creator Signs Up**
    ```
    POST /api/users/organization/register/
-   → Creates organization + owner account
+   → Creates organization + creator account
    → Returns authentication token
    ```
 
-2. **Owner Invites Team Members**
+2. **Creator Invites Team Members**
    ```
    POST /api/users/organization/invite/
    → Creates inactive user with invitation token
@@ -56,7 +56,7 @@ The user registration system has been successfully transformed from individual a
 
 ### 🧪 **Testing Results**
 All functionality has been tested and verified working:
-- ✅ Organization creation with owner account
+- ✅ Organization creation with creator account
 - ✅ Team member invitation by authorized users
 - ✅ Invitation acceptance and account activation  
 - ✅ Organization team management and viewing

@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customuser',
             name='role',
-            field=models.CharField(choices=[('owner', 'Organization Owner'), ('admin', 'Administrator'), ('manager', 'Manager'), ('employee', 'Employee')], default='employee', max_length=20),
+            field=models.CharField(choices=[('creator', 'Organization Creator'), ('admin', 'Administrator'), ('manager', 'Manager'), ('employee', 'Employee')], default='employee', max_length=20),
         ),
         migrations.AddField(
             model_name='customuser',

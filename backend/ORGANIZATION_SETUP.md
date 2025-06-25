@@ -4,7 +4,7 @@
 
 The user registration system has been updated to support organization-based account creation. The new system allows users to:
 
-1. **Create an organization account** - Sign up as an organization owner
+1. **Create an organization account** - Sign up as an organization creator
 2. **Invite team members** - Add team members to your organization
 3. **Manage team roles** - Assign different roles to team members
 
@@ -16,11 +16,11 @@ The new primary registration flow is organization-centric:
 
 1. **Organization Registration** (`POST /api/users/organization/register/`)
    - Creates a new organization
-   - Creates the first user as the organization owner
+   - Creates the first user as the organization creator
    - Returns user details, organization info, and authentication token
 
 2. **Team Member Invitation** (`POST /api/users/organization/invite/`)
-   - Allows owners and admins to invite team members
+   - Allows creators and admins to invite team members
    - Creates inactive user accounts with invitation tokens
    - Sends invitation details (in production, this would trigger email notifications)
 
@@ -40,8 +40,8 @@ POST /api/users/organization/register/
 {
   "organization_name": "Acme Corp",
   "organization_description": "A leading technology company",
-  "email": "owner@acmecorp.com",
-  "username": "acme_owner",
+  "email": "creator@acmecorp.com",
+  "username": "acme_creator",
   "password": "securepassword123",
   "password2": "securepassword123",
   "first_name": "John",
@@ -54,11 +54,11 @@ POST /api/users/organization/register/
 {
   "user": {
     "id": 1,
-    "email": "owner@acmecorp.com",
-    "username": "acme_owner",
+    "email": "creator@acmecorp.com",
+    "username": "acme_creator",
     "first_name": "John",
     "last_name": "Doe",
-    "role": "owner",
+    "role": "creator",
     "organization": {
       "id": "uuid-here",
       "name": "Acme Corp",
@@ -157,10 +157,10 @@ GET /api/users/organization/team/
   "active_members": [
     {
       "id": 1,
-      "email": "owner@acmecorp.com",
+      "email": "creator@acmecorp.com",
       "first_name": "John",
       "last_name": "Doe",
-      "role": "owner"
+      "role": "creator"
     },
     {
       "id": 2,
@@ -178,7 +178,7 @@ GET /api/users/organization/team/
 
 The system supports four user roles within an organization:
 
-- **Owner** - Full organization control, can invite/manage all users
+- **Creator** - Full organization control, can invite/manage all users
 - **Admin** - Can invite and manage team members
 - **Manager** - Can manage employees in their department
 - **Employee** - Standard user access
@@ -213,7 +213,7 @@ This creates users without an organization association for backward compatibilit
 ## Security Features
 
 1. **Invitation-only team joining** - Users can only join organizations through invitations
-2. **Role-based permissions** - Only owners and admins can invite team members
+2. **Role-based permissions** - Only creators and admins can invite team members
 3. **Token-based invitations** - Secure UUID tokens for invitation acceptance
 4. **Organization isolation** - Users can only see team members from their organization
 5. **User limits** - Organizations have configurable maximum user limits

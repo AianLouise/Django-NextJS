@@ -46,22 +46,22 @@ def demo_complete_flow():
         'email': 'alice.manager@demo.com',
         'password': 'DemoPassword123!',
         'password2': 'DemoPassword123!',
-        'role': 'owner'
+        'role': 'creator'
     }
     
     print(f"Creating organization: {signup_data['organization_name']}")
-    print(f"Owner: {signup_data['first_name']} {signup_data['last_name']} ({signup_data['email']})")
+    print(f"Creator: {signup_data['first_name']} {signup_data['last_name']} ({signup_data['email']})")
     
     response = requests.post(f'{BASE_URL}/api/users/organization/register/', json=signup_data)
     
     if response.status_code == 201:
         print("✅ Organization created successfully!")
         auth_data = response.json()
-        owner_token = auth_data.get('token')
+        creator_token = auth_data.get('token')
         
-        print(f"   📧 Owner Email: {auth_data.get('user', {}).get('email')}")
+        print(f"   📧 Creator Email: {auth_data.get('user', {}).get('email')}")
         print(f"   🏢 Organization: {auth_data.get('organization', {}).get('name')}")
-        print(f"   🔑 Auth Token: {owner_token[:20]}...")
+        print(f"   🔑 Auth Token: {creator_token[:20]}...")
         print()
     else:
         print(f"❌ Failed: {response.status_code} - {response.text}")
@@ -72,7 +72,7 @@ def demo_complete_flow():
     print("=" * 40)
     
     headers = {
-        'Authorization': f'Token {owner_token}',
+        'Authorization': f'Token {creator_token}',
         'Content-Type': 'application/json'
     }
     
@@ -171,7 +171,7 @@ def demo_complete_flow():
         print("📋 TEAM ROSTER:")
         print("   Active Members:")
         for member in team_data.get('active_members', []):
-            status_icon = "👑" if member.get('role') == 'owner' else "👤"
+            status_icon = "👑" if member.get('role') == 'creator' else "👤"
             print(f"   {status_icon} {member.get('first_name')} {member.get('last_name')} ({member.get('role')}) - {member.get('email')}")
         
         print("   Pending Invitations:")
@@ -202,7 +202,7 @@ def demo_complete_flow():
     print("6️⃣  TEST CREDENTIALS")
     print("=" * 40)
     print("🔑 Login Credentials for Frontend Testing:")
-    print(f"   Owner: {signup_data['email']} / {signup_data['password']}")
+    print(f"   Creator: {signup_data['email']} / {signup_data['password']}")
     if 'bob_token' in locals():
         print(f"   Employee: bob.developer@demo.com / DemoPassword123!")
     print()
@@ -213,7 +213,7 @@ def demo_complete_flow():
     print("🎯 Next Steps:")
     print("   1. Open http://localhost:3000 in your browser")
     print("   2. Test organization signup flow")
-    print("   3. Login as owner and invite team members")
+    print("   3. Login as creator and invite team members")
     print("   4. Use the invitation links to test acceptance flow")
     print("   5. Check team management page")
     

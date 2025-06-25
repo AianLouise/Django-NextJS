@@ -17,7 +17,7 @@
 - ✅ **TimeEntry Model** - Clock in/out with project tracking
 - ✅ **Project Model** - Project management with time aggregation
 - ✅ **TimeOff Model** - Leave request management system
-- ✅ **Role-based Access Control** - Owner, Admin, Manager, Employee roles
+- ✅ **Role-based Access Control** - Creator, Admin, Manager, Employee roles
 
 #### API Endpoints (Django REST Framework)
 - ✅ **Authentication System**
@@ -28,7 +28,7 @@
   - `POST /api/users/change-password/` - Password management
 
 - ✅ **Organization Management**
-  - `POST /api/users/organization/register/` - Organization creation + owner setup
+  - `POST /api/users/organization/register/` - Organization creation + creator setup
   - `POST /api/users/organization/invite/` - Team member invitations with email
   - `POST /api/users/invitation/accept/` - Invitation acceptance workflow
   - `GET /api/users/organization/team/` - Team member management

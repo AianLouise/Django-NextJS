@@ -99,7 +99,7 @@ class OrganizationRegisterSerializer(serializers.ModelSerializer):
             description=org_description
         )
         
-        # Create the organization owner
+        # Create the organization creator
         user = CustomUser.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -107,7 +107,7 @@ class OrganizationRegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             organization=organization,
-            role='owner'
+            role='creator'
         )
         
         return user

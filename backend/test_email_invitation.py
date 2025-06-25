@@ -25,8 +25,8 @@ def test_email_invitation_flow():
     # Base URL for API
     BASE_URL = 'http://127.0.0.1:8000'
     
-    # 1. First, let's create a test organization owner
-    print("1. Creating test organization and owner...")
+    # 1. First, let's create a test organization creator
+    print("1. Creating test organization and creator...")
     
     # Clear existing test data
     CustomUser.objects.filter(email__contains='test').delete()
@@ -36,21 +36,21 @@ def test_email_invitation_flow():
         'organization_name': 'Test Organization',
         'organization_description': 'A test organization for email invitations',
         'first_name': 'John',
-        'last_name': 'Owner',
-        'username': 'john.owner',
-        'email': 'john.owner@testorg.com',
+        'last_name': 'Creator',
+        'username': 'john.creator',
+        'email': 'john.creator@testorg.com',
         'password': 'TestPassword123!',
         'password2': 'TestPassword123!',
-        'role': 'owner'
+        'role': 'creator'
     }# Create organization via API
     response = requests.post(f'{BASE_URL}/api/users/organization/register/', json=signup_data)
     
     if response.status_code == 201:
-        print("✓ Organization and owner created successfully")
+        print("✓ Organization and creator created successfully")
         auth_data = response.json()
         auth_token = auth_data.get('token')
         print(f"  - Organization: {auth_data.get('organization', {}).get('name')}")
-        print(f"  - Owner: {auth_data.get('user', {}).get('first_name')} {auth_data.get('user', {}).get('last_name')}")
+        print(f"  - Creator: {auth_data.get('user', {}).get('first_name')} {auth_data.get('user', {}).get('last_name')}")
     else:
         print(f"✗ Failed to create organization: {response.status_code}")
         print(f"  Response: {response.text}")

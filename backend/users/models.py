@@ -58,7 +58,7 @@ class CustomUser(AbstractUser):
     
     # Role within organization
     ROLE_CHOICES = (
-        ('owner', 'Organization Owner'),
+        ('creator', 'Creator'),
         ('admin', 'Administrator'),
         ('manager', 'Manager'),
         ('employee', 'Employee'),
