@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiRequest, User } from '@/lib/api';
+import { User } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 import { Header, Sidebar, PageLoader } from './components';
 

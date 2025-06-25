@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LuClock, LuChartBar, LuDownload, LuFilter } from 'react-icons/lu';
 import { toast } from 'react-hot-toast';
-import { apiRequest, User } from '@/lib/api';
+import { apiRequest } from '@/lib/api';
 
 // Define interfaces for report data
 interface ReportData {
@@ -23,7 +23,6 @@ interface ReportData {
 
 export default function ReportsPage() {
     const router = useRouter();
-    const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isGeneratingReport, setIsGeneratingReport] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
@@ -57,22 +56,11 @@ export default function ReportsPage() {
     useEffect(() => {
         // Check for auth token
         const token = localStorage.getItem('auth_token');
-        const userData = localStorage.getItem('user_data');
 
         if (!token) {
             // Redirect to login if no token is found
             router.push('/login');
             return;
-        }
-
-        if (userData) {
-            try {
-                const parsedUser = JSON.parse(userData);
-                setUser(parsedUser);
-            } catch (e) {
-                console.error('Error parsing user data:', e);
-                setError('Invalid user data');
-            }
         }
 
         setIsLoading(false);

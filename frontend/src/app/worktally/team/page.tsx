@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { FaTimes, FaEnvelope, FaCalendar, FaUser, FaBuilding, FaPlus, FaUsers, FaUserCircle, FaClock } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { apiRequest, User, Organization } from '@/lib/api';
-import { Header, Sidebar, PageLoader } from '../components';
 
 // Define interfaces for team-specific data
 interface TeamMember extends User {

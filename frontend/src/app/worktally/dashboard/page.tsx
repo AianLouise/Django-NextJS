@@ -14,12 +14,12 @@ import {
     LuTriangleAlert,
     LuSettings
 } from 'react-icons/lu';
-import { apiRequest, User, TimeEntry, Project } from '@/lib/api';
+import { apiRequest, User, TimeEntry, Project, TimeOffRequest } from '@/lib/api';
 
 interface DashboardData {
     active_time_entry: TimeEntry | null;
     recent_time_entries: TimeEntry[];
-    pending_time_off: any[];
+    pending_time_off: TimeOffRequest[];
     active_projects: Project[];
 }
 
