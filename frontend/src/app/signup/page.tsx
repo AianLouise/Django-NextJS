@@ -89,15 +89,15 @@ export default function Signup() {
       {/* Background Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Enhanced Wavy Lines Background */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,60 Q150,20 300,40 Q450,60 600,30 Q750,10 900,40 Q1050,80 1200,50" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-          <path d="M0,140 Q100,90 200,120 Q350,160 500,100 Q650,40 800,120 Q950,200 1100,140 Q1150,120 1200,140" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
-          <path d="M0,220 Q120,170 240,200 Q360,230 480,190 Q600,150 720,190 Q840,230 960,200 Q1080,170 1200,220" stroke="rgba(236, 72, 153, 0.1)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
-          <path d="M0,300 Q150,250 300,280 Q450,300 600,270 Q750,240 900,280 Q1050,340 1200,300" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-          <path d="M0,380 Q180,330 360,360 Q540,390 720,350 Q900,310 1080,350 Q1140,370 1200,380" stroke="rgba(34, 197, 94, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
-          <path d="M0,460 Q90,410 180,440 Q270,470 360,430 Q450,390 540,430 Q630,470 720,440 Q810,410 900,440 Q990,470 1080,450 Q1140,440 1200,460" stroke="rgba(249, 115, 22, 0.1)" strokeWidth="2" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
-          <path d="M0,540 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-          <path d="M0,600 Q150,550 300,580 Q450,600 600,570 Q750,540 900,580 Q1050,640 1200,600" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '7.5s' }} />
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 2400 1200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,100 Q300,40 600,70 Q900,100 1200,55 Q1500,10 1800,70 Q2100,130 2400,100" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+          <path d="M0,250 Q240,175 480,220 Q720,265 960,205 Q1200,145 1440,205 Q1680,265 1920,220 Q2160,175 2400,250" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+          <path d="M0,400 Q200,350 400,390 Q600,430 800,400 Q1000,370 1200,410 Q1400,450 1600,420 Q1800,390 2000,430 Q2200,470 2400,400" stroke="rgba(6, 182, 212, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
+          <path d="M0,550 Q300,475 600,520 Q900,565 1200,505 Q1500,445 1800,505 Q2100,565 2400,550" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+          <path d="M0,700 Q360,625 720,670 Q1080,715 1440,655 Q1800,595 2160,655 Q2280,685 2400,700" stroke="rgba(34, 197, 94, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
+          <path d="M0,850 Q180,775 360,820 Q540,865 720,805 Q900,745 1080,805 Q1260,865 1440,820 Q1620,775 1800,820 Q1980,865 2160,835 Q2280,820 2400,850" stroke="rgba(249, 115, 22, 0.1)" strokeWidth="2" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
+          <path d="M0,1000 Q240,925 480,970 Q720,1015 960,955 Q1200,895 1440,955 Q1680,1015 1920,970 Q2160,925 2400,1000" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+          <path d="M0,1150 Q300,1075 600,1120 Q900,1165 1200,1105 Q1500,1045 1800,1105 Q2100,1165 2400,1150" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '7.5s' }} />
         </svg>
       </div>
 
@@ -359,6 +359,22 @@ export default function Signup() {
           </form>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+        <p>
+          &copy; {new Date().getFullYear()} WorkTally. All rights reserved.
+        </p>
+        <p className="mt-2">
+          <Link href="/privacy-policy" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+            Privacy Policy
+          </Link>{' '}
+          |{' '}
+          <Link href="/terms-of-service" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+            Terms of Service
+          </Link>
+        </p>
+      </footer>
     </div>
   );
 }
