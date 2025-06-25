@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LuClock, LuUser, LuBell, LuLogOut, LuChevronDown, LuSettings } from 'react-icons/lu';
+import { LuClock, LuBell, LuLogOut, LuChevronDown, LuSettings } from 'react-icons/lu';
 import { User, logout } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 import { useState, useEffect, useRef, useCallback } from 'react';

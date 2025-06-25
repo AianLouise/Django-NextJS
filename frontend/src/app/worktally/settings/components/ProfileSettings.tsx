@@ -14,11 +14,11 @@ interface ProfileSettingsProps {
 export default function ProfileSettings({ user, setUser, setError, setIsLoading }: ProfileSettingsProps) {
     const [firstName, setFirstName] = useState(user?.first_name || '');
     const [lastName, setLastName] = useState(user?.last_name || '');
-    const [email, setEmail] = useState(user?.email || '');
+    const [email] = useState(user?.email || '');
     const [jobTitle, setJobTitle] = useState(user?.job_title || '');
     const [department, setDepartment] = useState(user?.department || '');
     const [phoneNumber, setPhoneNumber] = useState(user?.phone_number || '');
-    const [bio, setBio] = useState((user as any)?.profile?.bio || '');
+    const [bio, setBio] = useState((user as User & { profile?: { bio?: string } })?.profile?.bio || '');
 
     const handleProfileUpdate = async (e: React.FormEvent) => {
         e.preventDefault();

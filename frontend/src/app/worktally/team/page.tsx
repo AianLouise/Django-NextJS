@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaTimes, FaEnvelope, FaCalendar, FaUser, FaBuilding, FaPlus, FaUsers, FaUserCircle, FaClock } from 'react-icons/fa';
+import { LuX, LuMail, LuCalendar, LuUser, LuBuilding, LuPlus, LuUsers, LuCircleUser, LuClock } from 'react-icons/lu';
 import { toast } from 'react-hot-toast';
 import { apiRequest, User, Organization } from '@/lib/api';
 
@@ -189,7 +189,7 @@ export default function TeamPage() {
                             <div className="flex items-center">
                                 <div className="relative flex-shrink-0">
                                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                                        <FaBuilding className="text-white text-lg sm:text-xl" />
+                                        <LuBuilding className="text-white text-lg sm:text-xl" />
                                     </div>
                                     <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 -z-10"></div>
                                 </div>
@@ -220,10 +220,9 @@ export default function TeamPage() {
                             {/* Invite Button */}
                             {canInviteMembers && (
                                 <button
-                                    onClick={() => setShowInviteModal(true)}
-                                    className="w-full lg:w-auto inline-flex items-center justify-center px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 min-h-[44px]"
+                                    onClick={() => setShowInviteModal(true)} className="w-full lg:w-auto inline-flex items-center justify-center px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 min-h-[44px]"
                                 >
-                                    <FaPlus className="mr-2 h-4 w-4" />
+                                    <LuPlus className="mr-2 h-4 w-4" />
                                     Invite Team Member
                                 </button>
                             )}
@@ -251,7 +250,7 @@ export default function TeamPage() {
                         <div className="mb-6 sm:mb-8">
                             <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
                                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
-                                    <FaUser className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
+                                    <LuUser className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                                 </div>
                                 Active Members ({filteredActiveMembers.length})
                             </h3>
@@ -265,7 +264,7 @@ export default function TeamPage() {
                                                 <div className="flex items-center">
                                                     <div className="relative flex-shrink-0">
                                                         <div className="h-14 w-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                                                            <FaUserCircle className="h-8 w-8 text-white" />
+                                                            <LuCircleUser className="h-8 w-8 text-white" />
                                                         </div>
                                                         <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 -z-10"></div>
                                                     </div>
@@ -282,7 +281,7 @@ export default function TeamPage() {
                                                 <div className="mt-6 space-y-3">
                                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                                         <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3">
-                                                            <FaEnvelope className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                                                            <LuMail className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                                                         </div>
                                                         <a href={`mailto:${member.email}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 truncate">
                                                             {member.email}
@@ -290,7 +289,7 @@ export default function TeamPage() {
                                                     </div>
                                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                                         <div className="w-6 h-6 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-3">
-                                                            <FaCalendar className="h-3 w-3 text-purple-600 dark:text-purple-400" />
+                                                            <LuCalendar className="h-3 w-3 text-purple-600 dark:text-purple-400" />
                                                         </div>
                                                         <span>Joined {formatDate(member.date_joined)}</span>
                                                     </div>
@@ -310,7 +309,7 @@ export default function TeamPage() {
                                 ) : (
                                     <div className="col-span-full py-12 text-center">
                                         <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                            <FaUsers className="h-8 w-8 text-gray-400" />
+                                            <LuUsers className="h-8 w-8 text-gray-400" />
                                         </div>
                                         <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No active members found</h4>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -323,13 +322,12 @@ export default function TeamPage() {
 
                         {/* Pending Invitations Section */}
                         {filteredPendingInvitations.length > 0 && (
-                            <div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-                                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
-                                        <FaClock className="h-4 w-4 text-white" />
-                                    </div>
-                                    Pending Invitations ({filteredPendingInvitations.length})
-                                </h3>
+                            <div>                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                                <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
+                                    <LuClock className="h-4 w-4 text-white" />
+                                </div>
+                                Pending Invitations ({filteredPendingInvitations.length})
+                            </h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                     {filteredPendingInvitations.map((invitation, idx) => (
@@ -339,7 +337,7 @@ export default function TeamPage() {
                                                 <div className="flex items-center">
                                                     <div className="relative flex-shrink-0">
                                                         <div className="h-14 w-14 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
-                                                            <FaEnvelope className="h-7 w-7 text-white" />
+                                                            <LuMail className="h-7 w-7 text-white" />
                                                         </div>
                                                         <div className="absolute -inset-1 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl opacity-20 -z-10"></div>
                                                     </div>
@@ -356,13 +354,13 @@ export default function TeamPage() {
                                                 <div className="mt-6 space-y-3">
                                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                                         <div className="w-6 h-6 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center mr-3">
-                                                            <FaEnvelope className="h-3 w-3 text-yellow-600 dark:text-yellow-400" />
+                                                            <LuMail className="h-3 w-3 text-yellow-600 dark:text-yellow-400" />
                                                         </div>
                                                         <span className="truncate">{invitation.email}</span>
                                                     </div>
                                                     <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                                         <div className="w-6 h-6 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center mr-3">
-                                                            <FaClock className="h-3 w-3 text-orange-600 dark:text-orange-400" />
+                                                            <LuClock className="h-3 w-3 text-orange-600 dark:text-orange-400" />
                                                         </div>
                                                         <span>Invited {formatDate(invitation.invited_at)}</span>
                                                     </div>
@@ -392,7 +390,7 @@ export default function TeamPage() {
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center">
                                     <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-3">
-                                        <FaPlus className="text-white text-lg" />
+                                        <LuPlus className="text-white text-lg" />
                                     </div>
                                     <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                                         Invite Team Member
@@ -402,7 +400,7 @@ export default function TeamPage() {
                                     onClick={() => setShowInviteModal(false)}
                                     className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none transition-colors duration-200"
                                 >
-                                    <FaTimes className="h-6 w-6" />
+                                    <LuX className="h-6 w-6" />
                                 </button>
                             </div>
 
