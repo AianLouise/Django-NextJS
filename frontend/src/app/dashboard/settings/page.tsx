@@ -312,6 +312,7 @@ export default function Settings() {
                               type="text"
                               id="first-name"
                               value={firstName}
+                              placeholder='Enter your first name'
                               onChange={(e) => setFirstName(e.target.value)}
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
@@ -324,6 +325,7 @@ export default function Settings() {
                               type="text"
                               id="last-name"
                               value={lastName}
+                              placeholder='Enter your last name'
                               onChange={(e) => setLastName(e.target.value)}
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
@@ -336,6 +338,7 @@ export default function Settings() {
                               type="email"
                               id="email"
                               value={email}
+                              placeholder='Enter your email address'
                               disabled
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm bg-gray-100/70 dark:bg-gray-600/50 text-gray-500 dark:text-gray-400 text-sm backdrop-blur-sm"
                             />
@@ -351,6 +354,7 @@ export default function Settings() {
                               type="text"
                               id="job-title"
                               value={jobTitle}
+                              placeholder='Enter your job title'
                               onChange={(e) => setJobTitle(e.target.value)}
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
@@ -363,6 +367,7 @@ export default function Settings() {
                               type="text"
                               id="department"
                               value={department}
+                              placeholder='Enter your department'
                               onChange={(e) => setDepartment(e.target.value)}
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
@@ -375,6 +380,7 @@ export default function Settings() {
                               type="text"
                               id="phone-number"
                               value={phoneNumber}
+                              placeholder='Enter your phone number'
                               onChange={(e) => setPhoneNumber(e.target.value)}
                               className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                             />
@@ -389,12 +395,10 @@ export default function Settings() {
                             id="bio"
                             rows={4}
                             value={bio}
+                            placeholder='Tell us about yourself'
                             onChange={(e) => setBio(e.target.value)}
                             className="block p-3 w-full border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm dark:bg-gray-700/50 dark:text-white backdrop-blur-sm bg-white/70 transition-all duration-200"
                           ></textarea>
-                          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                            Brief description about yourself.
-                          </p>
                         </div>
 
                         <div className="mt-8 flex justify-end">
