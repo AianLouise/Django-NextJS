@@ -41,17 +41,17 @@ export default function Sidebar() {
         if (mobileNavRef.current && activeItemRef.current) {
             const container = mobileNavRef.current;
             const activeItem = activeItemRef.current;
-            
+
             // Small delay to ensure proper rendering
             setTimeout(() => {
                 // Calculate the scroll position to center the active item
                 const containerWidth = container.offsetWidth;
                 const itemLeft = activeItem.offsetLeft;
                 const itemWidth = activeItem.offsetWidth;
-                
+
                 // Center the active item in the container
                 const scrollLeft = itemLeft - (containerWidth / 2) + (itemWidth / 2);
-                
+
                 container.scrollTo({
                     left: Math.max(0, scrollLeft), // Prevent negative scroll
                     behavior: 'smooth'
@@ -63,7 +63,8 @@ export default function Sidebar() {
     return (
         <aside className="w-full lg:w-64 mb-4 lg:mb-0">
             {/* Mobile Navigation - Horizontal Scroll */}
-            <nav className="lg:hidden">                <div 
+            <nav className="lg:hidden">
+                <div
                     ref={mobileNavRef}
                     className="flex space-x-2 overflow-x-auto pb-2 px-4 sm:px-6 scrollbar-hide smooth-scroll"
                 >
@@ -77,10 +78,9 @@ export default function Sidebar() {
                                 ref={isActive ? activeItemRef : null}
                                 href={item.href}
                                 className={`${isActive
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                                        : 'bg-white/70 dark:bg-gray-800/60 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900'
-                                    } group flex items-center px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200 whitespace-nowrap backdrop-blur-md shadow-lg border border-white/20 dark:border-gray-700/30 ${
-                                        isActive ? 'shadow hover:scale-105' : ''
+                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                                    : 'bg-white/70 dark:bg-gray-800/60 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900'
+                                    } group flex items-center px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200 whitespace-nowrap backdrop-blur-md shadow-lg border border-white/20 dark:border-gray-700/30 ${isActive ? 'shadow hover:scale-105' : ''
                                     }`}
                             >
                                 <Icon className="h-4 w-4 mr-2 flex-shrink-0" />
@@ -102,10 +102,9 @@ export default function Sidebar() {
                             key={item.name}
                             href={item.href}
                             className={`${isActive
-                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                                    : 'text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900'
-                                } group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
-                                    isActive ? 'shadow hover:scale-105' : ''
+                                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                                : 'text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900'
+                                } group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive ? 'shadow hover:scale-105' : ''
                                 }`}
                         >
                             <Icon className="mr-3 h-5 w-5 flex-shrink-0" />
