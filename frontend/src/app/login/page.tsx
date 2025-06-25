@@ -37,7 +37,7 @@ export default function Login() {
       sessionStorage.removeItem('dashboard_loaded');
       toast.success('Login successful! Redirecting...');
       // If login is successful, redirect to dashboard
-      router.push('/dashboard');
+      router.push('/worktally/dashboard');
     } catch (err) {
       console.error('Login error details:', err);
       const message = err instanceof Error ? err.message : 'Invalid email or password. Please try again.';

@@ -120,7 +120,7 @@ function AcceptInvitationForm() {
 
             // Redirect to dashboard after a short delay
             setTimeout(() => {
-                router.push('/dashboard');
+                router.push('/worktally/dashboard');
             }, 2000);
 
         } catch (err) {

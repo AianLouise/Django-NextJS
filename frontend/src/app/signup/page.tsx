@@ -73,7 +73,7 @@ export default function Signup() {
 
       // Redirect to dashboard after a short delay
       setTimeout(() => {
-        router.push('/dashboard');
+        router.push('/worktally/dashboard');
       }, 1200);
     } catch (err) {
       console.error('Registration error:', err);

@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
 
   // If the path is login or signup and there's a token, redirect to dashboard
   if ((path === '/login' || path === '/signup') && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/worktally/dashboard', request.url));
   }
 
   return NextResponse.next();
