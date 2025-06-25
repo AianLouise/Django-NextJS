@@ -155,8 +155,8 @@ export default function TeamPage() {
         return fullName.includes(query) ||
             email.includes(query) ||
             role.includes(query);
-    });  // Check if user can invite team members (owner or admin)
-    const canInviteMembers = user && (user.role === 'owner' || user.role === 'admin');
+    });  // Check if user can invite team members (creator or admin)
+    const canInviteMembers = user && (user.role === 'creator' || user.role === 'admin');
 
     // Format date
     const formatDate = (dateString: string) => {
@@ -259,8 +259,8 @@ export default function TeamPage() {
                                 {filteredActiveMembers.length > 0 ? (
                                     filteredActiveMembers.map((member, idx) => (
                                         <div key={member.id || `active-${idx}`}
-                                            className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-600/30 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                                            <div className="p-6">
+                                            className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-600/30 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col h-full">
+                                            <div className="p-6 flex-1 flex flex-col">
                                                 <div className="flex items-center">
                                                     <div className="relative flex-shrink-0">
                                                         <div className="h-14 w-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -269,8 +269,13 @@ export default function TeamPage() {
                                                         <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 -z-10"></div>
                                                     </div>
                                                     <div className="ml-4">
-                                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                                            {member.first_name} {member.last_name}
+                                                        <h4
+                                                            className="text-lg font-semibold text-gray-900 dark:text-white truncate"
+                                                            title={`${member.first_name} ${member.last_name}`}
+                                                        >
+                                                            {`${member.first_name} ${member.last_name}`.length > 15
+                                                                ? `${member.first_name} ${member.last_name}`.slice(0, 15) + '...'
+                                                                : `${member.first_name} ${member.last_name}`}
                                                         </h4>
                                                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-200 capitalize">
                                                             {member.role || 'employee'}
@@ -294,6 +299,7 @@ export default function TeamPage() {
                                                         <span>Joined {formatDate(member.date_joined)}</span>
                                                     </div>
                                                 </div>
+                                                <div className="flex-1" /> {/* Spacer to push button to bottom */}
                                             </div>
 
                                             <div className="bg-gradient-to-r from-gray-50/80 to-blue-50/80 dark:from-gray-600/30 dark:to-blue-900/30 backdrop-blur-sm px-6 py-4 border-t border-white/20 dark:border-gray-600/30">
@@ -322,12 +328,13 @@ export default function TeamPage() {
 
                         {/* Pending Invitations Section */}
                         {filteredPendingInvitations.length > 0 && (
-                            <div>                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-                                <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
-                                    <LuClock className="h-4 w-4 text-white" />
-                                </div>
-                                Pending Invitations ({filteredPendingInvitations.length})
-                            </h3>
+                            <div>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
+                                        <LuClock className="h-4 w-4 text-white" />
+                                    </div>
+                                    Pending Invitations ({filteredPendingInvitations.length})
+                                </h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                     {filteredPendingInvitations.map((invitation, idx) => (
@@ -342,8 +349,10 @@ export default function TeamPage() {
                                                         <div className="absolute -inset-1 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl opacity-20 -z-10"></div>
                                                     </div>
                                                     <div className="ml-4">
-                                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                                            {invitation.first_name} {invitation.last_name}
+                                                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white truncate" title={`${invitation.first_name} ${invitation.last_name}`}>
+                                                            {`${invitation.first_name} ${invitation.last_name}`.length > 28
+                                                                ? `${invitation.first_name} ${invitation.last_name}`.slice(0, 25) + '...'
+                                                                : `${invitation.first_name} ${invitation.last_name}`}
                                                         </h4>
                                                         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-yellow-100 to-orange-100 text-yellow-800 dark:from-yellow-900/30 dark:to-orange-900/30 dark:text-yellow-200 capitalize">
                                                             {invitation.role || 'employee'}
