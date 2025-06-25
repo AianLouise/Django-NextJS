@@ -7,12 +7,10 @@ import {
     LuPlay,
     LuSquare,
     LuCalendar,
-    LuUsers,
     LuGitBranch,
     LuTrendingUp,
     LuCircleCheck,
-    LuTriangleAlert,
-    LuSettings
+    LuTriangleAlert
 } from 'react-icons/lu';
 import { apiRequest, User, TimeEntry, Project, TimeOffRequest } from '@/lib/api';
 
@@ -307,45 +305,7 @@ export default function DashboardPage() {
                         <p className="text-gray-600 dark:text-gray-400">Start tracking your time to see recent entries here.</p>
                     </div>
                 )}
-            </div>
-
-            {/* Quick Actions */}
-            <div className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 p-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a
-                        href="/worktally/timesheet"
-                        className="flex items-center justify-center p-4 bg-blue-50/50 dark:bg-blue-900/20 hover:bg-blue-100/50 dark:hover:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700 transition-colors"
-                    >
-                        <LuClock className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
-                        <span className="font-medium text-blue-700 dark:text-blue-300">View Timesheet</span>
-                    </a>
-
-                    <a
-                        href="/worktally/reports"
-                        className="flex items-center justify-center p-4 bg-green-50/50 dark:bg-green-900/20 hover:bg-green-100/50 dark:hover:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-700 transition-colors"
-                    >
-                        <LuTrendingUp className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
-                        <span className="font-medium text-green-700 dark:text-green-300">Generate Reports</span>
-                    </a>
-
-                    <a
-                        href="/worktally/team"
-                        className="flex items-center justify-center p-4 bg-purple-50/50 dark:bg-purple-900/20 hover:bg-purple-100/50 dark:hover:bg-purple-900/30 rounded-lg border border-purple-200 dark:border-purple-700 transition-colors"
-                    >
-                        <LuUsers className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-2" />
-                        <span className="font-medium text-purple-700 dark:text-purple-300">Manage Team</span>
-                    </a>
-
-                    <a
-                        href="/worktally/settings"
-                        className="flex items-center justify-center p-4 bg-gray-50/50 dark:bg-gray-800/20 hover:bg-gray-100/50 dark:hover:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors"
-                    >
-                        <LuSettings className="h-5 w-5 text-gray-600 dark:text-gray-400 mr-2" />
-                        <span className="font-medium text-gray-700 dark:text-gray-300">Settings</span>
-                    </a>
-                </div>
-            </div>
+            </div> 
         </div>
     );
 }
