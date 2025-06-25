@@ -145,23 +145,29 @@ class OrganizationTeamView(APIView):
     View and manage organization team members
     """
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request):
-        if not request.user.organization:
+        if not request.user.organization_id:
             return Response({
                 'error': 'User must belong to an organization.'
             }, status=status.HTTP_400_BAD_REQUEST)
-        
+
+        try:
+            organization = Organization.objects.get(pk=request.user.organization_id)
+        except Organization.DoesNotExist:
+            return Response({
+                'error': 'Organization not found.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         team_members = CustomUser.objects.filter(
-            organization=request.user.organization
+            organization=request.user.organization_id
         ).order_by('role', 'first_name', 'last_name')
-        
-        # Separate active and invited users
+
         active_members = team_members.filter(is_active=True)
         pending_invitations = team_members.filter(is_active=False, is_invited=True)
-        
+
         return Response({
-            'organization': OrganizationSerializer(request.user.organization).data,
+            'organization': OrganizationSerializer(organization).data,
             'active_members': UserSerializer(active_members, many=True).data,
             'pending_invitations': [{
                 'email': user.email,
