@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaClock, FaEnvelope, FaLock, FaUser, FaEye, FaEyeSlash, FaBuilding, FaUsers } from 'react-icons/fa';
+import { LuClock, LuMail, LuLock, LuUser, LuEye, LuEyeOff, LuBuilding, LuUsers } from 'react-icons/lu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { apiRequest } from '@/lib/api';
@@ -103,15 +103,19 @@ export default function Signup() {
 
       <div className="mx-auto w-full max-w-md sm:max-w-md relative z-10">
         <div className="flex justify-center">
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-4 group">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <FaClock className="text-white text-lg" />
+              {/* Enhanced 3D Logo */}
+              <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                <LuClock className="text-white text-xl drop-shadow-lg" />
               </div>
-              <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+              {/* 3D depth shadow */}
+              <div className="absolute top-1 left-1 w-11 h-11 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
                 WorkTally
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
@@ -139,7 +143,7 @@ export default function Signup() {
             <div className="border-b border-gray-200 dark:border-gray-600 pb-6">
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4 flex items-center bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <FaBuilding className="text-white" />
+                  <LuBuilding className="text-white" />
                 </div>
                 Organization Details
               </h3>
@@ -186,7 +190,7 @@ export default function Signup() {
             <div>
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4 flex items-center bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <FaUsers className="text-white" />
+                  <LuUsers className="text-white" />
                 </div>
                 Admin Account Details
               </h3>
@@ -197,8 +201,8 @@ export default function Signup() {
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       First Name *
                     </label>
-                    <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
-                      <FaUser className="h-4 w-4 text-gray-400" />
+                    <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5">
+                      <LuUser className="h-4 w-4 text-gray-400" />
                       <input
                         id="firstName"
                         name="firstName"
@@ -206,7 +210,7 @@ export default function Signup() {
                         required
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                        className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                         placeholder="John"
                       />
                     </div>
@@ -216,8 +220,8 @@ export default function Signup() {
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       Last Name *
                     </label>
-                    <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
-                      <FaUser className="h-4 w-4 text-gray-400" />
+                    <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5">
+                      <LuUser className="h-4 w-4 text-gray-400" />
                       <input
                         id="lastName"
                         name="lastName"
@@ -225,7 +229,7 @@ export default function Signup() {
                         required
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                        className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                         placeholder="Doe"
                       />
                     </div>
@@ -235,8 +239,8 @@ export default function Signup() {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Email Address *
                   </label>
-                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
-                    <FaEnvelope className="h-4 w-4 text-gray-400" />
+                  <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5">
+                    <LuMail className="h-4 w-4 text-gray-400" />
                     <input
                       id="email"
                       name="email"
@@ -245,7 +249,7 @@ export default function Signup() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                      className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                       placeholder="admin@acmecorp.com"
                     />
                   </div>
@@ -255,8 +259,8 @@ export default function Signup() {
                   <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Username *
                   </label>
-                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
-                    <FaUser className="h-4 w-4 text-gray-400" />
+                  <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5">
+                    <LuUser className="h-4 w-4 text-gray-400" />
                     <input
                       id="username"
                       name="username"
@@ -264,7 +268,7 @@ export default function Signup() {
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                      className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                       placeholder="john_doe"
                     />
                   </div>
@@ -273,8 +277,8 @@ export default function Signup() {
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Password *
                   </label>
-                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2 relative">
-                    <FaLock className="h-4 w-4 text-gray-400" />
+                  <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5 relative">
+                    <LuLock className="h-4 w-4 text-gray-400" />
                     <input
                       id="password"
                       name="password"
@@ -283,7 +287,7 @@ export default function Signup() {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                      className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                       placeholder="••••••••"
                     />
                     <button
@@ -293,9 +297,9 @@ export default function Signup() {
                       style={{ top: '50%', transform: 'translateY(-50%)' }}
                     >
                       {showPassword ? (
-                        <FaEyeSlash className="h-4 w-4" />
+                        <LuEyeOff className="h-4 w-4" />
                       ) : (
-                        <FaEye className="h-4 w-4" />
+                        <LuEye className="h-4 w-4" />
                       )}
                     </button>
                   </div>
@@ -305,8 +309,8 @@ export default function Signup() {
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Confirm Password *
                   </label>
-                  <div className="mt-1 flex items-center gap-3 rounded-xl shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2">
-                    <FaLock className="h-4 w-4 text-gray-400" />
+                  <div className="mt-1 flex items-center gap-3 rounded-lg shadow-sm bg-white dark:bg-gray-700/70 border border-gray-300/50 dark:border-gray-600/50 px-3 py-2.5">
+                    <LuLock className="h-4 w-4 text-gray-400" />
                     <input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -315,7 +319,7 @@ export default function Signup() {
                       required
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="block w-full py-1.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white sm:text-sm"
+                      className="block w-full py-0.5 bg-transparent outline-none border-none placeholder-gray-400 dark:text-white text-sm"
                       placeholder="••••••••"
                     />
                   </div>

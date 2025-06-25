@@ -41,11 +41,11 @@ export default function Home() {
             <Link href="#top" className="flex items-center space-x-3 group">
               <div className="relative">
                 {/* Enhanced 3D Logo */}
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
                   <LuClock className="text-white text-xl drop-shadow-lg" />
                 </div>
                 {/* 3D depth shadow */}
-                <div className="absolute top-1 left-1 w-12 h-12 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                <div className="absolute top-1 left-1 w-11 h-11 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
               </div>
@@ -639,11 +639,11 @@ export default function Home() {
               <Link href="/" className="flex items-center space-x-4 mb-6 group">
                 <div className="relative">
                   {/* Enhanced 3D Logo */}
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
+                  <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
                     <LuClock className="text-white text-xl drop-shadow-lg" />
                   </div>
                   {/* 3D depth shadow */}
-                  <div className="absolute top-1 left-1 w-12 h-12 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
+                  <div className="absolute top-1 left-1 w-11 h-11 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
                   {/* Glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
                 </div>
