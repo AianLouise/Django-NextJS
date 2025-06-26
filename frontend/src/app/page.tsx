@@ -148,7 +148,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section id='top' className="relative py-16 md:py-24 overflow-hidden">
+      <section id='top' className="relative min-h-screen flex items-center py-16 md:py-24 overflow-hidden">
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
           {/* Enhanced Wavy Lines Background */}
