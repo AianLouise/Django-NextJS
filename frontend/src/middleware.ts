@@ -28,5 +28,5 @@ export function middleware(request: NextRequest) {
 
 // Match all paths except for static files and api routes
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|public/|api/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.|api/).*)'],
 };

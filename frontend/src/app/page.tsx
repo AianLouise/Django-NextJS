@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
+import Image from "next/image";
 import { LuClock, LuUserCheck, LuTrendingUp, LuCalendarDays, LuMenu, LuGithub, LuTwitter, LuLinkedin, LuX, LuRocket, LuDollarSign, LuShield } from "react-icons/lu";
 
 export default function Home() {
@@ -34,27 +35,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Header / Navigation */}
-      <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/30">
+      <header className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-lg border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="#top" className="flex items-center space-x-3 group">
-              <div className="relative">
-                {/* Enhanced 3D Logo */}
-                <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
-                  <LuClock className="text-white text-xl drop-shadow-lg" />
-                </div>
-                {/* 3D depth shadow */}
-                <div className="absolute top-1 left-1 w-11 h-11 bg-gradient-to-br from-blue-800 to-purple-800 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
-                  WorkTally
-                </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
-              </div>
+            <Link href="#top" className="flex items-center group">
+              <Image
+                src="/logo-light.png"
+                alt="WorkTally Logo"
+                width={120}
+                height={60}
+                className="drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -63,33 +55,33 @@ export default function Home() {
                 <Link
                   href="#features"
                   onClick={(e) => handleSmoothScroll(e, 'features')}
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
+                  className="text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   Features
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </Link>
+
                 <Link
                   href="#how-it-works"
                   onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium transition-all duration-300 hover:scale-105 relative group"
+                  className="text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
                 >
                   How It Works
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </Link>
               </div>
               <div className="flex items-center space-x-3">
                 <Link
                   href="/login"
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium px-4 py-2 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all duration-300 backdrop-blur-sm"
+                  className="text-gray-700 hover:text-[#3bb768] font-medium px-4 py-2 rounded-xl hover:bg-gray-100 transition-all duration-300 backdrop-blur-sm"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
+                  className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md"
                 >
-                  <span className="relative z-10">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  Get Started
                 </Link>
               </div>
             </nav>
@@ -97,12 +89,12 @@ export default function Home() {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
               {isMobileMenuOpen ? (
-                <LuX className="text-gray-600 dark:text-gray-300 text-xl" />
+                <LuX className="text-gray-700 text-xl" />
               ) : (
-                <LuMenu className="text-gray-600 dark:text-gray-300 text-xl" />
+                <LuMenu className="text-gray-700 text-xl" />
               )}
             </button>
           </div>
@@ -110,33 +102,33 @@ export default function Home() {
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
             <div className="md:hidden">
-              <div className="px-4 pt-2 mt-4 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+              <div className="px-4 pt-2 mt-4 pb-3 space-y-1 bg-white border-t border-gray-200">
                 <Link
                   href="#features"
                   onClick={(e) => handleSmoothScroll(e, 'features')}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                 >
                   Features
                 </Link>
                 <Link
                   href="#how-it-works"
                   onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                 >
                   How It Works
                 </Link>
-                <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
+                <div className="border-t border-gray-200 pt-3 mt-3">
                   <Link
                     href="/login"
                     onClick={closeMobileMenu}
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/signup"
                     onClick={closeMobileMenu}
-                    className="block mt-2 mx-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-4 py-2.5 rounded-xl transition-all duration-300 text-center"
+                    className="block mt-2 mx-3 bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md text-center"
                   >
                     Get Started
                   </Link>
@@ -148,46 +140,92 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section id='top' className="relative min-h-screen flex items-center py-16 md:py-24 overflow-hidden">
+      <section
+        id="top"
+        className="relative min-h-screen bg-white py-16 md:py-24 overflow-hidden"
+      >
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Enhanced Wavy Lines Background */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,60 Q150,20 300,40 Q450,60 600,30 Q750,10 900,40 Q1050,80 1200,50" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-            <path d="M0,140 Q100,90 200,120 Q350,160 500,100 Q650,40 800,120 Q950,200 1100,140 Q1150,120 1200,140" stroke="rgba(147, 51, 234, 0.12)" strokeWidth="4" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
-            <path d="M0,220 Q120,170 240,200 Q360,230 480,190 Q600,150 720,190 Q840,230 960,200 Q1080,170 1200,220" stroke="rgba(236, 72, 153, 0.1)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
-            <path d="M0,300 Q150,250 300,280 Q450,300 600,270 Q750,240 900,280 Q1050,340 1200,300" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
-            <path d="M0,380 Q180,330 360,360 Q540,390 720,350 Q900,310 1080,350 Q1140,370 1200,380" stroke="rgba(34, 197, 94, 0.12)" strokeWidth="3" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
-            <path d="M0,460 Q90,410 180,440 Q270,470 360,430 Q450,390 540,430 Q630,470 720,440 Q810,410 900,440 Q990,470 1080,450 Q1140,440 1200,460" stroke="rgba(249, 115, 22, 0.1)" strokeWidth="2" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
-            <path d="M0,560 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="rgba(59, 130, 246, 0.15)" strokeWidth="3" fill="none" className="animate-pulse" />
+          <svg
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 1200 600"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#3bb768" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#000008" stopOpacity="0.1" />
+              </linearGradient>
+            </defs>
+
+            <path d="M0,60 Q150,20 300,40 Q450,60 600,30 Q750,10 900,40 Q1050,80 1200,50" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" />
+            <path d="M0,140 Q100,90 200,120 Q350,160 500,100 Q650,40 800,120 Q950,200 1100,140 Q1150,120 1200,140" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+            <path d="M0,220 Q120,170 240,200 Q360,230 480,190 Q600,150 720,190 Q840,230 960,200 Q1080,170 1200,220" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
+            <path d="M0,300 Q150,250 300,280 Q450,300 600,270 Q750,240 900,280 Q1050,340 1200,300" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" />
+            <path d="M0,380 Q180,330 360,360 Q540,390 720,350 Q900,310 1080,350 Q1140,370 1200,380" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '4.5s' }} />
+            <path d="M0,460 Q90,410 180,440 Q270,470 360,430 Q450,390 540,430 Q630,470 720,440 Q810,410 900,440 Q990,470 1080,450 Q1140,440 1200,460" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '6s' }} />
+            <path d="M0,560 Q120,490 240,520 Q360,550 480,510 Q600,470 720,510 Q840,550 960,520 Q1080,490 1200,540" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" />
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
-          {/* Enhanced 3D Hero Icon */}
-          <div className="relative mb-8 group">
-            <div className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-600 to-blue-700 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-2xl transform rotate-3 group-hover:rotate-6">
-              <LuClock className="text-white text-5xl drop-shadow-lg" />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-xl opacity-60 -z-10 group-hover:opacity-80 transition-opacity duration-500"></div>
+        {/* Grid Layout */}
+        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 items-center justify-center relative z-10 gap-8 lg:gap-16">
+
+          {/* Left Side – Hero Text */}
+          <div className="w-full max-w-xl mx-auto text-center lg:text-left self-center">
+            <div className="mb-8 flex justify-center lg:justify-start">
+              <Image
+                src="/logo-light.png"
+                alt="WorkTally Logo"
+                width={160}
+                height={80}
+                className="drop-shadow-lg transition-transform duration-300"
+              />
             </div>
-            {/* 3D depth shadow */}
-            <div className="absolute top-2 left-2 w-32 h-32 bg-gradient-to-br from-blue-800 to-purple-900 rounded-3xl opacity-30 -z-20 transform rotate-3"></div>
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+              Simple Time Tracking for Modern Teams
+            </h2>
+
+            <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
+              Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.
+            </p>
+
+            <div className="flex justify-center lg:justify-start">
+              <Link
+                href="/signup"
+                className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-md"
+              >
+                Get Started
+              </Link>
+            </div>
           </div>
 
-          <h2 className="text-4xl py-1 md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300 drop-shadow-sm">
-            Simple Time Tracking for Modern Teams
-          </h2>
-          <p className="text-xl max-w-2xl mb-10 text-gray-600 dark:text-gray-300 leading-relaxed">
-            Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.
-          </p>
-          <div className="flex justify-center">
-            <Link
-              href="/signup"
-              className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
-            >
-              <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+          {/* Right Side – Mockups */}
+          <div className="w-full max-w-4xl mx-auto relative self-center px-4 lg:px-0">
+            <div className="relative flex justify-center lg:justify-start">
+              {/* Desktop Mockup - Responsive sizing */}
+              <div className="relative w-full max-w-2xl">
+                <Image
+                  src="/mockup-desktop.png"
+                  alt="Desktop App Mockup"
+                  width={1200}
+                  height={700}
+                  className="w-full h-auto"
+                />
+
+                {/* Mobile Mockup - Better responsive positioning */}
+                <Image
+                  src="/mockup-mobile.png"
+                  alt="Mobile App Mockup"
+                  width={350}
+                  height={700}
+                  className="absolute bottom-8 -right-8 md:bottom-12 md:-right-12 lg:bottom-16 lg:-right-16 w-48 md:w-60 lg:w-72 xl:w-80 h-auto"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
