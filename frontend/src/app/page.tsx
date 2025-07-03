@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -219,18 +219,19 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section id="features" className="relative py-20 bg-white overflow-hidden">
         <div className="container mx-auto px-4 relative z-20">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               Key Features
             </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Powerful tools designed to streamline your time tracking and boost productivity
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-blue-200/50 dark:hover:border-blue-600/50 relative z-30">              {/* Enhanced 3D Icon Container */}
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 hover:border-[#3bb768] relative z-30">
+              {/* Enhanced 3D Icon Container */}
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 group-hover:rotate-6">
                   <LuClock className="text-white text-3xl drop-shadow-lg" />
@@ -238,10 +239,10 @@ export default function Home() {
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl opacity-40 -z-10 transform rotate-3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Time Tracking</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Easy clock-in/out with our intuitive interface and real-time tracking.</p>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Time Tracking</h4>
+              <p className="text-gray-600 leading-relaxed">Easy clock-in/out with our intuitive interface and real-time tracking.</p>
             </div>
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-purple-200/50 dark:hover:border-purple-600/50 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 hover:border-[#3bb768] relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-3 group-hover:-rotate-6">
                   <LuUserCheck className="text-white text-3xl drop-shadow-lg" />
@@ -249,10 +250,10 @@ export default function Home() {
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-purple-700 to-purple-900 rounded-2xl opacity-40 -z-10 transform -rotate-3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Attendance Management</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Track employee attendance and manage time-off requests seamlessly.</p>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Attendance Management</h4>
+              <p className="text-gray-600 leading-relaxed">Track employee attendance and manage time-off requests seamlessly.</p>
             </div>
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-green-200/50 dark:hover:border-green-600/50 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 hover:border-[#3bb768] relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-green-500 via-emerald-600 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-2 group-hover:rotate-4">
                   <LuTrendingUp className="text-white text-3xl drop-shadow-lg" />
@@ -260,10 +261,10 @@ export default function Home() {
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-green-700 to-emerald-900 rounded-2xl opacity-40 -z-10 transform rotate-2"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Advanced Reporting</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Generate detailed reports on employee hours and project analytics.</p>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Advanced Reporting</h4>
+              <p className="text-gray-600 leading-relaxed">Generate detailed reports on employee hours and project analytics.</p>
             </div>
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 hover:border-orange-200/50 dark:hover:border-orange-600/50 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 hover:border-[#3bb768] relative z-30">
               <div className="relative w-20 h-20 mb-6 group-hover:scale-110 transition-all duration-500">
                 <div className="w-full h-full bg-gradient-to-br from-orange-500 via-amber-600 to-orange-700 rounded-2xl flex items-center justify-center shadow-2xl transform -rotate-2 group-hover:-rotate-4">
                   <LuCalendarDays className="text-white text-3xl drop-shadow-lg" />
@@ -271,28 +272,28 @@ export default function Home() {
                 <div className="absolute top-1 left-1 w-full h-full bg-gradient-to-br from-orange-700 to-amber-900 rounded-2xl opacity-40 -z-10 transform -rotate-2"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-600 rounded-2xl blur-lg opacity-30 -z-20 group-hover:opacity-50 transition-opacity duration-500"></div>
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Smart Scheduling</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Create and manage employee schedules with intelligent automation.</p>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Smart Scheduling</h4>
+              <p className="text-gray-600 leading-relaxed">Create and manage employee schedules with intelligent automation.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative py-20 bg-white dark:bg-gray-800 overflow-hidden">
+      <section id="how-it-works" className="relative py-20 bg-gray-50 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200 dark:bg-blue-800 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 dark:bg-purple-800 rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 dark:border-gray-600 rounded-full opacity-10"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 rounded-full opacity-20 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 rounded-full opacity-10"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-20">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               How It Works
             </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Get started in minutes with our simple three-step process
             </p>
           </div>
@@ -313,8 +314,8 @@ export default function Home() {
                 <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse"></div>
                 <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse animation-delay-1000"></div>
               </div>
-              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Sign Up</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+              <h4 className="text-2xl font-bold mb-4 text-gray-900">Sign Up</h4>
+              <p className="text-gray-600 leading-relaxed text-lg">
                 Create an account for your organization and invite your team members with just a few clicks.
               </p>
             </div>
@@ -331,8 +332,8 @@ export default function Home() {
                 <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse animation-delay-2000"></div>
                 <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse animation-delay-3000"></div>
               </div>
-              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Track Time</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+              <h4 className="text-2xl font-bold mb-4 text-gray-900">Track Time</h4>
+              <p className="text-gray-600 leading-relaxed text-lg">
                 Employees clock in and out effortlessly with our intuitive interface on any device, anywhere.
               </p>
             </div>
@@ -349,8 +350,8 @@ export default function Home() {
                 <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse animation-delay-4000"></div>
                 <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-full opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
               </div>
-              <h4 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Generate Reports</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+              <h4 className="text-2xl font-bold mb-4 text-gray-900">Generate Reports</h4>
+              <p className="text-gray-600 leading-relaxed text-lg">
                 Get powerful insights with detailed reports on hours, attendance, and project analytics.
               </p>
             </div>
@@ -359,19 +360,19 @@ export default function Home() {
       </section>
 
       {/* Statistics Section */}
-      <section className="relative py-20 bg-gray-50 dark:bg-gray-700 overflow-hidden">
+      <section className="relative py-20 bg-white overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-20 left-20 w-40 h-40 bg-blue-200 dark:bg-blue-800 rounded-full opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-200 dark:bg-purple-800 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-20 left-20 w-40 h-40 bg-blue-200 rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-200 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-20">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               Trusted by Teams Worldwide
             </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See how WorkTally is transforming productivity across industries
             </p>
           </div>
@@ -384,8 +385,8 @@ export default function Home() {
                 </div>
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-blue-700 to-blue-800 rounded-2xl opacity-40 -z-10 rotate-3"></div>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Active Users</h4>
-              <p className="text-gray-600 dark:text-gray-300">Teams using WorkTally daily</p>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Active Users</h4>
+              <p className="text-gray-600">Teams using WorkTally daily</p>
             </div>
 
             <div className="text-center group">
@@ -395,8 +396,8 @@ export default function Home() {
                 </div>
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-green-700 to-emerald-800 rounded-2xl opacity-40 -z-10 -rotate-3"></div>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Accuracy Rate</h4>
-              <p className="text-gray-600 dark:text-gray-300">Time tracking precision</p>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Accuracy Rate</h4>
+              <p className="text-gray-600">Time tracking precision</p>
             </div>
 
             <div className="text-center group">
@@ -406,8 +407,8 @@ export default function Home() {
                 </div>
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-purple-700 to-purple-800 rounded-2xl opacity-40 -z-10 rotate-2"></div>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Time Saved</h4>
-              <p className="text-gray-600 dark:text-gray-300">On administrative tasks</p>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Time Saved</h4>
+              <p className="text-gray-600">On administrative tasks</p>
             </div>
 
             <div className="text-center group">
@@ -417,35 +418,37 @@ export default function Home() {
                 </div>
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-gradient-to-br from-orange-700 to-amber-800 rounded-2xl opacity-40 -z-10 -rotate-2"></div>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Support</h4>
-              <p className="text-gray-600 dark:text-gray-300">Always here to help</p>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Support</h4>
+              <p className="text-gray-600">Always here to help</p>
             </div>
           </div>
 
           {/* Key Benefits */}
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
+            <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-200 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <LuRocket className="text-white text-2xl" />
               </div>
-              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Increase Productivity</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <h4 className="text-xl font-bold mb-4 text-gray-900">Increase Productivity</h4>
+              <p className="text-gray-600 leading-relaxed">
                 Streamline workflows and eliminate time-wasting activities with intelligent automation and real-time insights.
               </p>
-            </div>            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
+            </div>
+            <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-200 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <LuDollarSign className="text-white text-2xl" />
               </div>
-              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Reduce Costs</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <h4 className="text-xl font-bold mb-4 text-gray-900">Reduce Costs</h4>
+              <p className="text-gray-600 leading-relaxed">
                 Cut administrative overhead by 30% with automated reporting and streamlined payroll processing.
               </p>
-            </div>            <div className="bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-600/30 group hover:shadow-2xl transition-all duration-500 relative z-30">
+            </div>
+            <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-200 group hover:shadow-2xl transition-all duration-500 relative z-30">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <LuShield className="text-white text-2xl" />
               </div>
-              <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Improve Accuracy</h4>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <h4 className="text-xl font-bold mb-4 text-gray-900">Improve Accuracy</h4>
+              <p className="text-gray-600 leading-relaxed">
                 Eliminate manual errors with automated time capture and GPS-enabled location verification.
               </p>
             </div>
@@ -454,26 +457,26 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-20 bg-white dark:bg-gray-800 overflow-hidden">
+      <section className="relative py-20 bg-gray-50 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200 dark:bg-blue-800 rounded-full opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-40 h-40 bg-purple-200 dark:bg-purple-800 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 dark:border-gray-600 rounded-full opacity-5"></div>
+          <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200 rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-40 h-40 bg-purple-200 rounded-full opacity-10 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-200 rounded-full opacity-5"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-20">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-300">
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               What Our Users Say
             </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Real feedback from teams who transformed their productivity with WorkTally
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Testimonial 1 */}
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 relative z-30">
               <div className="flex items-center mb-6">
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, i) => (
@@ -483,7 +486,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+              <p className="text-gray-700 mb-6 italic leading-relaxed">
                 &quot;WorkTally completely transformed how we manage our team&apos;s time. The automated reporting saves us hours every week, and the accuracy is incredible.&quot;
               </p>
               <div className="flex items-center">
@@ -491,13 +494,13 @@ export default function Home() {
                   <span className="text-white font-bold text-sm">SJ</span>
                 </div>
                 <div>
-                  <h5 className="font-semibold text-gray-900 dark:text-white">Sarah Johnson</h5>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">HR Director, TechCorp</p>
+                  <h5 className="font-semibold text-gray-900">Sarah Johnson</h5>
+                  <p className="text-gray-600 text-sm">HR Director, TechCorp</p>
                 </div>
               </div>
             </div>
             {/* Testimonial 2 */}
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 relative z-30">
               <div className="flex items-center mb-6">
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, i) => (
@@ -507,7 +510,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+              <p className="text-gray-700 mb-6 italic leading-relaxed">
                 &quot;As a project manager, I love how easy it is to track time across multiple projects. The insights help us optimize our workflows and meet deadlines.&quot;
               </p>
               <div className="flex items-center">
@@ -515,13 +518,13 @@ export default function Home() {
                   <span className="text-white font-bold text-sm">MC</span>
                 </div>
                 <div>
-                  <h5 className="font-semibold text-gray-900 dark:text-white">Mike Chen</h5>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Project Manager, Design Studio</p>
+                  <h5 className="font-semibold text-gray-900">Mike Chen</h5>
+                  <p className="text-gray-600 text-sm">Project Manager, Design Studio</p>
                 </div>
               </div>
             </div>
             {/* Testimonial 3 */}
-            <div className="group bg-white/70 dark:bg-gray-700/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 dark:border-gray-600/30 relative z-30">
+            <div className="group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 relative z-30">
               <div className="flex items-center mb-6">
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, i) => (
@@ -531,7 +534,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+              <p className="text-gray-700 mb-6 italic leading-relaxed">
                 &quot;The mobile app is fantastic! Our field team can clock in from anywhere, and I get real-time updates. It&apos;s made managing remote work so much easier.&quot;
               </p>
               <div className="flex items-center">
@@ -539,8 +542,8 @@ export default function Home() {
                   <span className="text-white font-bold text-sm">ER</span>
                 </div>
                 <div>
-                  <h5 className="font-semibold text-gray-900 dark:text-white">Emily Rodriguez</h5>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Operations Manager, FieldWork Inc</p>
+                  <h5 className="font-semibold text-gray-900">Emily Rodriguez</h5>
+                  <p className="text-gray-600 text-sm">Operations Manager, FieldWork Inc</p>
                 </div>
               </div>
             </div>
@@ -548,20 +551,20 @@ export default function Home() {
 
           {/* Customer Logos */}
           <div className="mt-16 text-center">
-            <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium">Trusted by leading companies</p>
+            <p className="text-gray-500 mb-8 font-medium">Trusted by leading companies</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">TechCorp</div>
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">Design Studio</div>
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">FieldWork Inc</div>
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">BuildCo</div>
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-6 py-3 font-bold text-gray-600 dark:text-gray-300">StartupX</div>
+              <div className="bg-gray-200 rounded-lg px-6 py-3 font-bold text-gray-600">TechCorp</div>
+              <div className="bg-gray-200 rounded-lg px-6 py-3 font-bold text-gray-600">Design Studio</div>
+              <div className="bg-gray-200 rounded-lg px-6 py-3 font-bold text-gray-600">FieldWork Inc</div>
+              <div className="bg-gray-200 rounded-lg px-6 py-3 font-bold text-gray-600">BuildCo</div>
+              <div className="bg-gray-200 rounded-lg px-6 py-3 font-bold text-gray-600">StartupX</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-700 dark:via-purple-700 dark:to-blue-900 overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 dark:opacity-5 z-0">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -578,21 +581,21 @@ export default function Home() {
 
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none z-5">
-          <div className="absolute top-10 right-10 w-20 h-20 border-2 border-white/20 dark:border-white/10 rounded-full animate-spin-slow"></div>
-          <div className="absolute bottom-10 left-10 w-16 h-16 border-2 border-white/20 dark:border-white/10 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-white/10 dark:bg-white/5 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-8 h-8 bg-white/10 dark:bg-white/5 rounded-full animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-10 right-10 w-20 h-20 border-2 border-white/20 rounded-full animate-spin-slow"></div>
+          <div className="absolute bottom-10 left-10 w-16 h-16 border-2 border-white/20 rounded-full animate-bounce"></div>
+          <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-8 h-8 bg-white/10 rounded-full animate-pulse animation-delay-2000"></div>
         </div>
 
         <div className="container mx-auto px-4 text-center relative z-20">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white dark:text-gray-100 leading-tight">
+            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
               Ready to Streamline Your
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-300 dark:from-yellow-200 dark:to-orange-200">
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-300">
                 Timekeeping?
               </span>
             </h3>
-            <p className="text-xl md:text-2xl mb-12 text-blue-100 dark:text-blue-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Join thousands of companies that trust WorkTally for their time tracking needs.
               Transform your productivity today.
             </p>
@@ -600,24 +603,24 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link
                 href="/signup"
-                className="group relative bg-white hover:bg-gray-50 dark:bg-gray-100 dark:hover:bg-gray-200 text-blue-600 dark:text-blue-700 font-bold rounded-2xl px-10 py-5 text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
+                className="group relative bg-white hover:bg-gray-50 text-blue-600 font-bold rounded-2xl px-10 py-5 text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
               >
                 <span className="relative z-10">Get Started Now</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 dark:from-yellow-200 dark:to-orange-200 opacity-0 group-hover:opacity-20 dark:group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </Link>
 
-              <div className="flex items-center text-white/80 dark:text-white/70 text-sm">
+              <div className="flex items-center text-white/80 text-sm">
                 <div className="flex -space-x-2 mr-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 dark:from-yellow-300 dark:to-orange-300 rounded-full border-2 border-white dark:border-gray-200"></div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-400 dark:from-green-300 dark:to-blue-300 rounded-full border-2 border-white dark:border-gray-200"></div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 dark:from-purple-300 dark:to-pink-300 rounded-full border-2 border-white dark:border-gray-200"></div>
-                  <div className="w-8 h-8 bg-white/20 dark:bg-white/30 rounded-full border-2 border-white dark:border-gray-200 flex items-center justify-center text-xs font-bold">+</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-white/20 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">+</div>
                 </div>
                 <span>Trusted by 10,000+ teams</span>
               </div>
             </div>
 
-            <div className="mt-12 flex justify-center items-center space-x-8 text-white/60 dark:text-white/50 text-sm">
+            <div className="mt-12 flex justify-center items-center space-x-8 text-white/60 text-sm">
               <div className="flex items-center">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -641,7 +644,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white dark:text-gray-100 overflow-hidden">
+      <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -674,10 +677,10 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500 -z-20"></div>
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 drop-shadow-sm">
+                  <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow-sm">
                     WorkTally
                   </h1>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Smart Time Tracker</p>
+                  <p className="text-xs text-gray-500 -mt-1">Smart Time Tracker</p>
                 </div>
               </Link>
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 max-w-md">
