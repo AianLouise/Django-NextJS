@@ -36,54 +36,50 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       {/* Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-lg border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link href="#top" className="flex items-center group">
               <Image
                 src="/logo-light.png"
                 alt="WorkTally Logo"
-                width={120}
-                height={60}
+                width={100}
+                height={50}
                 className="drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <div className="flex items-center space-x-6">
-                <Link
-                  href="#features"
-                  onClick={(e) => handleSmoothScroll(e, 'features')}
-                  className="text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
-                >
-                  Features
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Link>
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link
+                href="#features"
+                onClick={(e) => handleSmoothScroll(e, 'features')}
+                className="text-sm lg:text-base text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
+              >
+                Features
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              </Link>
+              <Link
+                href="#how-it-works"
+                onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
+                className="text-sm lg:text-base text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
+              >
+                How It Works
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              </Link>
 
-                <Link
-                  href="#how-it-works"
-                  onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
-                  className="text-gray-700 hover:text-[#3bb768] font-medium transition-all duration-300 hover:scale-105 relative group"
-                >
-                  How It Works
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-[#3bb768] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Link>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Link
-                  href="/login"
-                  className="text-gray-700 hover:text-[#3bb768] font-medium px-4 py-2 rounded-xl hover:bg-gray-100 transition-all duration-300 backdrop-blur-sm"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/signup"
-                  className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md"
-                >
-                  Get Started
-                </Link>
-              </div>
+              <Link
+                href="/login"
+                className="text-sm lg:text-base text-gray-700 hover:text-[#3bb768] font-medium px-3 py-2 rounded-xl hover:bg-gray-100 transition-all duration-300 backdrop-blur-sm"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/signup"
+                className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-5 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md"
+              >
+                Get Started
+              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -106,14 +102,14 @@ export default function Home() {
                 <Link
                   href="#features"
                   onClick={(e) => handleSmoothScroll(e, 'features')}
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                 >
                   Features
                 </Link>
                 <Link
                   href="#how-it-works"
                   onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                 >
                   How It Works
                 </Link>
@@ -121,14 +117,14 @@ export default function Home() {
                   <Link
                     href="/login"
                     onClick={closeMobileMenu}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
+                    className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#3bb768] hover:bg-gray-50 rounded-lg transition-colors"
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/signup"
                     onClick={closeMobileMenu}
-                    className="block mt-2 mx-3 bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-6 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md text-center"
+                    className="block mt-2 mx-3 bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium px-5 py-2.5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md text-center"
                   >
                     Get Started
                   </Link>
@@ -142,7 +138,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="top"
-        className="relative min-h-screen bg-white py-16 md:py-24 overflow-hidden"
+        className="relative min-h-screen bg-white py-10 md:py-20 overflow-hidden flex items-center justify-center"
       >
         {/* Background Design Elements */}
         <div className="absolute inset-0 pointer-events-none">
@@ -159,7 +155,6 @@ export default function Home() {
                 <stop offset="100%" stopColor="#000008" stopOpacity="0.1" />
               </linearGradient>
             </defs>
-
             <path d="M0,60 Q150,20 300,40 Q450,60 600,30 Q750,10 900,40 Q1050,80 1200,50" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" />
             <path d="M0,140 Q100,90 200,120 Q350,160 500,100 Q650,40 800,120 Q950,200 1100,140 Q1150,120 1200,140" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
             <path d="M0,220 Q120,170 240,200 Q360,230 480,190 Q600,150 720,190 Q840,230 960,200 Q1080,170 1200,220" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" className="animate-pulse" style={{ animationDelay: '3s' }} />
@@ -170,62 +165,55 @@ export default function Home() {
           </svg>
         </div>
 
-        {/* Grid Layout */}
-        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 items-center justify-center relative z-10 gap-8 lg:gap-16">
-
-          {/* Left Side – Hero Text */}
-          <div className="w-full max-w-xl mx-auto text-center lg:text-left self-center">
-            <div className="mb-8 flex justify-center lg:justify-start">
+        {/* Responsive 2-column layout, always centered */}
+        <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-12 -mt-5 lg:-mt-20">
+          {/* Left: Text Content */}
+          <div className="flex-1 flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
+            <div className="mb-6 flex justify-center lg:justify-start">
               <Image
                 src="/logo-light.png"
                 alt="WorkTally Logo"
-                width={160}
-                height={80}
-                className="drop-shadow-lg transition-transform duration-300"
+                width={120}
+                height={50}
+                className="drop-shadow-lg"
               />
             </div>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 leading-tight">
               Simple Time Tracking for Modern Teams
             </h2>
-
-            <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
+            {/* Mobile: Image after h2 */}
+            <div className="w-full flex justify-center mb-6 lg:hidden">
+              <Image
+                src="/mockup.png"
+                alt="WorkTally App Mockup"
+                width={600}
+                height={400}
+                className="w-80 sm:w-96 md:w-[28rem] h-auto"
+                priority
+              />
+            </div>
+            <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed max-w-md mx-auto lg:mx-0">
               Track employee hours, manage projects, and create accurate reports with our easy-to-use timekeeping system.
             </p>
-
             <div className="flex justify-center lg:justify-start">
               <Link
                 href="/signup"
-                className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium rounded-2xl px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-md"
+                className="bg-[#3bb768] hover:bg-[#32a75a] text-white font-medium rounded-2xl px-6 py-3 text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-md"
               >
                 Get Started
               </Link>
             </div>
           </div>
-
-          {/* Right Side – Mockups */}
-          <div className="w-full max-w-4xl mx-auto relative self-center px-4 lg:px-0">
-            <div className="relative flex justify-center lg:justify-start">
-              {/* Desktop Mockup - Responsive sizing */}
-              <div className="relative w-full max-w-2xl">
-                <Image
-                  src="/mockup-desktop.png"
-                  alt="Desktop App Mockup"
-                  width={1200}
-                  height={700}
-                  className="w-full h-auto"
-                />
-
-                {/* Mobile Mockup - Better responsive positioning */}
-                <Image
-                  src="/mockup-mobile.png"
-                  alt="Mobile App Mockup"
-                  width={350}
-                  height={700}
-                  className="absolute bottom-8 -right-8 md:bottom-12 md:-right-12 lg:bottom-16 lg:-right-16 w-48 md:w-60 lg:w-72 xl:w-80 h-auto"
-                />
-              </div>
-            </div>
+          {/* Right: Mockup Image (desktop only) */}
+          <div className="flex-1 items-center justify-center hidden lg:flex">
+            <Image
+              src="/mockup.png"
+              alt="WorkTally App Mockup"
+              width={600}
+              height={400}
+              className="w-80 sm:w-96 md:w-[28rem] lg:w-[32rem] h-auto"
+              priority
+            />
           </div>
         </div>
       </section>
